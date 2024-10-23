@@ -1,0 +1,22 @@
+[workspace]
+members = [
+]
+[package]
+name = "ld"
+authors = ["C2Rust"]
+version = "0.0.0"
+publish = false
+edition = "2021"
+autobins = false
+
+
+[[bin]]
+path = "ldmain.rs"
+name = "ldmain"
+[dependencies]
+bfd-sys = { version = "0.0.0", path = "../bfd" }
+c2rust-bitfields= "0.3"
+libc= "0.2"
+libctf-sys = { version = "0.0.0", path = "../libctf" }
+libiberty-sys = { version = "0.0.0", path = "../libiberty" }
+zlib-sys = { version = "0.0.0", path = "../zlib" }
