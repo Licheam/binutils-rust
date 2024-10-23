@@ -5409,7 +5409,7 @@ unsafe extern "C" fn xmemdup0(
         as *mut libc::c_char;
 }
 #[no_mangle]
-pub unsafe extern "C" fn dwarf2_directive_file(mut dummy: libc::c_int) {
+pub unsafe extern "C" fn dwarf2_directive_file(mut _dummy: libc::c_int) {
     dwarf2_directive_filename();
 }
 #[no_mangle]
@@ -5551,7 +5551,7 @@ pub unsafe extern "C" fn dwarf2_directive_filename() -> *mut libc::c_char {
     return filename;
 }
 #[no_mangle]
-pub unsafe extern "C" fn dwarf2_directive_loc(mut dummy: libc::c_int) {
+pub unsafe extern "C" fn dwarf2_directive_loc(mut _dummy: libc::c_int) {
     let mut filenum: offsetT = 0;
     let mut line: offsetT = 0;
     if dwarf2_loc_directive_seen {
@@ -5948,7 +5948,7 @@ pub unsafe extern "C" fn dwarf2_where(mut line: *mut dwarf2_line_info) {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn dwarf2_directive_loc_mark_labels(mut dummy: libc::c_int) {
+pub unsafe extern "C" fn dwarf2_directive_loc_mark_labels(mut _dummy: libc::c_int) {
     let mut value: offsetT = get_absolute_expression();
     if value != 0 as libc::c_int as libc::c_long
         && value != 1 as libc::c_int as libc::c_long
@@ -8400,8 +8400,8 @@ unsafe extern "C" fn out_debug_aranges(mut aranges_seg: segT, mut info_seg: segT
 }
 unsafe extern "C" fn out_debug_abbrev(
     mut abbrev_seg: segT,
-    mut info_seg: segT,
-    mut line_seg: segT,
+    mut _info_seg: segT,
+    mut _line_seg: segT,
 ) {
     let mut secoff_form: libc::c_int = 0;
     subseg_set(abbrev_seg, 0 as libc::c_int);

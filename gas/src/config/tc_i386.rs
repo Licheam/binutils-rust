@@ -6973,8 +6973,8 @@ pub unsafe extern "C" fn tc_gen_reloc(
 }
 #[no_mangle]
 pub unsafe extern "C" fn md_convert_frag(
-    mut abfd: *mut bfd,
-    mut sec: segT,
+    mut _abfd: *mut bfd,
+    mut _sec: segT,
     mut fragP: *mut fragS,
 ) {
     let mut opcode: *mut libc::c_uchar = 0 as *mut libc::c_uchar;
@@ -7232,13 +7232,13 @@ pub unsafe extern "C" fn md_convert_frag(
     {
         4 as libc::c_int
     } else {
-        (if (*fragP).fr_subtype & 3 as libc::c_int as libc::c_uint
+        if (*fragP).fr_subtype & 3 as libc::c_int as libc::c_uint
             == (2 as libc::c_int | 1 as libc::c_int) as libc::c_uint
         {
             2 as libc::c_int
         } else {
             1 as libc::c_int
-        })
+        }
     }) == 4 as libc::c_int && object_64bit != 0
         && ((displacement_from_opcode_start - extension as libc::c_long)
             as libc::c_ulong)
@@ -7322,7 +7322,7 @@ pub unsafe extern "C" fn md_undefined_symbol(
 }
 #[no_mangle]
 pub unsafe extern "C" fn md_section_align(
-    mut segment: segT,
+    mut _segment: segT,
     mut size: valueT,
 ) -> valueT {
     return size;
@@ -10452,7 +10452,7 @@ pub static mut md_relax_table: [relax_typeS; 12] = [
 #[no_mangle]
 pub static mut optimize_align_code: libc::c_int = 1 as libc::c_int;
 #[no_mangle]
-pub unsafe extern "C" fn i386_cons_align(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn i386_cons_align(mut _ignore: libc::c_int) {
     if last_insn.kind as libc::c_uint
         != last_insn_directive as libc::c_int as libc::c_uint
         && bfd_section_flags(now_seg as *const asection)
@@ -11410,7 +11410,7 @@ unsafe extern "C" fn set_check(mut what: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn set_cpu_arch(mut dummy: libc::c_int) {
+unsafe extern "C" fn set_cpu_arch(mut _dummy: libc::c_int) {
     if *input_line_pointer as libc::c_int == ' ' as i32 {
         input_line_pointer = input_line_pointer.offset(1);
         input_line_pointer;
@@ -11621,7 +11621,7 @@ unsafe extern "C" fn output_invalid(mut c: libc::c_int) -> *mut libc::c_char {
     return output_invalid_buf.as_mut_ptr();
 }
 unsafe extern "C" fn i386_finalize_immediate(
-    mut exp_seg: segT,
+    mut _exp_seg: segT,
     mut exp: *mut expressionS,
     mut types: i386_operand_type,
     mut imm_start: *const libc::c_char,
@@ -11668,7 +11668,7 @@ unsafe extern "C" fn i386_finalize_immediate(
     return 1 as libc::c_int;
 }
 unsafe extern "C" fn i386_finalize_displacement(
-    mut exp_seg: segT,
+    mut _exp_seg: segT,
     mut exp: *mut expressionS,
     mut types: i386_operand_type,
     mut disp_start: *const libc::c_char,
@@ -13133,16 +13133,16 @@ unsafe extern "C" fn i386_intel_simplify(mut e: *mut expressionS) -> libc::c_int
                     && i386_intel_simplify_symbol((*e).X_op_symbol) == 0
                 || i386_intel_check(
                     the_reg,
-                    (if (*e).X_op() as libc::c_int != O_add as libc::c_int {
+                    if (*e).X_op() as libc::c_int != O_add as libc::c_int {
                         base
                     } else {
                         intel_state.base
-                    }),
-                    (if (*e).X_op() as libc::c_int != O_add as libc::c_int {
+                    },
+                    if (*e).X_op() as libc::c_int != O_add as libc::c_int {
                         state_index
                     } else {
                         intel_state.index
-                    }),
+                    },
                 ) == 0
             {
                 return 0 as libc::c_int;
@@ -18812,14 +18812,14 @@ unsafe extern "C" fn output_disp(
         n;
     }
 }
-unsafe extern "C" fn s_bss(mut ignore: libc::c_int) {
+unsafe extern "C" fn s_bss(mut _ignore: libc::c_int) {
     let mut temp: libc::c_int = 0;
     obj_elf_section_change_hook();
     temp = get_absolute_expression() as libc::c_int;
     subseg_set(bss_section, temp);
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn handle_large_common(mut small: libc::c_int) {
+unsafe extern "C" fn handle_large_common(mut _small: libc::c_int) {
     if flag_code as libc::c_uint != CODE_64BIT as libc::c_int as libc::c_uint {
         s_comm_internal(
             0 as libc::c_int,

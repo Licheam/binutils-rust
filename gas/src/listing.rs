@@ -4992,7 +4992,7 @@ pub unsafe extern "C" fn listing_source_file(mut file: *const libc::c_char) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn listing_nopage(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn listing_nopage(mut _ignore: libc::c_int) {
     paper_height = 0 as libc::c_int;
 }
 #[no_mangle]
@@ -5348,7 +5348,7 @@ pub unsafe extern "C" fn listing_error(mut message: *const libc::c_char) {
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn listing_eject(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn listing_eject(mut _ignore: libc::c_int) {
     if listing != 0 {
         (*listing_tail).edict = EDICT_EJECT;
     }
@@ -5880,7 +5880,7 @@ unsafe extern "C" fn debugging_pseudo(
     }
     return 0 as libc::c_int;
 }
-unsafe extern "C" fn listing_listing(mut name: *mut libc::c_char) {
+unsafe extern "C" fn listing_listing(mut _name: *mut libc::c_char) {
     let mut list: *mut list_info_type = head;
     let mut current_hll_file: *mut file_info_type = 0 as *mut libc::c_void
         as *mut file_info_type;

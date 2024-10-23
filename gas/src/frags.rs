@@ -4733,13 +4733,13 @@ pub unsafe extern "C" fn frag_new(mut old_frags_var_max_size: size_t) {
         .offset(
             ((((*__o1).next_free)
                 .offset_from(
-                    (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                    if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
                     {
                         (*__o1).object_base
                     } else {
                         0 as *mut libc::c_char
-                    }),
+                    },
                 ) as libc::c_long as libc::c_ulong)
                 .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask) as isize,
         );
@@ -4831,14 +4831,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -4871,14 +4871,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -4893,7 +4893,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             (*__o1).object_base = (*__o1).next_free;
             __value
         });
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -4911,14 +4911,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -4932,7 +4932,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     });
     ({
         let mut __h: *mut obstack = ob;
@@ -4965,14 +4965,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5005,14 +5005,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5027,7 +5027,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             (*__o1).object_base = (*__o1).next_free;
             __value
         });
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5045,14 +5045,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5066,7 +5066,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     });
     oalign = (*ob).alignment_mask as libc::c_int;
     (*ob).alignment_mask = 0 as libc::c_int as size_t;
@@ -5086,7 +5086,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5104,14 +5104,14 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5125,7 +5125,7 @@ pub unsafe extern "C" fn frag_alloc(mut ob: *mut obstack) -> *mut fragS {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut fragS;
     (*ob).alignment_mask = oalign as size_t;
     memset(
@@ -5309,10 +5309,10 @@ pub unsafe extern "C" fn frag_align_code(
 }
 #[no_mangle]
 pub unsafe extern "C" fn frag_room() -> size_t {
-    return ({
+    return {
         let mut __o1: *const obstack = &mut (*frchain_now).frch_obstack;
         ((*__o1).chunk_limit).offset_from((*__o1).next_free) as libc::c_long as size_t
-    });
+    };
 }
 #[no_mangle]
 pub unsafe extern "C" fn frag_variant(

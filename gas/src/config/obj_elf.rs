@@ -6265,14 +6265,14 @@ pub unsafe extern "C" fn elf_file_symbol(
                         .offset(
                             ((((*__o1).next_free)
                                 .offset_from(
-                                    (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                                    if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                         < ::core::mem::size_of::<*mut libc::c_void>()
                                             as libc::c_ulong
                                     {
                                         (*__o1).object_base
                                     } else {
                                         0 as *mut libc::c_char
-                                    }),
+                                    },
                                 ) as libc::c_long as libc::c_ulong)
                                 .wrapping_add((*__o1).alignment_mask)
                                 & !(*__o1).alignment_mask) as isize,
@@ -7302,7 +7302,7 @@ pub unsafe extern "C" fn obj_elf_section_name() -> *const libc::c_char {
     return name;
 }
 #[no_mangle]
-pub unsafe extern "C" fn obj_elf_previous(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn obj_elf_previous(mut _ignore: libc::c_int) {
     let mut new_section: segT = 0 as *mut asection;
     let mut new_subsection: libc::c_int = 0;
     if previous_section.is_null() {
@@ -7322,7 +7322,7 @@ pub unsafe extern "C" fn obj_elf_previous(mut ignore: libc::c_int) {
     subseg_set(new_section, new_subsection);
 }
 #[no_mangle]
-pub unsafe extern "C" fn obj_elf_version(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn obj_elf_version(mut _ignore: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut c: libc::c_uint = 0;
     let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -7336,7 +7336,7 @@ pub unsafe extern "C" fn obj_elf_version(mut ignore: libc::c_int) {
         descdata: 0 as *mut libc::c_char,
         descpos: 0,
     };
-    let mut e_note: Elf_External_Note = Elf_External_Note {
+    let mut _e_note: Elf_External_Note = Elf_External_Note {
         namesz: [0; 4],
         descsz: [0; 4],
         type_0: [0; 4],
@@ -7434,7 +7434,7 @@ pub unsafe extern "C" fn obj_elf_common(mut is_common: libc::c_int) {
 }
 #[no_mangle]
 pub unsafe extern "C" fn elf_common_parse(
-    mut ignore: libc::c_int,
+    mut _ignore: libc::c_int,
     mut symbolP: *mut symbolS,
     mut size: addressT,
 ) -> *mut symbolS {
@@ -7527,7 +7527,7 @@ pub unsafe extern "C" fn elf_common_parse(
     return symbolP;
 }
 #[no_mangle]
-pub unsafe extern "C" fn obj_elf_bss(mut i: libc::c_int) {
+pub unsafe extern "C" fn obj_elf_bss(mut _i: libc::c_int) {
     let mut temp: libc::c_int = 0;
     obj_elf_section_change_hook();
     temp = get_absolute_expression() as libc::c_int;
@@ -7545,7 +7545,7 @@ pub unsafe extern "C" fn obj_elf_text(mut i: libc::c_int) {
     s_text(i);
 }
 #[no_mangle]
-pub unsafe extern "C" fn obj_elf_vtable_inherit(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn obj_elf_vtable_inherit(mut _ignore: libc::c_int) {
     obj_elf_get_vtable_inherit();
 }
 #[no_mangle]
@@ -7650,7 +7650,7 @@ pub unsafe extern "C" fn obj_elf_get_vtable_inherit() -> *mut fix {
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn obj_elf_vtable_entry(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn obj_elf_vtable_entry(mut _ignore: libc::c_int) {
     obj_elf_get_vtable_entry();
 }
 #[no_mangle]
@@ -7915,7 +7915,7 @@ pub unsafe extern "C" fn elf_obj_symbol_new_hook(mut symbolP: *mut symbolS) {
 #[no_mangle]
 pub unsafe extern "C" fn elf_obj_symbol_clone_hook(
     mut newsym: *mut symbolS,
-    mut orgsym: *mut symbolS,
+    mut _orgsym: *mut symbolS,
 ) {
     let mut newelf: *mut elf_obj_sy = symbol_get_obj(newsym);
     if !((*newelf).size).is_null() {
@@ -8300,11 +8300,11 @@ pub unsafe extern "C" fn elf_frob_symbol(
 pub unsafe extern "C" fn elf_pop_insert() {
     pop_insert(elf_pseudo_table.as_ptr());
 }
-unsafe extern "C" fn obj_elf_line(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_line(mut _ignore: libc::c_int) {
     new_logical_line(0 as *const libc::c_char, get_absolute_expression() as libc::c_int);
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_size(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_size(mut _ignore: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut c: libc::c_char = get_symbol_name(&mut name);
     let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -8376,7 +8376,7 @@ unsafe extern "C" fn obj_elf_size(mut ignore: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_type(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_type(mut _ignore: libc::c_int) {
     let mut c: libc::c_char = 0;
     let mut type_0: libc::c_int = 0;
     let mut type_name: *const libc::c_char = 0 as *const libc::c_char;
@@ -8607,7 +8607,7 @@ unsafe extern "C" fn obj_elf_type(mut ignore: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_ident(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_ident(mut _ignore: libc::c_int) {
     static mut comment_section: segT = 0 as *const asection as *mut asection;
     let mut old_section: segT = now_seg;
     let mut old_subsection: libc::c_int = now_subseg;
@@ -8631,7 +8631,7 @@ unsafe extern "C" fn obj_elf_ident(mut ignore: libc::c_int) {
     stringer(8 as libc::c_int + 1 as libc::c_int);
     subseg_set(old_section, old_subsection);
 }
-unsafe extern "C" fn obj_elf_weak(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_weak(mut _ignore: libc::c_int) {
     let mut c: libc::c_int = 0;
     let mut symbolP: *mut symbolS = 0 as *mut symbolS;
     loop {
@@ -8655,7 +8655,7 @@ unsafe extern "C" fn obj_elf_weak(mut ignore: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_local(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_local(mut _ignore: libc::c_int) {
     let mut c: libc::c_int = 0;
     let mut symbolP: *mut symbolS = 0 as *mut symbolS;
     loop {
@@ -8737,7 +8737,7 @@ unsafe extern "C" fn obj_elf_visibility(mut visibility: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_symver(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_symver(mut _ignore: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut sym_name: *const libc::c_char = 0 as *const libc::c_char;
     let mut c: libc::c_char = 0;
@@ -8840,14 +8840,14 @@ unsafe extern "C" fn obj_elf_symver(mut ignore: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_subsection(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_subsection(mut _ignore: libc::c_int) {
     let mut temp: libc::c_int = 0;
     obj_elf_section_change_hook();
     temp = get_absolute_expression() as libc::c_int;
     subseg_set(now_seg, temp);
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn obj_elf_popsection(mut xxx: libc::c_int) {
+unsafe extern "C" fn obj_elf_popsection(mut _xxx: libc::c_int) {
     let mut top: *mut section_stack = section_stack;
     if top.is_null() {
         as_warn(
@@ -8866,10 +8866,10 @@ unsafe extern "C" fn obj_elf_popsection(mut xxx: libc::c_int) {
     subseg_set((*top).seg, (*top).subseg);
     free(top as *mut libc::c_void);
 }
-unsafe extern "C" fn obj_elf_gnu_attribute(mut ignored: libc::c_int) {
+unsafe extern "C" fn obj_elf_gnu_attribute(mut _ignored: libc::c_int) {
     obj_elf_vendor_attribute(1 as libc::c_int);
 }
-unsafe extern "C" fn obj_elf_tls_common(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_tls_common(mut _ignore: libc::c_int) {
     let mut symbolP: *mut symbolS = s_comm_internal(
         0 as libc::c_int,
         Some(
@@ -8886,7 +8886,7 @@ unsafe extern "C" fn obj_elf_tls_common(mut ignore: libc::c_int) {
         *fresh16 |= ((1 as libc::c_int) << 18 as libc::c_int) as libc::c_uint;
     }
 }
-unsafe extern "C" fn obj_elf_lcomm(mut ignore: libc::c_int) {
+unsafe extern "C" fn obj_elf_lcomm(mut _ignore: libc::c_int) {
     let mut symbolP: *mut symbolS = s_comm_internal(
         0 as libc::c_int,
         Some(
@@ -8907,7 +8907,7 @@ unsafe extern "C" fn obj_elf_struct(mut i: libc::c_int) {
     obj_elf_section_change_hook();
     s_struct(i);
 }
-unsafe extern "C" fn obj_elf_attach_to_group(mut dummy: libc::c_int) {
+unsafe extern "C" fn obj_elf_attach_to_group(mut _dummy: libc::c_int) {
     let mut gname: *const libc::c_char = obj_elf_section_name();
     if gname.is_null() {
         as_warn(
@@ -9384,7 +9384,7 @@ static mut previous_subsection: libc::c_int = 0;
 static mut section_stack: *mut section_stack = 0 as *const section_stack
     as *mut section_stack;
 unsafe extern "C" fn get_section_by_match(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut inf: *mut libc::c_void,
 ) -> bool {
@@ -9769,7 +9769,7 @@ unsafe extern "C" fn skip_past_char(
 ) -> libc::c_int {
     if **str as libc::c_int == c as libc::c_int {
         *str = (*str).offset(1);
-        *str;
+        let _ = *str;
         return 0 as libc::c_int;
     } else {
         return -(1 as libc::c_int)
@@ -9832,7 +9832,7 @@ unsafe extern "C" fn obj_elf_type_name(mut cp: *mut libc::c_char) -> *mut libc::
 unsafe extern "C" fn adjust_stab_sections(
     mut abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut strsec: *mut asection = 0 as *mut asection;
@@ -9893,7 +9893,7 @@ static mut groups: group_list = group_list {
     indexes: 0 as *const htab as *mut htab,
 };
 unsafe extern "C" fn build_additional_section_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut inf: *mut libc::c_void,
 ) {
@@ -9964,7 +9964,7 @@ unsafe extern "C" fn build_additional_section_info(
 }
 unsafe extern "C" fn free_section_idx(
     mut slot: *mut *mut libc::c_void,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
 ) -> libc::c_int {
     let mut tuple: *mut string_tuple_t = *(slot as *mut *mut string_tuple_t);
     free((*tuple).value as *mut libc::c_char as *mut libc::c_void);
@@ -9972,12 +9972,12 @@ unsafe extern "C" fn free_section_idx(
 }
 unsafe extern "C" fn elf_generate_asm_lineno() {}
 unsafe extern "C" fn elf_process_stab(
-    mut sec: segT,
-    mut what: libc::c_int,
-    mut string: *const libc::c_char,
-    mut type_0: libc::c_int,
-    mut other: libc::c_int,
-    mut desc: libc::c_int,
+    mut _sec: segT,
+    mut _what: libc::c_int,
+    mut _string: *const libc::c_char,
+    mut _type_0: libc::c_int,
+    mut _other: libc::c_int,
+    mut _desc: libc::c_int,
 ) {}
 unsafe extern "C" fn elf_separate_stab_sections() -> libc::c_int {
     return 1 as libc::c_int;

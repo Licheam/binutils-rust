@@ -6026,14 +6026,14 @@ pub unsafe extern "C" fn demand_copy_string(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -6072,7 +6072,7 @@ pub unsafe extern "C" fn ignore_rest_of_line() {
     }
     input_line_pointer = input_line_pointer.offset(1);
     input_line_pointer;
-    input_line_pointer <= buffer_limit;
+    let _ = input_line_pointer <= buffer_limit;
 }
 #[no_mangle]
 pub unsafe extern "C" fn next_char_of_string() -> libc::c_uint {
@@ -6266,7 +6266,7 @@ pub unsafe extern "C" fn get_absolute_expression() -> offsetT {
     return get_absolute_expr(&mut exp);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_mri_sect(mut type_0: *mut libc::c_char) {
+pub unsafe extern "C" fn s_mri_sect(mut _type_0: *mut libc::c_char) {
     as_bad(
         b"MRI mode not supported for this target\0" as *const u8 as *const libc::c_char,
     );
@@ -7961,7 +7961,7 @@ pub unsafe extern "C" fn generate_lineno_debug() {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_end(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_end(mut _ignore: libc::c_int) {
     if flag_mri != 0 {
         if *input_line_pointer as libc::c_int == ' ' as i32 {
             input_line_pointer = input_line_pointer.offset(1);
@@ -7982,11 +7982,11 @@ pub unsafe extern "C" fn s_end(mut ignore: libc::c_int) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_ignore(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_ignore(mut _arg: libc::c_int) {
     ignore_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_globl(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_globl(mut _ignore: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut c: libc::c_int = 0;
     let mut symbolP: *mut symbolS = 0 as *mut symbolS;
@@ -8439,7 +8439,7 @@ pub unsafe extern "C" fn read_begin() {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_weakref(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_weakref(mut _ignore: libc::c_int) {
     let mut current_block: u64;
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut symbolP: *mut symbolS = 0 as *mut symbolS;
@@ -8806,14 +8806,14 @@ pub unsafe extern "C" fn s_leb128(mut sign: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_text(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_text(mut _ignore: libc::c_int) {
     let mut temp: libc::c_int = 0;
     temp = get_absolute_expression() as libc::c_int;
     subseg_set(text_section, temp);
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_struct(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_struct(mut _ignore: libc::c_int) {
     let mut stop: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut stopc: libc::c_char = 0 as libc::c_int as libc::c_char;
     if flag_mri != 0 {
@@ -8969,7 +8969,7 @@ pub unsafe extern "C" fn s_rva(mut size: libc::c_int) {
     cons_worker(size, 1 as libc::c_int);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_rept(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_rept(mut _ignore: libc::c_int) {
     let mut count: size_t = 0;
     count = get_absolute_expression() as size_t;
     do_repeat(
@@ -9039,7 +9039,7 @@ pub unsafe extern "C" fn do_repeat(
     buffer_limit = input_scrub_next_buffer(&mut input_line_pointer);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_purgem(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_purgem(mut _ignore: libc::c_int) {
     if is_it_end_of_statement() != 0 {
         demand_empty_rest_of_line();
         return;
@@ -9073,7 +9073,7 @@ pub unsafe extern "C" fn s_purgem(mut ignore: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_print(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_print(mut _ignore: libc::c_int) {
     let mut s: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut len: libc::c_int = 0;
     s = demand_copy_C_string(&mut len);
@@ -9087,7 +9087,7 @@ pub unsafe extern "C" fn s_align_ptwo(mut arg: libc::c_int) {
     s_align(arg, 0 as libc::c_int);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_org(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_org(mut _ignore: libc::c_int) {
     let mut segment: segT = 0 as *mut asection;
     let mut exp: expressionS = expressionS {
         X_add_symbol: 0 as *mut symbolS,
@@ -9111,7 +9111,7 @@ pub unsafe extern "C" fn s_org(mut ignore: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_nops(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_nops(mut _ignore: libc::c_int) {
     let mut exp: expressionS = expressionS {
         X_add_symbol: 0 as *mut symbolS,
         X_op_symbol: 0 as *mut symbolS,
@@ -9184,7 +9184,7 @@ pub unsafe extern "C" fn s_nops(mut ignore: libc::c_int) {
     *p = val.X_add_number as libc::c_char;
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_nop(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_nop(mut _ignore: libc::c_int) {
     let mut exp: expressionS = expressionS {
         X_add_symbol: 0 as *mut symbolS,
         X_op_symbol: 0 as *mut symbolS,
@@ -9233,7 +9233,7 @@ pub unsafe extern "C" fn s_nop(mut ignore: libc::c_int) {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_mri(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_mri(mut _ignore: libc::c_int) {
     let mut on: libc::c_int = 0;
     on = get_absolute_expression() as libc::c_int;
     if on != 0 as libc::c_int {
@@ -9247,7 +9247,7 @@ pub unsafe extern "C" fn s_mri(mut ignore: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_mexit(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_mexit(mut _ignore: libc::c_int) {
     if macro_nest != 0 {
         cond_exit_macro(macro_nest);
         buffer_limit = input_scrub_next_buffer(&mut input_line_pointer);
@@ -9263,7 +9263,7 @@ pub unsafe extern "C" fn s_mexit(mut ignore: libc::c_int) {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_macro(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_macro(mut _ignore: libc::c_int) {
     let mut eol: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut file: *const libc::c_char = 0 as *const libc::c_char;
     let mut line: libc::c_uint = 0;
@@ -9348,7 +9348,7 @@ pub unsafe extern "C" fn s_macro(mut ignore: libc::c_int) {
     sb_kill(&mut s);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_lsym(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_lsym(mut _ignore: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut exp: expressionS = expressionS {
         X_add_symbol: 0 as *mut symbolS,
@@ -9422,7 +9422,7 @@ pub unsafe extern "C" fn s_lsym(mut ignore: libc::c_int) {
     free(name as *mut libc::c_void);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_linkonce(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_linkonce(mut _ignore: libc::c_int) {
     let mut type_0: linkonce_type = LINKONCE_UNSET;
     if *input_line_pointer as libc::c_int == ' ' as i32 {
         input_line_pointer = input_line_pointer.offset(1);
@@ -9784,7 +9784,7 @@ pub unsafe extern "C" fn s_irp(mut irpc: libc::c_int) {
     buffer_limit = input_scrub_next_buffer(&mut input_line_pointer);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_include(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_include(mut _arg: libc::c_int) {
     let mut current_block: u64;
     let mut filename: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut i: libc::c_int = 0;
@@ -9852,14 +9852,14 @@ pub unsafe extern "C" fn s_include(mut arg: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -9918,7 +9918,7 @@ pub unsafe extern "C" fn s_include(mut arg: libc::c_int) {
     input_scrub_insert_file(path);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_incbin(mut x: libc::c_int) {
+pub unsafe extern "C" fn s_incbin(mut _x: libc::c_int) {
     let mut binfile: *mut FILE = 0 as *mut FILE;
     let mut path: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut filename: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -10123,7 +10123,7 @@ pub unsafe extern "C" fn s_func(mut end_p: libc::c_int) {
     do_s_func(end_p, 0 as *const libc::c_char);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_fill(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_fill(mut _ignore: libc::c_int) {
     let mut rep_exp: expressionS = expressionS {
         X_add_symbol: 0 as *mut symbolS,
         X_op_symbol: 0 as *mut symbolS,
@@ -10313,7 +10313,7 @@ pub unsafe extern "C" fn s_app_file_string(
     elf_file_symbol(file, appfile);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_fail(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_fail(mut _ignore: libc::c_int) {
     let mut temp: offsetT = 0;
     let mut stop: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut stopc: libc::c_char = 0 as libc::c_int as libc::c_char;
@@ -10346,7 +10346,7 @@ pub unsafe extern "C" fn s_fail(mut ignore: libc::c_int) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_err(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_err(mut _ignore: libc::c_int) {
     as_bad(
         dcgettext(
             0 as *const libc::c_char,
@@ -10414,7 +10414,7 @@ pub unsafe extern "C" fn s_float_space(mut float_type: libc::c_int) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_data(mut ignore: libc::c_int) {
+pub unsafe extern "C" fn s_data(mut _ignore: libc::c_int) {
     let mut section: segT = 0 as *mut asection;
     let mut temp: libc::c_int = 0;
     temp = get_absolute_expression() as libc::c_int;
@@ -10428,7 +10428,7 @@ pub unsafe extern "C" fn s_data(mut ignore: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_mri_common(mut small: libc::c_int) {
+pub unsafe extern "C" fn s_mri_common(mut _small: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut c: libc::c_char = 0;
     let mut alc: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -10545,7 +10545,7 @@ pub unsafe extern "C" fn s_mri_common(mut small: libc::c_int) {
     mri_comment_end(stop, stopc as libc::c_int);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_bundle_unlock(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_bundle_unlock(mut _arg: libc::c_int) {
     let mut size: libc::c_uint = 0;
     demand_empty_rest_of_line();
     if bundle_lock_frag.is_null() {
@@ -10604,7 +10604,7 @@ pub unsafe extern "C" fn s_bundle_unlock(mut arg: libc::c_int) {
     bundle_lock_frchain = 0 as *mut frchainS;
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_bundle_lock(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_bundle_lock(mut _arg: libc::c_int) {
     demand_empty_rest_of_line();
     if bundle_align_p2 == 0 as libc::c_int as libc::c_uint {
         as_bad(
@@ -10625,7 +10625,7 @@ pub unsafe extern "C" fn s_bundle_lock(mut arg: libc::c_int) {
     bundle_lock_depth;
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_bundle_align_mode(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_bundle_align_mode(mut _arg: libc::c_int) {
     let mut align: libc::c_uint = get_absolute_expression() as libc::c_uint;
     if *input_line_pointer as libc::c_int == ' ' as i32 {
         input_line_pointer = input_line_pointer.offset(1);
@@ -10664,7 +10664,7 @@ pub unsafe extern "C" fn s_align_bytes(mut arg: libc::c_int) {
     s_align(arg, 1 as libc::c_int);
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_abort(mut ignore: libc::c_int) -> ! {
+pub unsafe extern "C" fn s_abort(mut _ignore: libc::c_int) -> ! {
     as_fatal(
         dcgettext(
             0 as *const libc::c_char,
@@ -11155,7 +11155,7 @@ unsafe extern "C" fn s_bad_end(mut endr: libc::c_int) {
     );
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn s_reloc(mut ignore: libc::c_int) {
+unsafe extern "C" fn s_reloc(mut _ignore: libc::c_int) {
     let mut current_block: u64;
     let mut stop: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut stopc: libc::c_char = 0 as libc::c_int as libc::c_char;
@@ -11568,7 +11568,7 @@ unsafe extern "C" fn generate_file_debug() {
 unsafe extern "C" fn _find_end_of_line(
     mut s: *mut libc::c_char,
     mut mri_string: libc::c_int,
-    mut insn: libc::c_int,
+    mut _insn: libc::c_int,
     mut in_macro: libc::c_int,
 ) -> *mut libc::c_char {
     let mut inquote: libc::c_char = '\0' as i32 as libc::c_char;

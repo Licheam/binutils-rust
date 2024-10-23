@@ -4593,7 +4593,7 @@ pub unsafe extern "C" fn cond_exit_macro(mut nest: libc::c_int) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_else(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_else(mut _arg: libc::c_int) {
     if current_cframe.is_null() {
         as_bad(
             dcgettext(
@@ -4791,7 +4791,7 @@ pub unsafe extern "C" fn s_elseif(mut arg: libc::c_int) {
     demand_empty_rest_of_line();
 }
 #[no_mangle]
-pub unsafe extern "C" fn s_endif(mut arg: libc::c_int) {
+pub unsafe extern "C" fn s_endif(mut _arg: libc::c_int) {
     let mut hold: *mut conditional_frame = 0 as *mut conditional_frame;
     if current_cframe.is_null() {
         as_bad(
@@ -4940,7 +4940,7 @@ pub unsafe extern "C" fn s_if(mut arg: libc::c_int) {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -4958,14 +4958,14 @@ pub unsafe extern "C" fn s_if(mut arg: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -4979,7 +4979,7 @@ pub unsafe extern "C" fn s_if(mut arg: libc::c_int) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut conditional_frame;
     memcpy(
         current_cframe as *mut libc::c_void,
@@ -5042,7 +5042,7 @@ pub unsafe extern "C" fn s_ifb(mut test_blank: libc::c_int) {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5060,14 +5060,14 @@ pub unsafe extern "C" fn s_ifb(mut test_blank: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5081,7 +5081,7 @@ pub unsafe extern "C" fn s_ifb(mut test_blank: libc::c_int) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut conditional_frame;
     memcpy(
         current_cframe as *mut libc::c_void,
@@ -5155,7 +5155,7 @@ pub unsafe extern "C" fn s_ifc(mut arg: libc::c_int) {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5173,14 +5173,14 @@ pub unsafe extern "C" fn s_ifc(mut arg: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5194,7 +5194,7 @@ pub unsafe extern "C" fn s_ifc(mut arg: libc::c_int) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut conditional_frame;
     memcpy(
         current_cframe as *mut libc::c_void,
@@ -5290,7 +5290,7 @@ pub unsafe extern "C" fn s_ifdef(mut test_defined: libc::c_int) {
             _obstack_newchunk(__o_0, __len);
         }
         (*__o_0).next_free = ((*__o_0).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5308,14 +5308,14 @@ pub unsafe extern "C" fn s_ifdef(mut test_defined: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5329,7 +5329,7 @@ pub unsafe extern "C" fn s_ifdef(mut test_defined: libc::c_int) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut conditional_frame;
     memcpy(
         current_cframe as *mut libc::c_void,
@@ -5403,7 +5403,7 @@ pub unsafe extern "C" fn s_ifeqs(mut arg: libc::c_int) {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -5421,14 +5421,14 @@ pub unsafe extern "C" fn s_ifeqs(mut arg: libc::c_int) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -5442,7 +5442,7 @@ pub unsafe extern "C" fn s_ifeqs(mut arg: libc::c_int) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut conditional_frame;
     memcpy(
         current_cframe as *mut libc::c_void,

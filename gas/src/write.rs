@@ -6430,14 +6430,14 @@ pub unsafe extern "C" fn relax_segment(
                             .offset(
                                 ((((*__o1).next_free)
                                     .offset_from(
-                                        (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                                        if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                             < ::core::mem::size_of::<*mut libc::c_void>()
                                                 as libc::c_ulong
                                         {
                                             (*__o1).object_base
                                         } else {
                                             0 as *mut libc::c_char
-                                        }),
+                                        },
                                     ) as libc::c_long as libc::c_ulong)
                                     .wrapping_add((*__o1).alignment_mask)
                                     & !(*__o1).alignment_mask) as isize,
@@ -7032,7 +7032,7 @@ unsafe extern "C" fn fix_new_internal(
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -7050,14 +7050,14 @@ unsafe extern "C" fn fix_new_internal(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -7071,7 +7071,7 @@ unsafe extern "C" fn fix_new_internal(
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut fixS;
     (*fixP).fx_frag = frag;
     (*fixP).fx_where = where_0;
@@ -7151,14 +7151,14 @@ unsafe extern "C" fn fix_new_internal(
     return fixP;
 }
 unsafe extern "C" fn renumber_sections(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut countparg: *mut libc::c_void,
 ) {
     let mut countp: *mut libc::c_int = countparg as *mut libc::c_int;
     (*sec).index = *countp as libc::c_uint;
     *countp += 1;
-    *countp;
+    let _ = *countp;
 }
 unsafe extern "C" fn chain_frchains_together_1(
     mut section: segT,
@@ -7273,9 +7273,9 @@ unsafe extern "C" fn chain_frchains_together_1(
     return prev_frag;
 }
 unsafe extern "C" fn chain_frchains_together(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: segT,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut info: *mut segment_info_type = 0 as *mut segment_info_type;
     info = bfd_section_userdata(section as *const asection) as *mut segment_info_type;
@@ -7420,7 +7420,7 @@ unsafe extern "C" fn cvt_frag_to_fill(mut sec: segT, mut fragP: *mut fragS) {
     };
 }
 unsafe extern "C" fn relax_seg(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut xxx: *mut libc::c_void,
 ) {
@@ -7434,9 +7434,9 @@ unsafe extern "C" fn relax_seg(
     }
 }
 unsafe extern "C" fn size_seg(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut flags: flagword = 0;
     let mut fragp: *mut fragS = 0 as *mut fragS;
@@ -7665,9 +7665,9 @@ unsafe extern "C" fn resolve_reloc_expr_symbols() {
     }
 }
 unsafe extern "C" fn adjust_reloc_syms(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut seginfo: *mut segment_info_type = bfd_section_userdata(sec)
         as *mut segment_info_type;
@@ -8054,9 +8054,9 @@ unsafe extern "C" fn fixup_segment(mut fixP: *mut fixS, mut this_segment: segT) 
     }
 }
 unsafe extern "C" fn fix_segment(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut seginfo: *mut segment_info_type = bfd_section_userdata(sec)
         as *mut segment_info_type;
@@ -8187,9 +8187,9 @@ unsafe extern "C" fn get_frag_for_reloc(
     return 0 as *mut fragS;
 }
 unsafe extern "C" fn write_relocs(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut seginfo: *mut segment_info_type = bfd_section_userdata(sec)
         as *mut segment_info_type;
@@ -8352,14 +8352,14 @@ unsafe extern "C" fn compress_frag(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -8416,7 +8416,7 @@ unsafe extern "C" fn compress_frag(
 unsafe extern "C" fn compress_debug(
     mut abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut seginfo: *mut segment_info_type = bfd_section_userdata(sec)
         as *mut segment_info_type;
@@ -8589,14 +8589,14 @@ unsafe extern "C" fn compress_debug(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -8674,9 +8674,9 @@ unsafe extern "C" fn compress_debug(
     }
 }
 unsafe extern "C" fn write_contents(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
-    mut xxx: *mut libc::c_void,
+    mut _xxx: *mut libc::c_void,
 ) {
     let mut seginfo: *mut segment_info_type = bfd_section_userdata(sec)
         as *mut segment_info_type;

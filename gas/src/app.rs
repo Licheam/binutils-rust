@@ -143,13 +143,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                         );
                         from = input_buffer.as_mut_ptr();
                         fromend = from.offset(fromlen as isize);
-                        (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                        if fromlen == 0 as libc::c_int as libc::c_ulong {
                             -(1 as libc::c_int)
                         } else {
                             let fresh3 = from;
                             from = from.offset(1);
                             *(fresh3 as *mut libc::c_uchar) as libc::c_int
-                        })
+                        }
                     };
                     if ch == -(1 as libc::c_int) {
                         as_warn(
@@ -176,7 +176,7 @@ pub unsafe extern "C" fn do_scrub_chars(
                             continue;
                         }
                         loop {
-                            ch = (if from < fromend {
+                            ch = if from < fromend {
                                 let fresh5 = from;
                                 from = from.offset(1);
                                 *(fresh5 as *mut libc::c_uchar) as libc::c_int
@@ -192,14 +192,14 @@ pub unsafe extern "C" fn do_scrub_chars(
                                 );
                                 from = input_buffer.as_mut_ptr();
                                 fromend = from.offset(fromlen as isize);
-                                (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                if fromlen == 0 as libc::c_int as libc::c_ulong {
                                     -(1 as libc::c_int)
                                 } else {
                                     let fresh6 = from;
                                     from = from.offset(1);
                                     *(fresh6 as *mut libc::c_uchar) as libc::c_int
-                                })
-                            });
+                                }
+                            };
                             if !(ch == '*' as i32) {
                                 break;
                             }
@@ -244,13 +244,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                     );
                     from = input_buffer.as_mut_ptr();
                     fromend = from.offset(fromlen as isize);
-                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                         -(1 as libc::c_int)
                     } else {
                         let fresh8 = from;
                         from = from.offset(1);
                         *(fresh8 as *mut libc::c_uchar) as libc::c_int
-                    })
+                    }
                 };
                 if ch == -(1 as libc::c_int) {
                     current_block = 10102895335899226404;
@@ -284,13 +284,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                             );
                             from = input_buffer.as_mut_ptr();
                             fromend = from.offset(fromlen as isize);
-                            (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                            if fromlen == 0 as libc::c_int as libc::c_ulong {
                                 -(1 as libc::c_int)
                             } else {
                                 let fresh11 = from;
                                 from = from.offset(1);
                                 *(fresh11 as *mut libc::c_uchar) as libc::c_int
-                            })
+                            }
                         };
                     }
                     if ch == '"' as i32 {
@@ -322,13 +322,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                 );
                                 from = input_buffer.as_mut_ptr();
                                 fromend = from.offset(fromlen as isize);
-                                (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                if fromlen == 0 as libc::c_int as libc::c_ulong {
                                     -(1 as libc::c_int)
                                 } else {
                                     let fresh14 = from;
                                     from = from.offset(1);
                                     *(fresh14 as *mut libc::c_uchar) as libc::c_int
-                                })
+                                }
                             };
                         }
                         state = 0 as libc::c_int;
@@ -388,13 +388,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                     );
                     from = input_buffer.as_mut_ptr();
                     fromend = from.offset(fromlen as isize);
-                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                         -(1 as libc::c_int)
                     } else {
                         let fresh17 = from;
                         from = from.offset(1);
                         *(fresh17 as *mut libc::c_uchar) as libc::c_int
-                    })
+                    }
                 };
                 if ch == -(1 as libc::c_int) {
                     static mut one_char_buf: [libc::c_char; 1] = [0; 1];
@@ -478,13 +478,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                     );
                     from = input_buffer.as_mut_ptr();
                     fromend = from.offset(fromlen as isize);
-                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                         -(1 as libc::c_int)
                     } else {
                         let fresh24 = from;
                         from = from.offset(1);
                         *(fresh24 as *mut libc::c_uchar) as libc::c_int
-                    })
+                    }
                 };
                 match ch {
                     10 => {
@@ -546,13 +546,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                     );
                     from = input_buffer.as_mut_ptr();
                     fromend = from.offset(fromlen as isize);
-                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                         -(1 as libc::c_int)
                     } else {
                         let fresh29 = from;
                         from = from.offset(1);
                         *(fresh29 as *mut libc::c_uchar) as libc::c_int
-                    })
+                    }
                 };
                 loop {
                     if ch == -(1 as libc::c_int) {
@@ -599,13 +599,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                         );
                                         from = input_buffer.as_mut_ptr();
                                         fromend = from.offset(fromlen as isize);
-                                        (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                        if fromlen == 0 as libc::c_int as libc::c_ulong {
                                             -(1 as libc::c_int)
                                         } else {
                                             let fresh32 = from;
                                             from = from.offset(1);
                                             *(fresh32 as *mut libc::c_uchar) as libc::c_int
-                                        })
+                                        }
                                     };
                                     if !(ch != -(1 as libc::c_int)
                                         && lex[ch as usize] as libc::c_int == 2 as libc::c_int)
@@ -734,13 +734,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                     );
                                     from = input_buffer.as_mut_ptr();
                                     fromend = from.offset(fromlen as isize);
-                                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                                         -(1 as libc::c_int)
                                     } else {
                                         let fresh42 = from;
                                         from = from.offset(1);
                                         *(fresh42 as *mut libc::c_uchar) as libc::c_int
-                                    })
+                                    }
                                 };
                                 if ch2 == '*' as i32 {
                                     loop {
@@ -761,13 +761,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                                 );
                                                 from = input_buffer.as_mut_ptr();
                                                 fromend = from.offset(fromlen as isize);
-                                                (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                                if fromlen == 0 as libc::c_int as libc::c_ulong {
                                                     -(1 as libc::c_int)
                                                 } else {
                                                     let fresh44 = from;
                                                     from = from.offset(1);
                                                     *(fresh44 as *mut libc::c_uchar) as libc::c_int
-                                                })
+                                                }
                                             };
                                             if ch2 != -(1 as libc::c_int)
                                                 && lex[ch2 as usize] as libc::c_int == 10 as libc::c_int
@@ -796,13 +796,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                                 );
                                                 from = input_buffer.as_mut_ptr();
                                                 fromend = from.offset(fromlen as isize);
-                                                (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                                if fromlen == 0 as libc::c_int as libc::c_ulong {
                                                     -(1 as libc::c_int)
                                                 } else {
                                                     let fresh46 = from;
                                                     from = from.offset(1);
                                                     *(fresh46 as *mut libc::c_uchar) as libc::c_int
-                                                })
+                                                }
                                             };
                                         }
                                         if ch2 == -(1 as libc::c_int) || ch2 == '/' as i32 {
@@ -1000,13 +1000,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                     );
                                     from = input_buffer.as_mut_ptr();
                                     fromend = from.offset(fromlen as isize);
-                                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                                         -(1 as libc::c_int)
                                     } else {
                                         let fresh81 = from;
                                         from = from.offset(1);
                                         *(fresh81 as *mut libc::c_uchar) as libc::c_int
-                                    })
+                                    }
                                 };
                             }
                         }
@@ -1029,13 +1029,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                             );
                             from = input_buffer.as_mut_ptr();
                             fromend = from.offset(fromlen as isize);
-                            (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                            if fromlen == 0 as libc::c_int as libc::c_ulong {
                                 -(1 as libc::c_int)
                             } else {
                                 let fresh66 = from;
                                 from = from.offset(1);
                                 *(fresh66 as *mut libc::c_uchar) as libc::c_int
-                            })
+                            }
                         };
                         if ch2 == '*' as i32 {
                             old_state = 3 as libc::c_int;
@@ -1076,13 +1076,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                             );
                             from = input_buffer.as_mut_ptr();
                             fromend = from.offset(fromlen as isize);
-                            (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                            if fromlen == 0 as libc::c_int as libc::c_ulong {
                                 -(1 as libc::c_int)
                             } else {
                                 let fresh54 = from;
                                 from = from.offset(1);
                                 *(fresh54 as *mut libc::c_uchar) as libc::c_int
-                            })
+                            }
                         };
                         if ch == -(1 as libc::c_int) {
                             as_warn(
@@ -1112,13 +1112,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                 );
                                 from = input_buffer.as_mut_ptr();
                                 fromend = from.offset(fromlen as isize);
-                                (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                if fromlen == 0 as libc::c_int as libc::c_ulong {
                                     -(1 as libc::c_int)
                                 } else {
                                     let fresh56 = from;
                                     from = from.offset(1);
                                     *(fresh56 as *mut libc::c_uchar) as libc::c_int
-                                })
+                                }
                             };
                             if ch == -(1 as libc::c_int) {
                                 as_warn(
@@ -1139,7 +1139,7 @@ pub unsafe extern "C" fn do_scrub_chars(
                             b"%d\0" as *const u8 as *const libc::c_char,
                             ch as libc::c_uchar as libc::c_int,
                         );
-                        ch = (if from < fromend {
+                        ch = if from < fromend {
                             let fresh57 = from;
                             from = from.offset(1);
                             *(fresh57 as *mut libc::c_uchar) as libc::c_int
@@ -1155,14 +1155,14 @@ pub unsafe extern "C" fn do_scrub_chars(
                             );
                             from = input_buffer.as_mut_ptr();
                             fromend = from.offset(fromlen as isize);
-                            (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                            if fromlen == 0 as libc::c_int as libc::c_ulong {
                                 -(1 as libc::c_int)
                             } else {
                                 let fresh58 = from;
                                 from = from.offset(1);
                                 *(fresh58 as *mut libc::c_uchar) as libc::c_int
-                            })
-                        });
+                            }
+                        };
                         if ch != '\'' as i32 {
                             if ch != -(1 as libc::c_int) {
                                 from = from.offset(-1);
@@ -1243,13 +1243,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                             );
                             from = input_buffer.as_mut_ptr();
                             fromend = from.offset(fromlen as isize);
-                            (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                            if fromlen == 0 as libc::c_int as libc::c_ulong {
                                 -(1 as libc::c_int)
                             } else {
                                 let fresh50 = from;
                                 from = from.offset(1);
                                 *(fresh50 as *mut libc::c_uchar) as libc::c_int
-                            })
+                            }
                         };
                         old_state = 3 as libc::c_int;
                         current_block = 1995330570110937187;
@@ -1300,13 +1300,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                     );
                                     from = input_buffer.as_mut_ptr();
                                     fromend = from.offset(fromlen as isize);
-                                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                                         -(1 as libc::c_int)
                                     } else {
                                         let fresh68 = from;
                                         from = from.offset(1);
                                         *(fresh68 as *mut libc::c_uchar) as libc::c_int
-                                    })
+                                    }
                                 };
                                 if !(ch != -(1 as libc::c_int)
                                     && lex[ch as usize] as libc::c_int == 2 as libc::c_int)
@@ -1354,13 +1354,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                         );
                                         from = input_buffer.as_mut_ptr();
                                         fromend = from.offset(fromlen as isize);
-                                        (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                        if fromlen == 0 as libc::c_int as libc::c_ulong {
                                             -(1 as libc::c_int)
                                         } else {
                                             let fresh71 = from;
                                             from = from.offset(1);
                                             *(fresh71 as *mut libc::c_uchar) as libc::c_int
-                                        })
+                                        }
                                     };
                                 }
                                 if ch == -(1 as libc::c_int) {
@@ -1457,13 +1457,13 @@ pub unsafe extern "C" fn do_scrub_chars(
                                     );
                                     from = input_buffer.as_mut_ptr();
                                     fromend = from.offset(fromlen as isize);
-                                    (if fromlen == 0 as libc::c_int as libc::c_ulong {
+                                    if fromlen == 0 as libc::c_int as libc::c_ulong {
                                         -(1 as libc::c_int)
                                     } else {
                                         let fresh76 = from;
                                         from = from.offset(1);
                                         *(fresh76 as *mut libc::c_uchar) as libc::c_int
-                                    })
+                                    }
                                 };
                                 if !(ch != -(1 as libc::c_int)
                                     && !(lex[ch as usize] as libc::c_int == 10 as libc::c_int))
@@ -1592,7 +1592,7 @@ pub unsafe extern "C" fn app_pop(mut arg: *mut libc::c_char) {
     free(arg as *mut libc::c_void);
 }
 #[no_mangle]
-pub unsafe extern "C" fn do_scrub_begin(mut m68k_mri: libc::c_int) {
+pub unsafe extern "C" fn do_scrub_begin(mut _m68k_mri: libc::c_int) {
     let mut p: *const libc::c_char = 0 as *const libc::c_char;
     let mut c: libc::c_int = 0;
     lex[' ' as i32 as usize] = 2 as libc::c_int as libc::c_char;

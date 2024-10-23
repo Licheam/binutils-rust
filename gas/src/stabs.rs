@@ -5020,7 +5020,7 @@ pub unsafe extern "C" fn stabs_generate_asm_func(
 }
 #[no_mangle]
 pub unsafe extern "C" fn stabs_generate_asm_endfunc(
-    mut funcname: *const libc::c_char,
+    mut _funcname: *const libc::c_char,
     mut startlabname: *const libc::c_char,
 ) {
     static mut label_count: libc::c_int = 0;

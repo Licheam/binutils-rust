@@ -5801,14 +5801,14 @@ pub unsafe extern "C" fn cfi_add_label(mut name: *const libc::c_char) {
             .offset(
                 ((((*__o1).next_free)
                     .offset_from(
-                        (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                        if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                             < ::core::mem::size_of::<*mut libc::c_void>()
                                 as libc::c_ulong
                         {
                             (*__o1).object_base
                         } else {
                             0 as *mut libc::c_char
-                        }),
+                        },
                     ) as libc::c_long as libc::c_ulong)
                     .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                     as isize,
@@ -6444,7 +6444,7 @@ unsafe extern "C" fn dot_cfi(mut arg: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_escape(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_escape(mut _ignored: libc::c_int) {
     let mut head: *mut cfi_escape_data = 0 as *mut cfi_escape_data;
     let mut tail: *mut *mut cfi_escape_data = 0 as *mut *mut cfi_escape_data;
     let mut e: *mut cfi_escape_data = 0 as *mut cfi_escape_data;
@@ -6487,7 +6487,7 @@ unsafe extern "C" fn dot_cfi_escape(mut ignored: libc::c_int) {
     input_line_pointer;
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_sections(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_sections(mut _ignored: libc::c_int) {
     let mut sections: libc::c_int = 0 as libc::c_int;
     if *input_line_pointer as libc::c_int == ' ' as i32 {
         input_line_pointer = input_line_pointer.offset(1);
@@ -6578,7 +6578,7 @@ unsafe extern "C" fn dot_cfi_sections(mut ignored: libc::c_int) {
     }
     cfi_sections = sections;
 }
-unsafe extern "C" fn dot_cfi_startproc(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_startproc(mut _ignored: libc::c_int) {
     let mut simple: libc::c_int = 0 as libc::c_int;
     if !((*frchain_now).frch_cfi_data).is_null() {
         as_bad(
@@ -6622,9 +6622,9 @@ unsafe extern "C" fn dot_cfi_startproc(mut ignored: libc::c_int) {
     if simple == 0 {
         tc_x86_frame_initial_instructions();
     }
-    cfi_sections & (1 as libc::c_int) << 2 as libc::c_int != 0 as libc::c_int;
+    let _ = cfi_sections & (1 as libc::c_int) << 2 as libc::c_int != 0 as libc::c_int;
 }
-unsafe extern "C" fn dot_cfi_endproc(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_endproc(mut _ignored: libc::c_int) {
     if ((*frchain_now).frch_cfi_data).is_null() {
         as_bad(
             dcgettext(
@@ -6641,9 +6641,9 @@ unsafe extern "C" fn dot_cfi_endproc(mut ignored: libc::c_int) {
     cfi_end_fde(symbol_temp_new_now());
     demand_empty_rest_of_line();
     cfi_sections_set = 1 as libc::c_int != 0;
-    cfi_sections & (1 as libc::c_int) << 2 as libc::c_int != 0 as libc::c_int;
+    let _ = cfi_sections & (1 as libc::c_int) << 2 as libc::c_int != 0 as libc::c_int;
 }
-unsafe extern "C" fn dot_cfi_fde_data(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_fde_data(mut _ignored: libc::c_int) {
     as_bad(
         dcgettext(
             0 as *const libc::c_char,
@@ -6654,7 +6654,7 @@ unsafe extern "C" fn dot_cfi_fde_data(mut ignored: libc::c_int) {
     );
     ignore_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_personality(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_personality(mut _ignored: libc::c_int) {
     let mut fde: *mut fde_entry = 0 as *mut fde_entry;
     let mut encoding: offsetT = 0;
     if ((*frchain_now).frch_cfi_data).is_null() {
@@ -6741,7 +6741,7 @@ unsafe extern "C" fn dot_cfi_personality(mut ignored: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_personality_id(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_personality_id(mut _ignored: libc::c_int) {
     as_bad(
         dcgettext(
             0 as *const libc::c_char,
@@ -6752,7 +6752,7 @@ unsafe extern "C" fn dot_cfi_personality_id(mut ignored: libc::c_int) {
     );
     ignore_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_lsda(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_lsda(mut _ignored: libc::c_int) {
     let mut fde: *mut fde_entry = 0 as *mut fde_entry;
     let mut encoding: offsetT = 0;
     if ((*frchain_now).frch_cfi_data).is_null() {
@@ -6840,7 +6840,7 @@ unsafe extern "C" fn dot_cfi_lsda(mut ignored: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_val_encoded_addr(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_val_encoded_addr(mut _ignored: libc::c_int) {
     let mut insn_ptr: *mut cfi_insn_data = 0 as *mut cfi_insn_data;
     let mut encoding: offsetT = 0;
     if ((*frchain_now).frch_cfi_data).is_null() {
@@ -6926,7 +6926,7 @@ unsafe extern "C" fn dot_cfi_val_encoded_addr(mut ignored: libc::c_int) {
     }
     demand_empty_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_inline_lsda(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_inline_lsda(mut _ignored: libc::c_int) {
     as_bad(
         dcgettext(
             0 as *const libc::c_char,
@@ -6937,7 +6937,7 @@ unsafe extern "C" fn dot_cfi_inline_lsda(mut ignored: libc::c_int) {
     );
     ignore_rest_of_line();
 }
-unsafe extern "C" fn dot_cfi_label(mut ignored: libc::c_int) {
+unsafe extern "C" fn dot_cfi_label(mut _ignored: libc::c_int) {
     let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
     if ((*frchain_now).frch_cfi_data).is_null() {
         as_bad(

@@ -5256,7 +5256,7 @@ pub unsafe extern "C" fn symbol_insert(
     mut addme: *mut symbolS,
     mut target: *mut symbolS,
     mut rootPP: *mut *mut symbolS,
-    mut lastPP: *mut *mut symbolS,
+    mut _lastPP: *mut *mut symbolS,
 ) {
     extern "C" {
         #[link_name = "symbol_table_frozen"]
@@ -5579,7 +5579,7 @@ pub unsafe extern "C" fn fb_label_instance_inc(mut label: libc::c_long) {
                 let ref mut fresh7 = *fb_label_instances
                     .offset(i.offset_from(fb_labels) as libc::c_long as isize);
                 *fresh7 += 1;
-                *fresh7;
+                let _ = *fresh7;
                 return;
             }
             i = i.offset(1);
@@ -5689,7 +5689,7 @@ pub unsafe extern "C" fn define_dollar_label(mut label: libc::c_long) {
             let ref mut fresh14 = *dollar_label_instances
                 .offset(i.offset_from(dollar_labels) as libc::c_long as isize);
             *fresh14 += 1;
-            *fresh14;
+            let _ = *fresh14;
             *dollar_label_defines
                 .offset(
                     i.offset_from(dollar_labels) as libc::c_long as isize,
@@ -6463,7 +6463,7 @@ pub unsafe extern "C" fn decode_local_label_name(
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -6481,14 +6481,14 @@ pub unsafe extern "C" fn decode_local_label_name(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -6502,7 +6502,7 @@ pub unsafe extern "C" fn decode_local_label_name(
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut libc::c_char;
     sprintf(symbol_decode, message_format, label_number, instance_number, type_0);
     return symbol_decode;
@@ -7616,7 +7616,7 @@ pub unsafe extern "C" fn symbol_create(
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -7634,14 +7634,14 @@ pub unsafe extern "C" fn symbol_create(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -7655,7 +7655,7 @@ pub unsafe extern "C" fn symbol_create(
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut symbolS;
     memset(symbolP as *mut libc::c_void, 0 as libc::c_int, size);
     (*symbolP).name = preserved_copy_of_name;
@@ -7857,7 +7857,7 @@ pub unsafe extern "C" fn local_symbol_make(
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -7875,14 +7875,14 @@ pub unsafe extern "C" fn local_symbol_make(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -7896,7 +7896,7 @@ pub unsafe extern "C" fn local_symbol_make(
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut local_symbol;
     (*ret).flags = flags;
     (*ret).hash = 0 as libc::c_int as hashval_t;
@@ -7959,7 +7959,7 @@ pub unsafe extern "C" fn symbol_clone(
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -7977,14 +7977,14 @@ pub unsafe extern "C" fn symbol_clone(
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -7998,7 +7998,7 @@ pub unsafe extern "C" fn symbol_clone(
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut symbolS;
     *newsymP = *orgsymP;
     (*newsymP).x = newsymP.offset(1 as libc::c_int as isize) as *mut xsymbol;
@@ -8221,14 +8221,14 @@ unsafe extern "C" fn save_symbol_name(
             .offset(
                 ((((*__o1).next_free)
                     .offset_from(
-                        (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                        if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                             < ::core::mem::size_of::<*mut libc::c_void>()
                                 as libc::c_ulong
                         {
                             (*__o1).object_base
                         } else {
                             0 as *mut libc::c_char
-                        }),
+                        },
                     ) as libc::c_long as libc::c_ulong)
                     .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                     as isize,
@@ -8376,7 +8376,7 @@ unsafe extern "C" fn local_symbol_convert(mut sym: *mut libc::c_void) -> *mut sy
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -8394,14 +8394,14 @@ unsafe extern "C" fn local_symbol_convert(mut sym: *mut libc::c_void) -> *mut sy
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -8415,7 +8415,7 @@ unsafe extern "C" fn local_symbol_convert(mut sym: *mut libc::c_void) -> *mut sy
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut xsymbol;
     memset(
         xtra as *mut libc::c_void,
@@ -8596,7 +8596,7 @@ unsafe extern "C" fn report_op_error(
 }
 unsafe extern "C" fn resolve_local_symbol(
     mut slot: *mut *mut libc::c_void,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
 ) -> libc::c_int {
     let mut entry: *mut symbol_entry_t = *(slot as *mut *mut symbol_entry_t);
     if ((*entry).sy.flags).local_symbol() != 0 {

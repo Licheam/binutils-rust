@@ -5067,7 +5067,7 @@ unsafe extern "C" fn subseg_set_rest(mut seg: segT, mut subseg: subsegT) {
                 _obstack_newchunk(__o, __len);
             }
             (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-            ({
+            {
                 let mut __o1: *mut obstack = __h;
                 let mut __value: *mut libc::c_void = (*__o1).object_base
                     as *mut libc::c_void;
@@ -5086,14 +5086,14 @@ unsafe extern "C" fn subseg_set_rest(mut seg: segT, mut subseg: subsegT) {
                     .offset(
                         ((((*__o1).next_free)
                             .offset_from(
-                                (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                                if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                     < ::core::mem::size_of::<*mut libc::c_void>()
                                         as libc::c_ulong
                                 {
                                     (*__o1).object_base
                                 } else {
                                     0 as *mut libc::c_char
-                                }),
+                                },
                             ) as libc::c_long as libc::c_ulong)
                             .wrapping_add((*__o1).alignment_mask)
                             & !(*__o1).alignment_mask) as isize,
@@ -5108,7 +5108,7 @@ unsafe extern "C" fn subseg_set_rest(mut seg: segT, mut subseg: subsegT) {
                 }
                 (*__o1).object_base = (*__o1).next_free;
                 __value
-            })
+            }
         }) as *mut frchainS;
         (*newP).frch_subseg = subseg;
         (*newP).fix_root = 0 as *mut fixS;
