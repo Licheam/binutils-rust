@@ -43,7 +43,6 @@ extern "C" {
     pub type cie;
     pub type lineno_list;
     pub type cfi_escape_data;
-    pub type flag_code_0;
     fn memcpy(
         _: *mut libc::c_void,
         _: *const libc::c_void,
@@ -5901,10 +5900,10 @@ pub struct reg_entry {
     pub reg_num: libc::c_uchar,
     pub dw2_regnum: [libc::c_schar; 2],
 }
-pub const CODE_64BIT: flag_code_0 = 2;
+pub const CODE_64BIT: flag_code = 2;
 pub type flag_code = libc::c_uint;
-pub const CODE_16BIT: flag_code_0 = 1;
-pub const CODE_32BIT: flag_code_0 = 0;
+pub const CODE_16BIT: flag_code = 1;
+pub const CODE_32BIT: flag_code = 0;
 pub const I386_ABI: x86_elf_abi = 0;
 pub type x86_elf_abi = libc::c_uint;
 pub const X86_64_X32_ABI: x86_elf_abi = 2;
@@ -19803,6 +19802,7 @@ unsafe extern "C" fn cpu_flags_match(mut t: *const insn_template) -> libc::c_int
     return match_0;
 }
 #[inline]
+#[allow(unconditional_panic)]
 unsafe extern "C" fn operand_type_and(
     mut x: i386_operand_type,
     mut y: i386_operand_type,
@@ -19851,6 +19851,7 @@ unsafe extern "C" fn operand_type_and(
     return x;
 }
 #[inline]
+#[allow(unconditional_panic)]
 unsafe extern "C" fn operand_type_and_not(
     mut x: i386_operand_type,
     mut y: i386_operand_type,
@@ -19919,6 +19920,7 @@ unsafe extern "C" fn operand_type_and_not(
     return x;
 }
 #[inline]
+#[allow(unconditional_panic)]
 unsafe extern "C" fn operand_type_or(
     mut x: i386_operand_type,
     mut y: i386_operand_type,
@@ -19994,6 +19996,7 @@ unsafe extern "C" fn operand_type_or(
     return x;
 }
 #[inline]
+#[allow(unconditional_panic)]
 unsafe extern "C" fn operand_type_xor(
     mut x: i386_operand_type,
     mut y: i386_operand_type,
