@@ -5668,24 +5668,8 @@ unsafe extern "C" fn d_demangle_callback(
     mut callback: demangle_callbackref,
     mut opaque: *mut libc::c_void,
 ) -> libc::c_int {
-    let mut comps: Vec::<demangle_component> = ::std::vec::from_elem(
-        demangle_component {
-            type_0: DEMANGLE_COMPONENT_NAME,
-            d_printing: 0,
-            d_counting: 0,
-            u: C2RustUnnamed {
-                s_name: C2RustUnnamed_11 {
-                    s: 0 as *const libc::c_char,
-                    len: 0,
-                },
-            },
-        },
-        vla,
-    );
-    let mut subs: Vec::<*mut demangle_component> = ::std::vec::from_elem(
-        0 as *mut demangle_component,
-        vla_0,
-    );
+    let mut comps: Vec::<demangle_component>;
+    let mut subs: Vec::<*mut demangle_component>;
     let mut type_0: C2RustUnnamed_12 = DCT_TYPE;
     let mut di: d_info = d_info {
         s: 0 as *const libc::c_char,
