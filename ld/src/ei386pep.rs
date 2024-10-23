@@ -5412,622 +5412,554 @@ unsafe extern "C" fn gldi386pep_add_options(
 ) {
     static mut xtra_long: [option; 68] = [
         {
-            let mut init = option {
+            option {
                 name: b"base-file\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_BASE_FILE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"dll\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"file-alignment\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_FILE_ALIGNMENT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"heap\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_HEAP as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"image-base\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_IMAGE_BASE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"major-image-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MAJOR_IMAGE_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"major-os-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MAJOR_OS_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"major-subsystem-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MAJOR_SUBSYSTEM_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"minor-image-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MINOR_IMAGE_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"minor-os-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MINOR_OS_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"minor-subsystem-version\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_MINOR_SUBSYSTEM_VERSION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"section-alignment\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_SECTION_ALIGNMENT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"stack\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_STACK as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"subsystem\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_SUBSYSTEM as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"support-old-code\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_SUPPORT_OLD_CODE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"use-nul-prefixed-import-tables\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_USE_NUL_PREFIXED_IMPORT_TABLES as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-leading-underscore\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_LEADING_UNDERSCORE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"leading-underscore\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_LEADING_UNDERSCORE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"output-def\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_OUT_DEF as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"output-def\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_OUT_DEF as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"export-all-symbols\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_EXPORT_ALL as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"exclude-symbols\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_EXCLUDE_SYMBOLS as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"exclude-all-symbols\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_EXCLUDE_ALL_SYMBOLS as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"exclude-libs\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_EXCLUDE_LIBS as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"exclude-modules-for-implib\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_EXCLUDE_MODULES_FOR_IMPLIB as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"kill-at\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_KILL_ATS as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"add-stdcall-alias\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_STDCALL_ALIASES as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-stdcall-fixup\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_ENABLE_STDCALL_FIXUP as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-stdcall-fixup\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_STDCALL_FIXUP as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"warn-duplicate-exports\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_WARN_DUPLICATE_EXPORTS as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"compat-implib\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_IMP_COMPAT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"compat-implib\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_IMP_COMPAT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-auto-image-base\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_ENABLE_AUTO_IMAGE_BASE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-auto-image-base\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_AUTO_IMAGE_BASE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"dll-search-prefix\0" as *const u8 as *const libc::c_char,
                 has_arg: 1 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_SEARCH_PREFIX as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-default-excludes\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_DEFAULT_EXCLUDES as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-auto-import\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_ENABLE_AUTO_IMPORT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-auto-import\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_DISABLE_AUTO_IMPORT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-extra-pep-debug\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_ENABLE_EXTRA_PE_DEBUG as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-runtime-pseudo-reloc\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_ENABLE_RUNTIME_PSEUDO_RELOC as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-runtime-pseudo-reloc\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_DISABLE_RUNTIME_PSEUDO_RELOC as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-runtime-pseudo-reloc-v2\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DLL_ENABLE_RUNTIME_PSEUDO_RELOC_V2 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-long-section-names\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_ENABLE_LONG_SECTION_NAMES as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-long-section-names\0" as *const u8
                     as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_LONG_SECTION_NAMES as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"high-entropy-va\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_HIGH_ENTROPY_VA as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"dynamicbase\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DYNAMIC_BASE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"forceinteg\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_FORCE_INTEGRITY as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"nxcompat\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NX_COMPAT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-isolation\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_ISOLATION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-seh\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_SEH as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-bind\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_BIND as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"wdmdriver\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_WDM_DRIVER as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"tsaware\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_TERMINAL_SERVER_AWARE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"insert-timestamp\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_INSERT_TIMESTAMP as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"no-insert-timestamp\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_NO_INSERT_TIMESTAMP as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"build-id\0" as *const u8 as *const libc::c_char,
                 has_arg: 2 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_BUILD_ID as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"enable-reloc-section\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_ENABLE_RELOC_SECTION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-reloc-section\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_RELOC_SECTION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-high-entropy-va\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_HIGH_ENTROPY_VA as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-dynamicbase\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_DYNAMIC_BASE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-forceinteg\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_FORCE_INTEGRITY as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-nxcompat\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_NX_COMPAT as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-no-isolation\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_NO_ISOLATION as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-no-seh\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_NO_SEH as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-no-bind\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_NO_BIND as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-wdmdriver\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_WDM_DRIVER as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: b"disable-tsaware\0" as *const u8 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: OPTION_DISABLE_TERMINAL_SERVER_AWARE as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = option {
+            option {
                 name: 0 as *const libc::c_char,
                 has_arg: 0 as libc::c_int,
                 flag: 0 as *const libc::c_int as *mut libc::c_int,
                 val: 0 as libc::c_int,
-            };
-            init
+            }
         },
     ];
     *longopts = xrealloc(
@@ -6592,53 +6524,46 @@ unsafe extern "C" fn set_entry_point() {
     let mut i: libc::c_int = 0;
     static mut v: [C2RustUnnamed_42; 7] = [
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 1 as libc::c_int,
                 entry: b"NtProcessStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 2 as libc::c_int,
                 entry: b"WinMainCRTStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 3 as libc::c_int,
                 entry: b"mainCRTStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 7 as libc::c_int,
                 entry: b"__PosixProcessStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 9 as libc::c_int,
                 entry: b"WinMainCRTStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 14 as libc::c_int,
                 entry: b"mainCRTStartup\0" as *const u8 as *const libc::c_char,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_42 {
+            C2RustUnnamed_42 {
                 value: 0 as libc::c_int,
                 entry: 0 as *const libc::c_char,
-            };
-            init
+            }
         },
     ];
     static mut default_entry: [libc::c_char; 15] = unsafe {
@@ -6687,53 +6612,46 @@ unsafe extern "C" fn set_pep_subsystem() {
     let mut temp_subsystem: libc::c_ulong = 0;
     static mut v: [C2RustUnnamed_43; 7] = [
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"native\0" as *const u8 as *const libc::c_char,
                 value: 1 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"windows\0" as *const u8 as *const libc::c_char,
                 value: 2 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"console\0" as *const u8 as *const libc::c_char,
                 value: 3 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"posix\0" as *const u8 as *const libc::c_char,
                 value: 7 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"wince\0" as *const u8 as *const libc::c_char,
                 value: 9 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: b"xbox\0" as *const u8 as *const libc::c_char,
                 value: 14 as libc::c_int,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_43 {
+            C2RustUnnamed_43 {
                 name: 0 as *const libc::c_char,
                 value: 0 as libc::c_int,
-            };
-            init
+            }
         },
     ];
     sver = strchr(optarg, ':' as i32);
@@ -8586,7 +8504,7 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
     if os.is_null() {
         static mut hold: [orphan_save; 5] = [
             {
-                let mut init = orphan_save {
+                orphan_save {
                     name: b".text\0" as *const u8 as *const libc::c_char,
                     flags: (0x100 as libc::c_int | 0x1 as libc::c_int
                         | 0x2 as libc::c_int | 0x8 as libc::c_int | 0x10 as libc::c_int)
@@ -8598,11 +8516,10 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
                         as *mut *mut lang_statement_union_type,
                     os_tail: 0 as *const *mut lang_output_section_statement_type
                         as *mut *mut lang_output_section_statement_type,
-                };
-                init
+                }
             },
             {
-                let mut init = orphan_save {
+                orphan_save {
                     name: b".idata\0" as *const u8 as *const libc::c_char,
                     flags: (0x100 as libc::c_int | 0x1 as libc::c_int
                         | 0x2 as libc::c_int | 0x8 as libc::c_int | 0x20 as libc::c_int)
@@ -8614,11 +8531,10 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
                         as *mut *mut lang_statement_union_type,
                     os_tail: 0 as *const *mut lang_output_section_statement_type
                         as *mut *mut lang_output_section_statement_type,
-                };
-                init
+                }
             },
             {
-                let mut init = orphan_save {
+                orphan_save {
                     name: b".rdata\0" as *const u8 as *const libc::c_char,
                     flags: (0x100 as libc::c_int | 0x1 as libc::c_int
                         | 0x2 as libc::c_int | 0x8 as libc::c_int | 0x20 as libc::c_int)
@@ -8630,11 +8546,10 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
                         as *mut *mut lang_statement_union_type,
                     os_tail: 0 as *const *mut lang_output_section_statement_type
                         as *mut *mut lang_output_section_statement_type,
-                };
-                init
+                }
             },
             {
-                let mut init = orphan_save {
+                orphan_save {
                     name: b".data\0" as *const u8 as *const libc::c_char,
                     flags: (0x100 as libc::c_int | 0x1 as libc::c_int
                         | 0x2 as libc::c_int | 0x20 as libc::c_int) as flagword,
@@ -8645,11 +8560,10 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
                         as *mut *mut lang_statement_union_type,
                     os_tail: 0 as *const *mut lang_output_section_statement_type
                         as *mut *mut lang_output_section_statement_type,
-                };
-                init
+                }
             },
             {
-                let mut init = orphan_save {
+                orphan_save {
                     name: b".bss\0" as *const u8 as *const libc::c_char,
                     flags: 0x1 as libc::c_int as flagword,
                     os: 0 as *const lang_output_section_statement_type
@@ -8659,8 +8573,7 @@ unsafe extern "C" fn gld_i386pep_place_orphan(
                         as *mut *mut lang_statement_union_type,
                     os_tail: 0 as *const *mut lang_output_section_statement_type
                         as *mut *mut lang_output_section_statement_type,
-                };
-                init
+                }
             },
         ];
         static mut orphan_init_done: libc::c_int = 0 as libc::c_int;
@@ -8840,67 +8753,58 @@ unsafe extern "C" fn gld_i386pep_open_dynamic_archive(
 ) -> bool {
     static mut libname_fmt: [C2RustUnnamed_44; 9] = [
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"lib%s.dll.a\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"%s.dll.a\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"lib%s.a\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"%s.lib\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"lib%s.lib\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"%s%s.dll\0" as *const u8 as *const libc::c_char,
                 use_prefix: 1 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"lib%s.dll\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: b"%s.dll\0" as *const u8 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = C2RustUnnamed_44 {
+            C2RustUnnamed_44 {
                 format: 0 as *const libc::c_char,
                 use_prefix: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
     ];
     static mut format_max_len: libc::c_uint = 0 as libc::c_int as libc::c_uint;
@@ -9019,7 +8923,7 @@ unsafe extern "C" fn gld_i386pep_get_script(
 #[no_mangle]
 pub static mut ld_i386pep_emulation: ld_emulation_xfer_struct = unsafe {
     {
-        let mut init = ld_emulation_xfer_struct {
+        ld_emulation_xfer_struct {
             before_parse: Some(gld_i386pep_before_parse as unsafe extern "C" fn() -> ()),
             syslib: Some(
                 syslib_default as unsafe extern "C" fn(*mut libc::c_char) -> (),
@@ -9115,14 +9019,13 @@ pub static mut ld_i386pep_emulation: ld_emulation_xfer_struct = unsafe {
             acquire_strings_for_ctf: None,
             new_dynsym_for_ctf: None,
             print_symbol: None,
-        };
-        init
+        }
     }
 };
 unsafe extern "C" fn run_static_initializers() {
     init = [
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.ImageBase as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: (if 0 as libc::c_int != 0 {
@@ -9134,11 +9037,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut dll as *mut libc::c_int as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
                     as libc::c_int,
@@ -9147,11 +9049,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.ImageBase as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: (if 0 as libc::c_int != 0 {
@@ -9163,11 +9064,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 1 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.SectionAlignment as *mut uint32_t as *mut libc::c_void,
                 size: ::core::mem::size_of::<uint32_t>() as libc::c_ulong as libc::c_int,
                 value: 0x1000 as libc::c_int as bfd_vma,
@@ -9175,11 +9075,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.FileAlignment as *mut uint32_t as *mut libc::c_void,
                 size: ::core::mem::size_of::<uint32_t>() as libc::c_ulong as libc::c_int,
                 value: 0x200 as libc::c_int as bfd_vma,
@@ -9187,11 +9086,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MajorOperatingSystemVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9201,11 +9099,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MinorOperatingSystemVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9215,11 +9112,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MajorImageVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9229,11 +9125,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MinorImageVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9243,11 +9138,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MajorSubsystemVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9257,11 +9151,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *const libc::c_char as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.MinorSubsystemVersion as *mut libc::c_short
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
@@ -9271,11 +9164,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *const libc::c_char as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.Subsystem as *mut libc::c_short as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
                     as libc::c_int,
@@ -9284,11 +9176,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.SizeOfStackReserve as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: 0x200000 as libc::c_int as bfd_vma,
@@ -9296,11 +9187,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *const libc::c_char as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.SizeOfStackCommit as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: 0x1000 as libc::c_int as bfd_vma,
@@ -9308,11 +9198,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.SizeOfHeapReserve as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: 0x100000 as libc::c_int as bfd_vma,
@@ -9320,11 +9209,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.SizeOfHeapCommit as *mut bfd_vma as *mut libc::c_void,
                 size: ::core::mem::size_of::<bfd_vma>() as libc::c_ulong as libc::c_int,
                 value: 0x1000 as libc::c_int as bfd_vma,
@@ -9332,11 +9220,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.LoaderFlags as *mut uint32_t as *mut libc::c_void,
                 size: ::core::mem::size_of::<uint32_t>() as libc::c_ulong as libc::c_int,
                 value: 0 as libc::c_int as bfd_vma,
@@ -9344,11 +9231,10 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: &mut pep.DllCharacteristics as *mut libc::c_ushort
                     as *mut libc::c_void,
                 size: ::core::mem::size_of::<libc::c_ushort>() as libc::c_ulong
@@ -9359,19 +9245,17 @@ unsafe extern "C" fn run_static_initializers() {
                     as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
         {
-            let mut init = definfo {
+            definfo {
                 ptr: 0 as *mut libc::c_void,
                 size: 0 as libc::c_int,
                 value: 0 as libc::c_int as bfd_vma,
                 symbol: 0 as *mut libc::c_char,
                 inited: 0 as libc::c_int,
                 is_c_symbol: 0 as libc::c_int != 0,
-            };
-            init
+            }
         },
     ];
 }

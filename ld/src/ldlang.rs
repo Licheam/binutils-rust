@@ -4725,7 +4725,7 @@ pub const bfd_error_system_call: bfd_error = 1;
 pub const bfd_error_no_error: bfd_error = 0;
 pub type bfd_error_type = bfd_error;
 pub type bfd_error_handler_type = Option::<
-    unsafe extern "C" fn(*const libc::c_char, *mut __va_list_tag) -> (),
+    unsafe extern "C" fn(*const libc::c_char, ::core::ffi::VaList) -> (),
 >;
 pub type ptrdiff_t = libc::c_long;
 pub type hashval_t = libc::c_uint;
