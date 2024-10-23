@@ -230,11 +230,11 @@ pub unsafe extern "C" fn annotate_source(
                     .wrapping_add(3 as libc::c_int as libc::c_ulong)
                     .wrapping_add(
                         strlen(
-                            (if !name_only.is_null() {
+                            if !name_only.is_null() {
                                 name_only as *const libc::c_char
                             } else {
                                 (*sf).name
-                            }),
+                            },
                         ),
                     ),
             ) as *mut libc::c_char;

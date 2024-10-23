@@ -641,7 +641,7 @@ unsafe extern "C" fn inherit_flags(mut child: *mut Sym) {
                 (*child)
                     .cg
                     .print_flag = ((*child).cg.print_flag as libc::c_int
-                    | (*parent).cg.print_flag as libc::c_int) as bool;
+                    | (*parent).cg.print_flag as libc::c_int) != 0;
                 if (*child).ncalls != 0 as libc::c_int as libc::c_ulong {
                     (*child).cg.prop.fract
                         += (*parent).cg.prop.fract
@@ -663,7 +663,7 @@ unsafe extern "C" fn inherit_flags(mut child: *mut Sym) {
                     (*head)
                         .cg
                         .print_flag = ((*head).cg.print_flag as libc::c_int
-                        | (*parent).cg.print_flag as libc::c_int) as bool;
+                        | (*parent).cg.print_flag as libc::c_int) != 0;
                     if (*head).ncalls != 0 as libc::c_int as libc::c_ulong {
                         (*head).cg.prop.fract
                             += (*parent).cg.prop.fract

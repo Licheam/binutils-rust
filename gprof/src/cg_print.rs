@@ -625,7 +625,7 @@ pub unsafe extern "C" fn cg_print_function_ordering() {
         }
         let ref mut fresh12 = (*(**arcs.offset(arc_index as isize)).child).nuses;
         *fresh12 += 1;
-        *fresh12;
+        let _ = *fresh12;
         arc_index = arc_index.wrapping_add(1);
         arc_index;
     }

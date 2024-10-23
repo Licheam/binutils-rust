@@ -4498,11 +4498,11 @@ unsafe extern "C" fn hist_assign_samples_1(mut r: *mut histogram) {
                         sym_high_pc
                     })
                         .wrapping_sub(
-                            (if bin_low_pc > sym_low_pc {
+                            if bin_low_pc > sym_low_pc {
                                 bin_low_pc
                             } else {
                                 sym_low_pc
-                            }),
+                            },
                         );
                     if overlap > 0 as libc::c_int as libc::c_ulong {
                         if debug_level & (1 as libc::c_int) << 6 as libc::c_int != 0 {
