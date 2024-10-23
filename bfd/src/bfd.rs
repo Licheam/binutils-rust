@@ -5841,7 +5841,7 @@ pub const bfd_error_system_call: bfd_error = 1;
 pub const bfd_error_no_error: bfd_error = 0;
 pub type bfd_error_type = bfd_error;
 pub type bfd_error_handler_type = Option::<
-    unsafe extern "C" fn(*const libc::c_char, *mut __va_list_tag) -> (),
+    unsafe extern "C" fn(*const libc::c_char, ::core::ffi::VaList) -> (),
 >;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -6860,7 +6860,7 @@ unsafe extern "C" fn error_handler_internal(
                 args[i as usize].d = ap.arg::<libc::c_double>();
             }
             5 => {
-                args[i as usize].ld = ap.arg::<f128::f128>();
+                args[i as usize].d = ap.arg::<libc::c_double>();
             }
             6 => {
                 args[i as usize].p = ap.arg::<*mut libc::c_void>();
