@@ -5594,7 +5594,7 @@ unsafe extern "C" fn multiple_definition(
     }
 }
 unsafe extern "C" fn multiple_common(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut h: *mut bfd_link_hash_entry,
     mut nbfd: *mut bfd,
     mut ntype: bfd_link_hash_type,
@@ -5782,7 +5782,7 @@ unsafe extern "C" fn multiple_common(
     };
 }
 unsafe extern "C" fn add_to_set(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut h: *mut bfd_link_hash_entry,
     mut reloc: bfd_reloc_code_real_type,
     mut abfd: *mut bfd,
@@ -6320,7 +6320,7 @@ unsafe extern "C" fn reloc_overflow(
     einfo(b"\n\0" as *const u8 as *const libc::c_char);
 }
 unsafe extern "C" fn reloc_dangerous(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut message: *const libc::c_char,
     mut abfd: *mut bfd,
     mut section: *mut asection,
@@ -6339,7 +6339,7 @@ unsafe extern "C" fn reloc_dangerous(
     );
 }
 unsafe extern "C" fn unattached_reloc(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut name: *const libc::c_char,
     mut abfd: *mut bfd,
     mut section: *mut asection,
@@ -6361,11 +6361,11 @@ unsafe extern "C" fn unattached_reloc(
 unsafe extern "C" fn notice(
     mut info: *mut bfd_link_info,
     mut h: *mut bfd_link_hash_entry,
-    mut inh: *mut bfd_link_hash_entry,
+    mut _inh: *mut bfd_link_hash_entry,
     mut abfd: *mut bfd,
     mut section: *mut asection,
     mut value: bfd_vma,
-    mut flags: flagword,
+    mut _flags: flagword,
 ) -> bool {
     let mut name: *const libc::c_char = 0 as *const libc::c_char;
     if h.is_null() {
@@ -7091,7 +7091,7 @@ unsafe fn main_0(
     xexit(0 as libc::c_int);
 }
 unsafe extern "C" fn get_relative_sysroot(
-    mut from: *const libc::c_char,
+    mut _from: *const libc::c_char,
 ) -> *mut libc::c_char {
     return 0 as *mut libc::c_char;
 }

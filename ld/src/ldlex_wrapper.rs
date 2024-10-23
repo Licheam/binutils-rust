@@ -17378,7 +17378,7 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                             break '_yy_match;
                         }
                         197 => {
-                            fwrite(
+                            let _ = fwrite(
                                 yytext as *const libc::c_void,
                                 yyleng as size_t,
                                 1 as libc::c_int as libc::c_ulong,

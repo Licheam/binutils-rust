@@ -4720,8 +4720,8 @@ pub unsafe extern "C" fn ldemul_open_dynamic_archive(
 }
 #[no_mangle]
 pub unsafe extern "C" fn ldemul_default_target(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
+    mut _argc: libc::c_int,
+    mut _argv: *mut *mut libc::c_char,
 ) -> *mut libc::c_char {
     let mut from_outside: *mut libc::c_char = getenv(
         b"GNUTARGET\0" as *const u8 as *const libc::c_char,
@@ -4823,7 +4823,7 @@ pub unsafe extern "C" fn set_output_arch_default() {
         )(link_info.output_bfd, ldfile_output_architecture, ldfile_output_machine);
 }
 #[no_mangle]
-pub unsafe extern "C" fn syslib_default(mut ignore: *mut libc::c_char) {
+pub unsafe extern "C" fn syslib_default(mut _ignore: *mut libc::c_char) {
     info_msg(
         dcgettext(
             0 as *const libc::c_char,
@@ -4834,7 +4834,7 @@ pub unsafe extern "C" fn syslib_default(mut ignore: *mut libc::c_char) {
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn hll_default(mut ignore: *mut libc::c_char) {
+pub unsafe extern "C" fn hll_default(mut _ignore: *mut libc::c_char) {
     info_msg(
         dcgettext(
             0 as *const libc::c_char,

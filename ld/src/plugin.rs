@@ -6857,7 +6857,7 @@ unsafe extern "C" fn plugin_strdup(
     memcpy(copy as *mut libc::c_void, str as *const libc::c_void, strlength);
     return copy;
 }
-unsafe extern "C" fn plugin_cleanup(mut abfd: *mut bfd) {}
+unsafe extern "C" fn plugin_cleanup(mut _abfd: *mut bfd) {}
 unsafe extern "C" fn run_static_initializers() {
     tv_header_size = (::core::mem::size_of::<[ld_plugin_tag; 17]>() as libc::c_ulong)
         .wrapping_div(::core::mem::size_of::<ld_plugin_tag>() as libc::c_ulong);

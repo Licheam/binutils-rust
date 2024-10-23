@@ -5175,8 +5175,8 @@ unsafe extern "C" fn gldelf_k1om_add_options(
     mut shortopts: *mut *mut libc::c_char,
     mut nl: libc::c_int,
     mut longopts: *mut *mut option,
-    mut nrl: libc::c_int,
-    mut really_longopts: *mut *mut option,
+    mut _nrl: libc::c_int,
+    mut _really_longopts: *mut *mut option,
 ) {
     static mut xtra_short: [libc::c_char; 5] = unsafe {
         *::core::mem::transmute::<&[u8; 5], &[libc::c_char; 5]>(b"z:P:\0")

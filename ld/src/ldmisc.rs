@@ -4673,7 +4673,7 @@ pub unsafe extern "C" fn vfinfo(
             fmt;
         }
         if fmt != str {
-            fwrite(
+            let _ = fwrite(
                 str as *const libc::c_void,
                 1 as libc::c_int as libc::c_ulong,
                 fmt.offset_from(str) as libc::c_long as libc::c_ulong,

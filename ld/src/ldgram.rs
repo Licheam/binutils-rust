@@ -15496,10 +15496,10 @@ static mut yyr2: [yytype_int8; 377] = [
 ];
 unsafe extern "C" fn yy_symbol_value_print(
     mut yyo: *mut FILE,
-    mut yytype: libc::c_int,
+    mut _yytype: libc::c_int,
     yyvaluep: *const YYSTYPE,
 ) {
-    let mut yyoutput: *mut FILE = yyo;
+    let mut _yyoutput: *mut FILE = yyo;
     if yyvaluep.is_null() {
         return;
     }

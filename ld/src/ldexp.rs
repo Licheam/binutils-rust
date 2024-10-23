@@ -6314,8 +6314,7 @@ unsafe extern "C" fn fold_binary(mut tree: *mut etree_type) {
     exp_fold_tree_1((*tree).binary.rhs);
     expld
         .result
-        .valid_p = (expld.result.valid_p as libc::c_int & lhs.valid_p as libc::c_int)
-        as bool;
+        .valid_p = (expld.result.valid_p as libc::c_int & lhs.valid_p as libc::c_int) != 0;
     if expld.result.valid_p {
         if lhs.section != expld.result.section {
             if !(expld.result.section).is_null() && !(lhs.section).is_null() {
@@ -6980,7 +6979,7 @@ unsafe extern "C" fn exp_assop(
 }
 unsafe extern "C" fn set_sym_sections(
     mut bh: *mut bfd_hash_entry,
-    mut inf: *mut libc::c_void,
+    mut _inf: *mut libc::c_void,
 ) -> bool {
     let mut def: *mut definedness_hash_entry = bh as *mut definedness_hash_entry;
     if (*def).final_sec

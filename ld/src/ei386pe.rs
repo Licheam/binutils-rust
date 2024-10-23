@@ -5338,12 +5338,12 @@ unsafe extern "C" fn gld_i386pe_before_parse() {
     link_info.pei386_runtime_pseudo_reloc = 2 as libc::c_int;
 }
 unsafe extern "C" fn gldi386pe_add_options(
-    mut ns: libc::c_int,
-    mut shortopts: *mut *mut libc::c_char,
+    mut _ns: libc::c_int,
+    mut _shortopts: *mut *mut libc::c_char,
     mut nl: libc::c_int,
     mut longopts: *mut *mut option,
-    mut nrl: libc::c_int,
-    mut really_longopts: *mut *mut option,
+    mut _nrl: libc::c_int,
+    mut _really_longopts: *mut *mut option,
 ) {
     static mut xtra_long: [option; 70] = [
         {
@@ -8174,13 +8174,13 @@ unsafe extern "C" fn make_import_fixup(
 }
 unsafe extern "C" fn pr_sym(
     mut h: *mut bfd_hash_entry,
-    mut inf: *mut libc::c_void,
+    mut _inf: *mut libc::c_void,
 ) -> bool {
     printf(b"+%s\n\0" as *const u8 as *const libc::c_char, (*h).string);
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn debug_section_p(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sect: *mut asection,
     mut obj: *mut libc::c_void,
 ) {
@@ -9389,7 +9389,7 @@ unsafe extern "C" fn gld_i386pe_place_orphan(
     return os;
 }
 unsafe extern "C" fn gld_i386pe_open_dynamic_archive(
-    mut arch: *const libc::c_char,
+    mut _arch: *const libc::c_char,
     mut search: *mut search_dirs_type,
     mut entry: *mut lang_input_statement_type,
 ) -> bool {
@@ -9476,11 +9476,11 @@ unsafe extern "C" fn gld_i386pe_open_dynamic_archive(
             .wrapping_add(strlen(filename))
             .wrapping_add(format_max_len as libc::c_ulong)
             .wrapping_add(
-                (if !pe_dll_search_prefix.is_null() {
+                if !pe_dll_search_prefix.is_null() {
                     strlen(pe_dll_search_prefix)
                 } else {
                     0 as libc::c_int as libc::c_ulong
-                }),
+                },
             )
             .wrapping_add(2 as libc::c_int as libc::c_ulong),
     ) as *mut libc::c_char;

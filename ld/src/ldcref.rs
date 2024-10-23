@@ -4477,7 +4477,7 @@ unsafe extern "C" fn bfd_asymbol_name(mut sy: *const asymbol) -> *const libc::c_
 }
 #[no_mangle]
 pub unsafe extern "C" fn handle_asneeded_cref(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut act: notice_asneeded_action,
 ) -> bool {
     let mut i: libc::c_uint = 0;
@@ -4624,7 +4624,7 @@ pub unsafe extern "C" fn add_cref(
     mut name: *const libc::c_char,
     mut abfd: *mut bfd,
     mut section: *mut asection,
-    mut value: bfd_vma,
+    mut _value: bfd_vma,
 ) {
     let mut h: *mut cref_hash_entry = 0 as *mut cref_hash_entry;
     let mut r: *mut cref_ref = 0 as *mut cref_ref;
@@ -5010,7 +5010,7 @@ unsafe extern "C" fn check_local_sym_xref(
 }
 unsafe extern "C" fn check_nocrossref(
     mut h: *mut cref_hash_entry,
-    mut ignore: *mut libc::c_void,
+    mut _ignore: *mut libc::c_void,
 ) -> bool {
     let mut hl: *mut bfd_link_hash_entry = 0 as *mut bfd_link_hash_entry;
     let mut defsec: *mut asection = 0 as *mut asection;
@@ -5297,7 +5297,7 @@ unsafe extern "C" fn cref_fill_array(
     }
     **pph = h;
     *pph = (*pph).offset(1);
-    *pph;
+    let _ = *pph;
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn cref_sort_array(

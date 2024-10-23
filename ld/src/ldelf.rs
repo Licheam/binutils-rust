@@ -8656,7 +8656,7 @@ unsafe extern "C" fn ldelf_check_needed(mut s: *mut lang_input_statement_type) {
         return;
     }
 }
-unsafe extern "C" fn id_note_section_size(mut abfd: *mut bfd) -> bfd_size_type {
+unsafe extern "C" fn id_note_section_size(mut _abfd: *mut bfd) -> bfd_size_type {
     let mut style: *const libc::c_char = ldelf_emit_note_gnu_build_id;
     let mut size: bfd_size_type = 0;
     let mut build_id_size: bfd_size_type = 0;

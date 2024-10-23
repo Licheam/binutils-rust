@@ -8391,7 +8391,7 @@ pub unsafe extern "C" fn next_matching_output_section_statement(
     return &mut (*entry).s.output_section_statement;
 }
 #[no_mangle]
-pub unsafe extern "C" fn ldlang_add_undef(name: *const libc::c_char, mut cmdline: bool) {
+pub unsafe extern "C" fn ldlang_add_undef(name: *const libc::c_char, mut _cmdline: bool) {
     let mut new_undef: *mut ldlang_undef_chain_list_type = 0
         as *mut ldlang_undef_chain_list_type;
     new_undef = stat_alloc(
@@ -8564,7 +8564,7 @@ pub unsafe extern "C" fn lang_for_each_statement_worker(
 }
 #[no_mangle]
 pub unsafe extern "C" fn stat_alloc(mut size: size_t) -> *mut libc::c_void {
-    return ({
+    return {
         let mut __h: *mut obstack = &mut stat_obstack;
         let mut __o: *mut obstack = __h;
         let mut __len: size_t = size;
@@ -8577,7 +8577,7 @@ pub unsafe extern "C" fn stat_alloc(mut size: size_t) -> *mut libc::c_void {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -8595,14 +8595,14 @@ pub unsafe extern "C" fn stat_alloc(mut size: size_t) -> *mut libc::c_void {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -8616,8 +8616,8 @@ pub unsafe extern "C" fn stat_alloc(mut size: size_t) -> *mut libc::c_void {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
-    });
+        }
+    };
 }
 #[no_mangle]
 pub unsafe extern "C" fn strip_excluded_output_sections() {
@@ -9845,8 +9845,8 @@ pub unsafe extern "C" fn ldlang_write_ctf_late() {
 }
 #[no_mangle]
 pub unsafe extern "C" fn ldlang_override_segment_assignment(
-    mut info: *mut bfd_link_info,
-    mut abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
     mut current_section_0: *mut asection,
     mut previous_section: *mut asection,
     mut new_segment: bool,
@@ -10156,7 +10156,7 @@ unsafe extern "C" fn insert_undefined(mut name: *const libc::c_char) {
 }
 unsafe extern "C" fn sort_def_symbol(
     mut hash_entry: *mut bfd_link_hash_entry,
-    mut info: *mut libc::c_void,
+    mut _info: *mut libc::c_void,
 ) -> bool {
     if ((*hash_entry).type_0() as libc::c_int == bfd_link_hash_defined as libc::c_int
         || (*hash_entry).type_0() as libc::c_int == bfd_link_hash_defweak as libc::c_int)
@@ -10195,7 +10195,7 @@ unsafe extern "C" fn sort_def_symbol(
                 _obstack_newchunk(__o, __len);
             }
             (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-            ({
+            {
                 let mut __o1: *mut obstack = __h;
                 let mut __value: *mut libc::c_void = (*__o1).object_base
                     as *mut libc::c_void;
@@ -10214,14 +10214,14 @@ unsafe extern "C" fn sort_def_symbol(
                     .offset(
                         ((((*__o1).next_free)
                             .offset_from(
-                                (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                                if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                     < ::core::mem::size_of::<*mut libc::c_void>()
                                         as libc::c_ulong
                                 {
                                     (*__o1).object_base
                                 } else {
                                     0 as *mut libc::c_char
-                                }),
+                                },
                             ) as libc::c_long as libc::c_ulong)
                             .wrapping_add((*__o1).alignment_mask)
                             & !(*__o1).alignment_mask) as isize,
@@ -10236,7 +10236,7 @@ unsafe extern "C" fn sort_def_symbol(
                 }
                 (*__o1).object_base = (*__o1).next_free;
                 __value
-            })
+            }
         }) as *mut map_symbol_def;
         (*def).entry = hash_entry;
         *(*ud).map_symbol_def_tail = def;
@@ -11077,7 +11077,7 @@ unsafe extern "C" fn walk_wild_section_general(
     }
 }
 unsafe extern "C" fn section_iterator_callback(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut s: *mut asection,
     mut data: *mut libc::c_void,
 ) -> bool {
@@ -11265,7 +11265,7 @@ unsafe extern "C" fn compare_section(
 unsafe extern "C" fn wild_sort_fast(
     mut wild_0: *mut lang_wild_statement_type,
     mut sec: *mut wildcard_list,
-    mut file: *mut lang_input_statement_type,
+    mut _file: *mut lang_input_statement_type,
     mut section: *mut asection,
 ) -> *mut *mut lang_section_bst_type {
     let mut tree: *mut *mut lang_section_bst_type = 0 as *mut *mut lang_section_bst_type;
@@ -12385,10 +12385,10 @@ unsafe extern "C" fn output_section_callback(
     };
 }
 unsafe extern "C" fn check_section_callback(
-    mut ptr: *mut lang_wild_statement_type,
-    mut sec: *mut wildcard_list,
+    mut _ptr: *mut lang_wild_statement_type,
+    mut _sec: *mut wildcard_list,
     mut section: *mut asection,
-    mut file: *mut lang_input_statement_type,
+    mut _file: *mut lang_input_statement_type,
     mut output: *mut libc::c_void,
 ) {
     let mut os: *mut lang_output_section_statement_type = 0
@@ -12433,7 +12433,7 @@ unsafe extern "C" fn check_excluded_libs(mut abfd: *mut bfd) {
 }
 unsafe extern "C" fn wild(
     mut s: *mut lang_wild_statement_type,
-    mut target: *const libc::c_char,
+    mut _target: *const libc::c_char,
     mut output: *mut lang_output_section_statement_type,
 ) {
     let mut sec: *mut wildcard_list = 0 as *mut wildcard_list;
@@ -13848,7 +13848,7 @@ unsafe extern "C" fn print_all_symbols(mut sec: *mut asection) {
             _obstack_newchunk(__o, __len);
         }
         (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-        ({
+        {
             let mut __o1: *mut obstack = __h;
             let mut __value: *mut libc::c_void = (*__o1).object_base
                 as *mut libc::c_void;
@@ -13866,14 +13866,14 @@ unsafe extern "C" fn print_all_symbols(mut sec: *mut asection) {
                 .offset(
                     ((((*__o1).next_free)
                         .offset_from(
-                            (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+                            if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
                                 < ::core::mem::size_of::<*mut libc::c_void>()
                                     as libc::c_ulong
                             {
                                 (*__o1).object_base
                             } else {
                                 0 as *mut libc::c_char
-                            }),
+                            },
                         ) as libc::c_long as libc::c_ulong)
                         .wrapping_add((*__o1).alignment_mask) & !(*__o1).alignment_mask)
                         as isize,
@@ -13887,7 +13887,7 @@ unsafe extern "C" fn print_all_symbols(mut sec: *mut asection) {
             }
             (*__o1).object_base = (*__o1).next_free;
             __value
-        })
+        }
     }) as *mut *mut bfd_link_hash_entry;
     i = 0 as libc::c_int as libc::c_uint;
     def = (*ud).map_symbol_def_head;
@@ -16039,8 +16039,8 @@ unsafe extern "C" fn lang_end() {
     };
 }
 unsafe extern "C" fn ignore_bfd_errors(
-    mut fmt: *const libc::c_char,
-    mut ap: ::core::ffi::VaList,
+    mut _fmt: *const libc::c_char,
+    mut _ap: ::core::ffi::VaList,
 ) {}
 unsafe extern "C" fn lang_check() {
     let mut file: *mut lang_input_statement_type = 0 as *mut lang_input_statement_type;
@@ -16364,10 +16364,10 @@ unsafe extern "C" fn lang_place_orphans() {
 }
 unsafe extern "C" fn gc_section_callback(
     mut ptr: *mut lang_wild_statement_type,
-    mut sec: *mut wildcard_list,
+    mut _sec: *mut wildcard_list,
     mut section: *mut asection,
-    mut file: *mut lang_input_statement_type,
-    mut data: *mut libc::c_void,
+    mut _file: *mut lang_input_statement_type,
+    mut _data: *mut libc::c_void,
 ) {
     if (*ptr).keep_sections {
         (*section).flags |= 0x200000 as libc::c_int as libc::c_uint;
@@ -16440,10 +16440,10 @@ unsafe extern "C" fn lang_gc_sections() {
     }
 }
 unsafe extern "C" fn find_relro_section_callback(
-    mut ptr: *mut lang_wild_statement_type,
-    mut sec: *mut wildcard_list,
+    mut _ptr: *mut lang_wild_statement_type,
+    mut _sec: *mut wildcard_list,
     mut section: *mut asection,
-    mut file: *mut lang_input_statement_type,
+    mut _file: *mut lang_input_statement_type,
     mut data: *mut libc::c_void,
 ) {
     if !((*section).output_section).is_null()

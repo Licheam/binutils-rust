@@ -6591,7 +6591,7 @@ pub unsafe extern "C" fn pe_dll_build_sections(
 #[no_mangle]
 pub unsafe extern "C" fn pe_exe_build_sections(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
 ) {
     pe_dll_id_target(bfd_get_target(abfd));
     pe_output_file_set_long_section_names(abfd);
@@ -7329,7 +7329,7 @@ unsafe extern "C" fn auto_export(
     return 1 as libc::c_int;
 }
 unsafe extern "C" fn process_def_file_and_drectve(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) {
     let mut i: libc::c_int = 0;
@@ -7880,7 +7880,7 @@ unsafe extern "C" fn build_filler_bfd(mut include_edata: libc::c_int) {
     bfd_set_section_size(reloc_s, 0 as libc::c_int as bfd_size_type);
     ldlang_add_file(filler_file);
 }
-unsafe extern "C" fn generate_edata(mut abfd: *mut bfd, mut info: *mut bfd_link_info) {
+unsafe extern "C" fn generate_edata(mut abfd: *mut bfd, mut _info: *mut bfd_link_info) {
     let mut i: libc::c_int = 0;
     let mut next_ordinal: libc::c_int = 0;
     let mut name_table_size: libc::c_int = 0 as libc::c_int;
@@ -8011,7 +8011,7 @@ unsafe extern "C" fn generate_edata(mut abfd: *mut bfd, mut info: *mut bfd_link_
         .wrapping_add(1 as libc::c_int as libc::c_ulong);
 }
 unsafe extern "C" fn fill_exported_offsets(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) {
     let mut i: libc::c_int = 0;
@@ -8493,11 +8493,11 @@ unsafe extern "C" fn generate_reloc(mut abfd: *mut bfd, mut info: *mut bfd_link_
                                         ) != 0
                                             && strcmp(
                                                 (*sym_0).name,
-                                                (if (*pe_details).underscored as libc::c_int != 0 {
+                                                if (*pe_details).underscored as libc::c_int != 0 {
                                                     b"___ImageBase\0" as *const u8 as *const libc::c_char
                                                 } else {
                                                     b"__ImageBase\0" as *const u8 as *const libc::c_char
-                                                }),
+                                                },
                                             ) != 0)
                                 {
                                     current_block_41 = 2232869372362427478;
@@ -10356,7 +10356,7 @@ unsafe extern "C" fn pe_find_cdecl_alias_match(
 }
 unsafe extern "C" fn pe_undef_count(
     mut h: *mut bfd_link_hash_entry,
-    mut inf: *mut libc::c_void,
+    mut _inf: *mut libc::c_void,
 ) -> bool {
     if (*h).type_0() as libc::c_int == bfd_link_hash_undefined as libc::c_int {
         undef_count += 1;
@@ -10366,7 +10366,7 @@ unsafe extern "C" fn pe_undef_count(
 }
 unsafe extern "C" fn pe_undef_fill(
     mut h: *mut bfd_link_hash_entry,
-    mut inf: *mut libc::c_void,
+    mut _inf: *mut libc::c_void,
 ) -> bool {
     if (*h).type_0() as libc::c_int == bfd_link_hash_undefined as libc::c_int {
         let mut at: *mut libc::c_char = 0 as *mut libc::c_char;

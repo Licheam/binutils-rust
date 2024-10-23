@@ -522,7 +522,7 @@ pub unsafe extern "C" fn def_file_add_import_from(
     mut module: *const libc::c_char,
     mut ordinal: libc::c_int,
     mut internal_name: *const libc::c_char,
-    mut its_name: *const libc::c_char,
+    mut _its_name: *const libc::c_char,
 ) -> libc::c_int {
     let mut i: *mut def_file_import = 0 as *mut def_file_import;
     let mut is_dup: libc::c_int = 0;
@@ -3731,8 +3731,8 @@ static mut tokens: [C2RustUnnamed_1; 26] = [
 ];
 unsafe extern "C" fn yydestruct(
     mut yymsg: *const libc::c_char,
-    mut yytype: libc::c_int,
-    mut yyvaluep: *mut YYSTYPE,
+    mut _yytype: libc::c_int,
+    mut _yyvaluep: *mut YYSTYPE,
 ) {
     if yymsg.is_null() {
         yymsg = b"Deleting\0" as *const u8 as *const libc::c_char;
