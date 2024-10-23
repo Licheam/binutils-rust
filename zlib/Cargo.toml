@@ -1,0 +1,19 @@
+[workspace]
+members = []
+
+[package]
+name = "zlib-sys"
+authors = ["C2Rust"]
+version = "0.0.0"
+publish = false
+edition = "2021"
+autobins = false
+
+[lib]
+name = "zlib_sys"
+path = "lib.rs"
+crate-type = ["staticlib", "rlib"]
+
+[dependencies]
+f128 = "0.2.9"
+libc = "0.2"
