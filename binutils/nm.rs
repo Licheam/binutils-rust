@@ -4994,17 +4994,17 @@ unsafe extern "C" fn print_object_filename_posix(mut filename: *const libc::c_ch
         printf(b"%s:\n\0" as *const u8 as *const libc::c_char, filename);
     }
 }
-unsafe extern "C" fn do_not_print_object_filename(mut filename: *const libc::c_char) {}
+unsafe extern "C" fn do_not_print_object_filename(mut _filename: *const libc::c_char) {}
 unsafe extern "C" fn print_archive_filename_bsd(mut filename: *const libc::c_char) {
     if filename_per_file != 0 {
         printf(b"\n%s:\n\0" as *const u8 as *const libc::c_char, filename);
     }
 }
-unsafe extern "C" fn print_archive_filename_sysv(mut filename: *const libc::c_char) {}
-unsafe extern "C" fn print_archive_filename_posix(mut filename: *const libc::c_char) {}
-unsafe extern "C" fn do_not_print_archive_filename(mut filename: *const libc::c_char) {}
+unsafe extern "C" fn print_archive_filename_sysv(mut _filename: *const libc::c_char) {}
+unsafe extern "C" fn print_archive_filename_posix(mut _filename: *const libc::c_char) {}
+unsafe extern "C" fn do_not_print_archive_filename(mut _filename: *const libc::c_char) {}
 unsafe extern "C" fn print_archive_member_bsd(
-    mut archive: *const libc::c_char,
+    mut _archive: *const libc::c_char,
     mut filename: *const libc::c_char,
 ) {
     if filename_per_symbol == 0 {
@@ -5066,8 +5066,8 @@ unsafe extern "C" fn print_archive_member_posix(
     }
 }
 unsafe extern "C" fn do_not_print_archive_member(
-    mut archive: *const libc::c_char,
-    mut filename: *const libc::c_char,
+    mut _archive: *const libc::c_char,
+    mut _filename: *const libc::c_char,
 ) {}
 unsafe extern "C" fn print_symbol_filename_bsd(
     mut archive_bfd: *mut bfd,
@@ -5117,8 +5117,8 @@ unsafe extern "C" fn print_symbol_filename_posix(
     }
 }
 unsafe extern "C" fn do_not_print_symbol_filename(
-    mut archive_bfd: *mut bfd,
-    mut abfd: *mut bfd,
+    mut _archive_bfd: *mut bfd,
+    mut _abfd: *mut bfd,
 ) {}
 unsafe extern "C" fn print_symbol_info_bsd(
     mut info: *mut extended_symbol_info,
@@ -5309,7 +5309,7 @@ unsafe extern "C" fn just_print_symbol_name(
         abfd,
     );
 }
-unsafe extern "C" fn print_value(mut abfd: *mut bfd, mut val: bfd_vma) {
+unsafe extern "C" fn print_value(mut _abfd: *mut bfd, mut val: bfd_vma) {
     match print_width {
         32 => {
             printf(print_format_string, val);
@@ -7162,7 +7162,7 @@ unsafe extern "C" fn get_print_format() -> *const libc::c_char {
         padding = b"016\0" as *const u8 as *const libc::c_char;
     }
     let mut length: *const libc::c_char = b"l\0" as *const u8 as *const libc::c_char;
-    print_width == 64 as libc::c_int;
+    let _ = print_width == 64 as libc::c_int;
     let mut radix: *const libc::c_char = 0 as *const libc::c_char;
     match print_radix {
         8 => {

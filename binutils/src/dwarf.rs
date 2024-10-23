@@ -13482,7 +13482,7 @@ unsafe extern "C" fn display_formatted_table(
 }
 unsafe extern "C" fn display_debug_sup(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut start: *mut libc::c_uchar = (*section).start;
     let mut end: *mut libc::c_uchar = ((*section).start)
@@ -17236,7 +17236,7 @@ unsafe extern "C" fn display_debug_gnu_pubnames(
 }
 unsafe extern "C" fn display_debug_macinfo(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut start: *mut libc::c_uchar = (*section).start;
     let mut end: *mut libc::c_uchar = start.offset((*section).size as isize);
@@ -19060,7 +19060,7 @@ unsafe extern "C" fn display_debug_macro(
 }
 unsafe extern "C" fn display_debug_abbrev(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut entry: *mut abbrev_entry = 0 as *mut abbrev_entry;
     let mut start: *mut libc::c_uchar = (*section).start;
@@ -21366,7 +21366,7 @@ unsafe extern "C" fn display_debug_loc(
 }
 unsafe extern "C" fn display_debug_str(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut start: *mut libc::c_uchar = (*section).start;
     let mut bytes: libc::c_ulong = (*section).size;
@@ -25713,7 +25713,7 @@ unsafe extern "C" fn display_augmentation_data(
 }
 unsafe extern "C" fn display_debug_frames(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut start: *mut libc::c_uchar = (*section).start;
     let mut end: *mut libc::c_uchar = start.offset((*section).size as isize);
@@ -26254,11 +26254,11 @@ unsafe extern "C" fn display_debug_frames(
                     ) as *mut libc::c_int;
                     if frame_need_space(
                         fc,
-                        (if max_regs > 0 as libc::c_int as libc::c_uint {
+                        if max_regs > 0 as libc::c_int as libc::c_uint {
                             max_regs.wrapping_sub(1 as libc::c_int as libc::c_uint)
                         } else {
                             0 as libc::c_int as libc::c_uint
-                        }),
+                        },
                     ) < 0 as libc::c_int
                     {
                         warn(
@@ -26318,11 +26318,11 @@ unsafe extern "C" fn display_debug_frames(
                     (*fc).ra = (*cie).ra;
                     if frame_need_space(
                         fc,
-                        (if max_regs > 0 as libc::c_int as libc::c_uint {
+                        if max_regs > 0 as libc::c_int as libc::c_uint {
                             max_regs.wrapping_sub(1 as libc::c_int as libc::c_uint)
                         } else {
                             0 as libc::c_int as libc::c_uint
-                        }),
+                        },
                     ) < 0 as libc::c_int
                     {
                         warn(
@@ -30002,7 +30002,7 @@ unsafe extern "C" fn display_debug_names(
 }
 unsafe extern "C" fn display_debug_links(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut filename: *const libc::c_uchar = 0 as *const libc::c_uchar;
     let mut filelen: libc::c_uint = 0;
@@ -30118,7 +30118,7 @@ unsafe extern "C" fn display_debug_links(
 }
 unsafe extern "C" fn display_gdb_index(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     let mut start: *mut libc::c_uchar = (*section).start;
     let mut version: uint32_t = 0;
@@ -31805,13 +31805,13 @@ unsafe extern "C" fn process_cu_tu_index(
 static mut cu_tu_indexes_read: libc::c_int = -(1 as libc::c_int);
 unsafe extern "C" fn display_cu_index(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     return process_cu_tu_index(section, 1 as libc::c_int);
 }
 unsafe extern "C" fn display_debug_not_supported(
     mut section: *mut dwarf_section,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> libc::c_int {
     printf(
         dcgettext(
@@ -32184,7 +32184,7 @@ unsafe extern "C" fn parse_gnu_debuglink(
 }
 unsafe extern "C" fn check_gnu_debugaltlink(
     mut filename: *const libc::c_char,
-    mut data: *mut libc::c_void,
+    mut _data: *mut libc::c_void,
 ) -> bool {
     let mut sep_data: *mut libc::c_void = open_debug_file(filename);
     if sep_data.is_null() {
@@ -32236,7 +32236,7 @@ unsafe extern "C" fn load_separate_debug_info(
     mut parse_func: parse_func_type,
     mut check_func: check_func_type,
     mut func_data: *mut libc::c_void,
-    mut file: *mut libc::c_void,
+    mut _file: *mut libc::c_void,
 ) -> *mut libc::c_void {
     let mut separate_filename: *const libc::c_char = 0 as *const libc::c_char;
     let mut debug_filename: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -32551,7 +32551,7 @@ unsafe extern "C" fn load_dwo_file(
     mut main_filename: *const libc::c_char,
     mut name: *const libc::c_char,
     mut dir: *const libc::c_char,
-    mut id: *const libc::c_char,
+    mut _id: *const libc::c_char,
 ) -> *mut libc::c_void {
     let mut separate_filename: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut separate_handle: *mut libc::c_void = 0 as *mut libc::c_void;

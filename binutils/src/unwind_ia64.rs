@@ -327,8 +327,8 @@ unsafe extern "C" fn unw_decode_uleb128(
 }
 unsafe extern "C" fn unw_decode_x1(
     mut dp: *const libc::c_uchar,
-    mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _code: libc::c_uint,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut byte1: libc::c_uchar = 0;
@@ -378,8 +378,8 @@ unsafe extern "C" fn unw_decode_x1(
 }
 unsafe extern "C" fn unw_decode_x2(
     mut dp: *const libc::c_uchar,
-    mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _code: libc::c_uint,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut byte1: libc::c_uchar = 0;
@@ -437,8 +437,8 @@ unsafe extern "C" fn unw_decode_x2(
 }
 unsafe extern "C" fn unw_decode_x3(
     mut dp: *const libc::c_uchar,
-    mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _code: libc::c_uint,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut byte1: libc::c_uchar = 0;
@@ -496,8 +496,8 @@ unsafe extern "C" fn unw_decode_x3(
 }
 unsafe extern "C" fn unw_decode_x4(
     mut dp: *const libc::c_uchar,
-    mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _code: libc::c_uint,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut byte1: libc::c_uchar = 0;
@@ -566,7 +566,7 @@ unsafe extern "C" fn unw_decode_r1(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
     mut arg: *mut libc::c_void,
-    mut end: *const libc::c_uchar,
+    mut _end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut body: libc::c_int = (code & 0x20 as libc::c_int as libc::c_uint
         != 0 as libc::c_int as libc::c_uint) as libc::c_int;
@@ -682,8 +682,8 @@ unsafe extern "C" fn unw_decode_r3(
 unsafe extern "C" fn unw_decode_p1(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
-    mut end: *const libc::c_uchar,
+    mut _arg: *mut libc::c_void,
+    mut _end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut brmask: libc::c_uchar = (code & 0x1f as libc::c_int as libc::c_uint)
         as libc::c_uchar;
@@ -699,7 +699,7 @@ unsafe extern "C" fn unw_decode_p1(
 unsafe extern "C" fn unw_decode_p2_p5(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     if code & 0x10 as libc::c_int as libc::c_uint == 0 as libc::c_int as libc::c_uint {
@@ -973,8 +973,8 @@ unsafe extern "C" fn unw_decode_p2_p5(
 unsafe extern "C" fn unw_decode_p6(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
-    mut end: *const libc::c_uchar,
+    mut _arg: *mut libc::c_void,
+    mut _end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut gregs: libc::c_int = (code & 0x10 as libc::c_int as libc::c_uint
         != 0 as libc::c_int as libc::c_uint) as libc::c_int;
@@ -1457,8 +1457,8 @@ unsafe extern "C" fn unw_decode_p7_p10(
 unsafe extern "C" fn unw_decode_b1(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
-    mut end: *const libc::c_uchar,
+    mut _arg: *mut libc::c_void,
+    mut _end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut label: unw_word = (code & 0x1f as libc::c_int as libc::c_uint) as unw_word;
     if code & 0x20 as libc::c_int as libc::c_uint != 0 as libc::c_int as libc::c_uint {
@@ -1479,7 +1479,7 @@ unsafe extern "C" fn unw_decode_b1(
 unsafe extern "C" fn unw_decode_b2(
     mut dp: *const libc::c_uchar,
     mut code: libc::c_uint,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
     mut end: *const libc::c_uchar,
 ) -> *const libc::c_uchar {
     let mut t: unw_word = 0;

@@ -4256,7 +4256,7 @@ unsafe extern "C" fn get_char(
     while i < encoding_bytes {
         if *magiccount != 0 {
             *magiccount -= 1;
-            *magiccount;
+            let _ = *magiccount;
             let fresh1 = *magic;
             *magic = (*magic).offset(1);
             c = *fresh1 as libc::c_int;
@@ -4270,7 +4270,7 @@ unsafe extern "C" fn get_char(
             }
         }
         *address += 1;
-        *address;
+        let _ = *address;
         r = r << 8 as libc::c_int | (c & 0xff as libc::c_int) as libc::c_long;
         i += 1;
         i;

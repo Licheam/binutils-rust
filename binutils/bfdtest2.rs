@@ -3466,13 +3466,13 @@ unsafe extern "C" fn die(mut s: *const libc::c_char) {
     exit(1 as libc::c_int);
 }
 unsafe extern "C" fn iovec_open(
-    mut nbfd: *mut bfd,
+    mut _nbfd: *mut bfd,
     mut open_closure: *mut libc::c_void,
 ) -> *mut libc::c_void {
     return open_closure;
 }
 unsafe extern "C" fn iovec_read(
-    mut nbfd: *mut bfd,
+    mut _nbfd: *mut bfd,
     mut stream: *mut libc::c_void,
     mut buf: *mut libc::c_void,
     mut nbytes: file_ptr,
@@ -3486,7 +3486,7 @@ unsafe extern "C" fn iovec_read(
         as file_ptr;
 }
 unsafe extern "C" fn iovec_stat(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut stream: *mut libc::c_void,
     mut sb: *mut stat,
 ) -> libc::c_int {

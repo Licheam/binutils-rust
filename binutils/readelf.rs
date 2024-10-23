@@ -12290,11 +12290,11 @@ unsafe extern "C" fn get_program_headers(mut filedata: *mut Filedata) -> bool {
     }
     if ((*filedata).file_header.e_phnum as libc::c_ulong)
         .wrapping_mul(
-            (if is_32bit_elf as libc::c_int != 0 {
+            if is_32bit_elf as libc::c_int != 0 {
                 ::core::mem::size_of::<Elf32_External_Phdr>() as libc::c_ulong
             } else {
                 ::core::mem::size_of::<Elf64_External_Phdr>() as libc::c_ulong
-            }),
+            },
         ) >= (*filedata).file_size
     {
         error(
@@ -19034,7 +19034,7 @@ unsafe extern "C" fn process_program_headers(mut filedata: *mut Filedata) {
                                         && ((*section).sh_offset as libc::c_ulong)
                                             .wrapping_sub((*segment).p_offset)
                                             .wrapping_add(
-                                                (if (*section).sh_flags
+                                                if (*section).sh_flags
                                                     & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                                     != 0 as libc::c_int as libc::c_ulong
                                                     && (*section).sh_type == 8 as libc::c_int as libc::c_uint
@@ -19043,7 +19043,7 @@ unsafe extern "C" fn process_program_headers(mut filedata: *mut Filedata) {
                                                     0 as libc::c_int as libc::c_ulong
                                                 } else {
                                                     (*section).sh_size
-                                                }),
+                                                },
                                             ) <= (*segment).p_filesz)
                                 && (1 as libc::c_int == 0
                                     || (*section).sh_flags
@@ -19057,7 +19057,7 @@ unsafe extern "C" fn process_program_headers(mut filedata: *mut Filedata) {
                                         && ((*section).sh_addr)
                                             .wrapping_sub((*segment).p_vaddr)
                                             .wrapping_add(
-                                                (if (*section).sh_flags
+                                                if (*section).sh_flags
                                                     & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                                     != 0 as libc::c_int as libc::c_ulong
                                                     && (*section).sh_type == 8 as libc::c_int as libc::c_uint
@@ -19066,7 +19066,7 @@ unsafe extern "C" fn process_program_headers(mut filedata: *mut Filedata) {
                                                     0 as libc::c_int as libc::c_ulong
                                                 } else {
                                                     (*section).sh_size
-                                                }),
+                                                },
                                             ) <= (*segment).p_memsz)
                                 && ((*segment).p_type != 2 as libc::c_int as libc::c_ulong
                                     && (*segment).p_type != 4 as libc::c_int as libc::c_ulong
@@ -26800,7 +26800,7 @@ unsafe extern "C" fn arm_process_unwind(mut filedata: *mut Filedata) -> bool {
     free(aux.strtab as *mut libc::c_void);
     return res;
 }
-unsafe extern "C" fn no_processor_specific_unwind(mut filedata: *mut Filedata) -> bool {
+unsafe extern "C" fn no_processor_specific_unwind(mut _filedata: *mut Filedata) -> bool {
     printf(
         dcgettext(
             0 as *const libc::c_char,
@@ -31720,7 +31720,7 @@ unsafe extern "C" fn process_lto_symbol_tables(mut filedata: *mut Filedata) -> b
             ) as libc::c_int != 0
         {
             res = (res as libc::c_int
-                & display_lto_symtab(filedata, section) as libc::c_int) as bool;
+                & display_lto_symtab(filedata, section) as libc::c_int) != 0;
         }
         i = i.wrapping_add(1);
         i;
@@ -32045,7 +32045,7 @@ unsafe extern "C" fn process_symbol_table(mut filedata: *mut Filedata) -> bool {
                     let ref mut fresh36 = *counts
                         .offset(*lengths.offset(hn as isize) as isize);
                     *fresh36 = (*fresh36).wrapping_add(1);
-                    *fresh36;
+                    let _ = *fresh36;
                     hn = hn.wrapping_add(1);
                     hn;
                 }
@@ -32190,7 +32190,7 @@ unsafe extern "C" fn process_symbol_table(mut filedata: *mut Filedata) -> bool {
                             let ref mut fresh37 = *counts_0
                                 .offset(*lengths_0.offset(hn_0 as isize) as isize);
                             *fresh37 = (*fresh37).wrapping_add(1);
-                            *fresh37;
+                            let _ = *fresh37;
                             hn_0 = hn_0.wrapping_add(1);
                             hn_0;
                         }
@@ -34263,7 +34263,7 @@ unsafe extern "C" fn shdr_to_ctf_sect(
     return buf;
 }
 unsafe extern "C" fn dump_ctf_indent_lines(
-    mut sect: ctf_sect_names_t,
+    mut _sect: ctf_sect_names_t,
     mut s: *mut libc::c_char,
     mut arg: *mut libc::c_void,
 ) -> *mut libc::c_char {
@@ -34981,7 +34981,7 @@ unsafe extern "C" fn display_debug_section(
                     & ((*display).display)
                         .expect(
                             "non-null function pointer",
-                        )(sec, filedata as *mut libc::c_void)) as bool;
+                        )(sec, filedata as *mut libc::c_void)) != 0;
                 section_subset = 0 as *mut libc::c_uint;
                 if secondary as libc::c_int != 0
                     || id as libc::c_uint != info as libc::c_int as libc::c_uint
@@ -35129,33 +35129,33 @@ unsafe extern "C" fn process_mips_fpe_exception(mut mask: libc::c_int) {
         if mask & 0x2 as libc::c_int != 0 {
             printf(
                 b"%sUFLO\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x4 as libc::c_int != 0 {
             printf(
                 b"%sOFLO\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x8 as libc::c_int != 0 {
             printf(
                 b"%sDIV0\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
@@ -36962,165 +36962,165 @@ unsafe extern "C" fn display_sparc_hwcaps(mut mask: libc::c_uint) {
         if mask & 0x2 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sdiv32\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x4 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfsmuld\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x8 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sv8plus\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x10 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%spopc\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x20 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%svis\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x40 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%svis2\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x80 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sASIBlkInit\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x100 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfmaf\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x400 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%svis3\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x800 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%shpc\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x1000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%srandom\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x2000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%strans\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x4000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfjfmau\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x8000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sima\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x10000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%scspare\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
@@ -37139,110 +37139,110 @@ unsafe extern "C" fn display_sparc_hwcaps2(mut mask: libc::c_uint) {
         if mask & 0x2 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%svis3b\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x4 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sadp\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x8 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%ssparc5\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x10 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%smwait\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x20 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sxmpmul\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x40 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sxmont2\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x80 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%snsec\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x1000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfjathhpc\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x2000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfjdes\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }
         if mask & 0x10000 as libc::c_int as libc::c_uint != 0 {
             printf(
                 b"%sfjaes\0" as *const u8 as *const libc::c_char,
-                (if first as libc::c_int != 0 {
+                if first as libc::c_int != 0 {
                     b"\0" as *const u8 as *const libc::c_char
                 } else {
                     b"|\0" as *const u8 as *const libc::c_char
-                }),
+                },
             );
             first = 0 as libc::c_int != 0;
         }

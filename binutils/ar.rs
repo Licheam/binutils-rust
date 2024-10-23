@@ -4404,7 +4404,7 @@ unsafe extern "C" fn replace_members(
                             libdeps_bfd,
                             verbose != 0,
                             make_thin_archive,
-                        ) as libc::c_int) as bool;
+                        ) as libc::c_int) != 0;
                 } else {
                     changed = (changed as libc::c_int
                         | ar_emul_append(
@@ -4413,7 +4413,7 @@ unsafe extern "C" fn replace_members(
                             target,
                             verbose != 0,
                             make_thin_archive,
-                        ) as libc::c_int) as bool;
+                        ) as libc::c_int) != 0;
                 }
             }
             _ => {}

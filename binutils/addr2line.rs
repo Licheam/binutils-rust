@@ -5460,7 +5460,7 @@ unsafe extern "C" fn slurp_symtab(mut abfd: *mut bfd) {
 unsafe extern "C" fn find_address_in_section(
     mut abfd: *mut bfd,
     mut section: *mut asection,
-    mut data: *mut libc::c_void,
+    mut _data: *mut libc::c_void,
 ) {
     let mut vma: bfd_vma = 0;
     let mut size: bfd_size_type = 0;

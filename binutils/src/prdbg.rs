@@ -5723,7 +5723,7 @@ unsafe extern "C" fn pr_typdef(
 }
 unsafe extern "C" fn pr_tag(
     mut p: *mut libc::c_void,
-    mut name: *const libc::c_char,
+    mut _name: *const libc::c_char,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
     let mut t: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -5926,7 +5926,7 @@ unsafe extern "C" fn pr_end_block(mut p: *mut libc::c_void, mut addr: bfd_vma) -
     );
     return 1 as libc::c_int != 0;
 }
-unsafe extern "C" fn pr_end_function(mut p: *mut libc::c_void) -> bool {
+unsafe extern "C" fn pr_end_function(mut _p: *mut libc::c_void) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn pr_lineno(
@@ -6228,7 +6228,7 @@ unsafe extern "C" fn tg_start_struct_type(
     mut tag: *const libc::c_char,
     mut id: libc::c_uint,
     mut structp: bool,
-    mut size: libc::c_uint,
+    mut _size: libc::c_uint,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
     let mut name: *const libc::c_char = 0 as *const libc::c_char;
@@ -6265,8 +6265,8 @@ unsafe extern "C" fn tg_start_struct_type(
 unsafe extern "C" fn tg_struct_field(
     mut p: *mut libc::c_void,
     mut name: *const libc::c_char,
-    mut bitpos: bfd_vma,
-    mut bitsize: bfd_vma,
+    mut _bitpos: bfd_vma,
+    mut _bitsize: bfd_vma,
     mut visibility: debug_visibility,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
@@ -6390,7 +6390,7 @@ unsafe extern "C" fn tg_start_class_type(
 unsafe extern "C" fn tg_class_static_member(
     mut p: *mut libc::c_void,
     mut name: *const libc::c_char,
-    mut physname: *const libc::c_char,
+    mut _physname: *const libc::c_char,
     mut visibility: debug_visibility,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
@@ -6445,7 +6445,7 @@ unsafe extern "C" fn tg_class_static_member(
 }
 unsafe extern "C" fn tg_class_baseclass(
     mut p: *mut libc::c_void,
-    mut bitpos: bfd_vma,
+    mut _bitpos: bfd_vma,
     mut is_virtual: bool,
     mut visibility: debug_visibility,
 ) -> bool {
@@ -6539,11 +6539,11 @@ unsafe extern "C" fn tg_class_baseclass(
 }
 unsafe extern "C" fn tg_class_method_variant(
     mut p: *mut libc::c_void,
-    mut physname: *const libc::c_char,
+    mut _physname: *const libc::c_char,
     mut visibility: debug_visibility,
     mut constp: bool,
     mut volatilep: bool,
-    mut voffset: bfd_vma,
+    mut _voffset: bfd_vma,
     mut context: bool,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
@@ -6668,7 +6668,7 @@ unsafe extern "C" fn tg_class_method_variant(
 }
 unsafe extern "C" fn tg_class_static_method_variant(
     mut p: *mut libc::c_void,
-    mut physname: *const libc::c_char,
+    mut _physname: *const libc::c_char,
     mut visibility: debug_visibility,
     mut constp: bool,
     mut volatilep: bool,
@@ -6899,7 +6899,7 @@ unsafe extern "C" fn tg_typdef(
 }
 unsafe extern "C" fn tg_tag(
     mut p: *mut libc::c_void,
-    mut name: *const libc::c_char,
+    mut _name: *const libc::c_char,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
     let mut t: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -6976,7 +6976,7 @@ unsafe extern "C" fn tg_variable(
     mut p: *mut libc::c_void,
     mut name: *const libc::c_char,
     mut kind: debug_var_kind,
-    mut val: bfd_vma,
+    mut _val: bfd_vma,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
     let mut t: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -7086,7 +7086,7 @@ unsafe extern "C" fn tg_function_parameter(
     mut p: *mut libc::c_void,
     mut name: *const libc::c_char,
     mut kind: debug_parm_kind,
-    mut val: bfd_vma,
+    mut _val: bfd_vma,
 ) -> bool {
     let mut info: *mut pr_handle = p as *mut pr_handle;
     let mut t: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -7187,14 +7187,14 @@ unsafe extern "C" fn tg_start_block(
     }
     return 1 as libc::c_int != 0;
 }
-unsafe extern "C" fn tg_end_block(mut p: *mut libc::c_void, mut addr: bfd_vma) -> bool {
+unsafe extern "C" fn tg_end_block(mut _p: *mut libc::c_void, mut _addr: bfd_vma) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn tg_lineno(
-    mut p: *mut libc::c_void,
-    mut fname: *const libc::c_char,
-    mut lineno: libc::c_ulong,
-    mut addr: bfd_vma,
+    mut _p: *mut libc::c_void,
+    mut _fname: *const libc::c_char,
+    mut _lineno: libc::c_ulong,
+    mut _addr: bfd_vma,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }

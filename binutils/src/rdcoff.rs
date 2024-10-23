@@ -5187,7 +5187,7 @@ unsafe extern "C" fn parse_coff_struct_type(
 unsafe extern "C" fn parse_coff_enum_type(
     mut abfd: *mut bfd,
     mut symbols: *mut coff_symbols,
-    mut types: *mut coff_types,
+    mut _types: *mut coff_types,
     mut pauxent: *mut internal_auxent,
     mut dhandle: *mut libc::c_void,
 ) -> debug_type {
@@ -5280,7 +5280,7 @@ unsafe extern "C" fn parse_coff_enum_type(
     return debug_make_enum_type(dhandle, names, vals);
 }
 unsafe extern "C" fn parse_coff_symbol(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut types: *mut coff_types,
     mut sym: *mut asymbol,
     mut coff_symno: libc::c_long,

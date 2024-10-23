@@ -3420,7 +3420,7 @@ pub struct bin_emulation_xfer_struct {
     pub ar_parse_arg: Option::<unsafe extern "C" fn(*mut libc::c_char) -> bool>,
 }
 #[no_mangle]
-pub unsafe extern "C" fn ar_emul_default_parse_arg(mut arg: *mut libc::c_char) -> bool {
+pub unsafe extern "C" fn ar_emul_default_parse_arg(mut _arg: *mut libc::c_char) -> bool {
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
@@ -3589,6 +3589,6 @@ pub unsafe extern "C" fn ar_emul_usage(mut fp: *mut FILE) {
 unsafe extern "C" fn bfd_get_filename(mut abfd: *const bfd) -> *const libc::c_char {
     return (*abfd).filename;
 }
-unsafe extern "C" fn any_ok(mut new_bfd: *mut bfd) -> bool {
+unsafe extern "C" fn any_ok(mut _new_bfd: *mut bfd) -> bool {
     return 1 as libc::c_int != 0;
 }

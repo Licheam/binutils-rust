@@ -1561,8 +1561,8 @@ static mut yyr2: [yytype_int8; 28] = [
 ];
 unsafe extern "C" fn yydestruct(
     mut yymsg: *const libc::c_char,
-    mut yytype: libc::c_int,
-    mut yyvaluep: *mut YYSTYPE,
+    mut _yytype: libc::c_int,
+    mut _yyvaluep: *mut YYSTYPE,
 ) {
     if yymsg.is_null() {
         yymsg = b"Deleting\0" as *const u8 as *const libc::c_char;

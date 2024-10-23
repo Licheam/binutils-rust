@@ -7618,7 +7618,7 @@ unsafe extern "C" fn dump_section_header(
     printf(b"\n\0" as *const u8 as *const libc::c_char);
 }
 unsafe extern "C" fn find_longest_section_name(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: *mut asection,
     mut data: *mut libc::c_void,
 ) {
@@ -8144,7 +8144,7 @@ unsafe extern "C" fn objdump_print_symname(
 #[inline]
 unsafe extern "C" fn sym_ok(
     mut want_section: bool,
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut place: libc::c_long,
     mut sec: *mut asection,
     mut inf: *mut disassemble_info,
@@ -9535,9 +9535,9 @@ unsafe extern "C" fn disassemble_jumps(
     return jumps;
 }
 unsafe extern "C" fn null_print(
-    mut stream: *const libc::c_void,
-    mut format: *const libc::c_char,
-    mut args: ...
+    mut _stream: *const libc::c_void,
+    mut _format: *const libc::c_char,
+    mut _args: ...
 ) -> libc::c_int {
     return 1 as libc::c_int;
 }
@@ -10244,7 +10244,7 @@ unsafe extern "C" fn disassemble_bytes(
                 need_nl = 0 as libc::c_int != 0;
             }
             *relppp = (*relppp).offset(1);
-            *relppp;
+            let _ = *relppp;
         }
         if need_nl {
             printf(b"\n\0" as *const u8 as *const libc::c_char);
@@ -11025,7 +11025,7 @@ unsafe extern "C" fn load_specific_debug_section(
 unsafe extern "C" fn dump_dwarf_section(
     mut abfd: *mut bfd,
     mut section: *mut asection,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
 ) {
     let mut name: *const libc::c_char = bfd_section_name(section);
     let mut match_0: *const libc::c_char = 0 as *const libc::c_char;
@@ -11446,7 +11446,7 @@ unsafe extern "C" fn dump_bfd_header(mut abfd: *mut bfd) {
     printf(b"\n\0" as *const u8 as *const libc::c_char);
 }
 unsafe extern "C" fn dump_ctf_indent_lines(
-    mut sect: ctf_sect_names_t,
+    mut _sect: ctf_sect_names_t,
     mut s: *mut libc::c_char,
     mut arg: *mut libc::c_void,
 ) -> *mut libc::c_char {
@@ -11812,7 +11812,7 @@ unsafe extern "C" fn dump_target_specific(mut abfd: *mut bfd) {
 unsafe extern "C" fn dump_section(
     mut abfd: *mut bfd,
     mut section: *mut asection,
-    mut dummy: *mut libc::c_void,
+    mut _dummy: *mut libc::c_void,
 ) {
     let mut data: *mut bfd_byte = 0 as *mut bfd_byte;
     let mut datasize: bfd_size_type = 0;
@@ -12019,7 +12019,7 @@ unsafe extern "C" fn dump_data(mut abfd: *mut bfd) {
         0 as *mut libc::c_void,
     );
 }
-unsafe extern "C" fn dump_symbols(mut abfd: *mut bfd, mut dynamic: bool) {
+unsafe extern "C" fn dump_symbols(mut _abfd: *mut bfd, mut dynamic: bool) {
     let mut current: *mut *mut asymbol = 0 as *mut *mut asymbol;
     let mut max_count: libc::c_long = 0;
     let mut count: libc::c_long = 0;
@@ -12337,7 +12337,7 @@ unsafe extern "C" fn dump_reloc_set(
 unsafe extern "C" fn dump_relocs_in_section(
     mut abfd: *mut bfd,
     mut section: *mut asection,
-    mut dummy: *mut libc::c_void,
+    mut _dummy: *mut libc::c_void,
 ) {
     let mut relpp: *mut *mut arelent = 0 as *mut *mut arelent;
     let mut relcount: libc::c_long = 0;
@@ -12451,7 +12451,7 @@ unsafe extern "C" fn add_include_path(mut path: *const libc::c_char) {
     *fresh16 = path;
 }
 unsafe extern "C" fn adjust_addresses(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: *mut asection,
     mut arg: *mut libc::c_void,
 ) {
@@ -12470,7 +12470,7 @@ unsafe extern "C" fn adjust_addresses(
     }
 }
 unsafe extern "C" fn sign_extend_address(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut vma: bfd_vma,
     mut arch_size: libc::c_uint,
 ) -> bfd_vma {

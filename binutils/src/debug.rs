@@ -978,8 +978,8 @@ pub unsafe extern "C" fn debug_record_line(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_start_common_block(
-    mut handle: *mut libc::c_void,
-    mut name: *const libc::c_char,
+    mut _handle: *mut libc::c_void,
+    mut _name: *const libc::c_char,
 ) -> bool {
     debug_error(
         dcgettext(
@@ -993,8 +993,8 @@ pub unsafe extern "C" fn debug_start_common_block(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_end_common_block(
-    mut handle: *mut libc::c_void,
-    mut name: *const libc::c_char,
+    mut _handle: *mut libc::c_void,
+    mut _name: *const libc::c_char,
 ) -> bool {
     debug_error(
         dcgettext(
@@ -1088,10 +1088,10 @@ pub unsafe extern "C" fn debug_record_typed_const(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_record_label(
-    mut handle: *mut libc::c_void,
-    mut name: *const libc::c_char,
-    mut type_0: debug_type,
-    mut addr: bfd_vma,
+    mut _handle: *mut libc::c_void,
+    mut _name: *const libc::c_char,
+    mut _type_0: debug_type,
+    mut _addr: bfd_vma,
 ) -> bool {
     debug_error(
         dcgettext(
@@ -1623,7 +1623,7 @@ pub unsafe extern "C" fn debug_make_undefined_tagged_type(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_baseclass(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut type_0: debug_type,
     mut bitpos: bfd_vma,
     mut is_virtual: bool,
@@ -1645,7 +1645,7 @@ pub unsafe extern "C" fn debug_make_baseclass(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_field(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut name: *const libc::c_char,
     mut type_0: debug_type,
     mut bitpos: bfd_vma,
@@ -1670,7 +1670,7 @@ pub unsafe extern "C" fn debug_make_field(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_static_member(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut name: *const libc::c_char,
     mut type_0: debug_type,
     mut physname: *const libc::c_char,
@@ -1693,7 +1693,7 @@ pub unsafe extern "C" fn debug_make_static_member(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_method(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut name: *const libc::c_char,
     mut variants: *mut debug_method_variant,
 ) -> debug_method {
@@ -1711,7 +1711,7 @@ pub unsafe extern "C" fn debug_make_method(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_method_variant(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut physname: *const libc::c_char,
     mut type_0: debug_type,
     mut visibility: debug_visibility,
@@ -1739,7 +1739,7 @@ pub unsafe extern "C" fn debug_make_method_variant(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_make_static_method_variant(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut physname: *const libc::c_char,
     mut type_0: debug_type,
     mut visibility: debug_visibility,
@@ -1880,7 +1880,7 @@ pub unsafe extern "C" fn debug_tag_type(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_record_type_size(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut type_0: debug_type,
     mut size: libc::c_uint,
 ) -> bool {
@@ -2136,7 +2136,7 @@ pub unsafe extern "C" fn debug_get_fields(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_type(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> debug_type {
     if field.is_null() {
@@ -2146,7 +2146,7 @@ pub unsafe extern "C" fn debug_get_field_type(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_name(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> *const libc::c_char {
     if field.is_null() {
@@ -2156,7 +2156,7 @@ pub unsafe extern "C" fn debug_get_field_name(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_bitpos(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> bfd_vma {
     if field.is_null() || (*field).static_member as libc::c_int != 0 {
@@ -2166,7 +2166,7 @@ pub unsafe extern "C" fn debug_get_field_bitpos(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_bitsize(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> bfd_vma {
     if field.is_null() || (*field).static_member as libc::c_int != 0 {
@@ -2176,7 +2176,7 @@ pub unsafe extern "C" fn debug_get_field_bitsize(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_visibility(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> debug_visibility {
     if field.is_null() {
@@ -2186,7 +2186,7 @@ pub unsafe extern "C" fn debug_get_field_visibility(
 }
 #[no_mangle]
 pub unsafe extern "C" fn debug_get_field_physname(
-    mut handle: *mut libc::c_void,
+    mut _handle: *mut libc::c_void,
     mut field: debug_field,
 ) -> *const libc::c_char {
     if field.is_null() || !(*field).static_member {
@@ -2250,7 +2250,7 @@ unsafe extern "C" fn debug_error(mut message: *const libc::c_char) {
     fprintf(stderr, b"%s\n\0" as *const u8 as *const libc::c_char, message);
 }
 unsafe extern "C" fn debug_add_to_namespace(
-    mut info: *mut debug_handle,
+    mut _info: *mut debug_handle,
     mut nsp: *mut *mut debug_namespace,
     mut name: *const libc::c_char,
     mut kind: debug_object_kind,
@@ -2310,7 +2310,7 @@ unsafe extern "C" fn debug_add_to_current_namespace(
     return debug_add_to_namespace(info, nsp, name, kind, linkage);
 }
 unsafe extern "C" fn debug_make_type(
-    mut info: *mut debug_handle,
+    mut _info: *mut debug_handle,
     mut kind: debug_type_kind,
     mut size: libc::c_uint,
 ) -> *mut debug_type_s {

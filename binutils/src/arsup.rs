@@ -3985,7 +3985,7 @@ unsafe extern "C" fn map_over_list(
         }
     };
 }
-unsafe extern "C" fn ar_directory_doer(mut abfd: *mut bfd, mut ignore: *mut bfd) {
+unsafe extern "C" fn ar_directory_doer(mut abfd: *mut bfd, mut _ignore: *mut bfd) {
     print_arelt_descr(outfile, abfd, verbose != 0, 0 as libc::c_int != 0);
 }
 unsafe extern "C" fn ar_addlib_doer(mut abfd: *mut bfd, mut prev: *mut bfd) {

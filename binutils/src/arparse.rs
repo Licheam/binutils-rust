@@ -429,7 +429,7 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
     }
     return yyresult;
 }
-unsafe extern "C" fn yyerror(mut x: *const libc::c_char) -> libc::c_int {
+unsafe extern "C" fn yyerror(mut _x: *const libc::c_char) -> libc::c_int {
     extern "C" {
         static mut linenumber: libc::c_int;
     }
@@ -1105,8 +1105,8 @@ static mut yyr2: [yytype_int8; 43] = [
 ];
 unsafe extern "C" fn yydestruct(
     mut yymsg: *const libc::c_char,
-    mut yytype: libc::c_int,
-    mut yyvaluep: *mut YYSTYPE,
+    mut _yytype: libc::c_int,
+    mut _yyvaluep: *mut YYSTYPE,
 ) {
     if yymsg.is_null() {
         yymsg = b"Deleting\0" as *const u8 as *const libc::c_char;

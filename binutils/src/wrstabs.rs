@@ -4369,11 +4369,11 @@ unsafe extern "C" fn stab_class_method_var(
             .wrapping_add(strlen(type_0))
             .wrapping_add(strlen(physname))
             .wrapping_add(
-                (if contextp as libc::c_int != 0 {
+                if contextp as libc::c_int != 0 {
                     strlen(context)
                 } else {
                     0 as libc::c_int as libc::c_ulong
-                }),
+                },
             )
             .wrapping_add(40 as libc::c_int as libc::c_ulong),
     ) as *mut libc::c_char;
@@ -4816,7 +4816,7 @@ unsafe extern "C" fn stab_pointer_type(mut p: *mut libc::c_void) -> bool {
 unsafe extern "C" fn stab_function_type(
     mut p: *mut libc::c_void,
     mut argcount: libc::c_int,
-    mut varargs: bool,
+    mut _varargs: bool,
 ) -> bool {
     let mut info: *mut stab_write_handle = p as *mut stab_write_handle;
     let mut i: libc::c_int = 0;
@@ -6053,7 +6053,7 @@ unsafe extern "C" fn stab_end_block(
         0 as *mut libc::c_void as *const libc::c_char,
     );
 }
-unsafe extern "C" fn stab_end_function(mut p: *mut libc::c_void) -> bool {
+unsafe extern "C" fn stab_end_function(mut _p: *mut libc::c_void) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn stab_lineno(

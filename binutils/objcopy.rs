@@ -8273,14 +8273,14 @@ unsafe extern "C" fn copy_section(
     };
 }
 unsafe extern "C" fn get_sections(
-    mut obfd: *mut bfd,
+    mut _obfd: *mut bfd,
     mut osection: *mut asection,
     mut secppparg: *mut libc::c_void,
 ) {
     let mut secppp: *mut *mut *mut asection = secppparg as *mut *mut *mut asection;
     **secppp = osection;
     *secppp = (*secppp).offset(1);
-    *secppp;
+    let _ = *secppp;
 }
 unsafe extern "C" fn compare_section_lma(
     mut arg1: *const libc::c_void,
@@ -8383,8 +8383,8 @@ unsafe extern "C" fn mark_symbols_used_in_relocations(
 unsafe extern "C" fn write_debugging_info(
     mut obfd: *mut bfd,
     mut dhandle: *mut libc::c_void,
-    mut symcountp: *mut libc::c_long,
-    mut symppp: *mut *mut *mut asymbol,
+    mut _symcountp: *mut libc::c_long,
+    mut _symppp: *mut *mut *mut asymbol,
 ) -> bool {
     if bfd_get_flavour(obfd) as libc::c_uint
         == bfd_target_coff_flavour as libc::c_int as libc::c_uint
@@ -9418,7 +9418,7 @@ unsafe extern "C" fn group_signature(mut group: *mut asection) -> *mut asymbol {
     }
     return 0 as *mut asymbol;
 }
-unsafe extern "C" fn is_dwo_section(mut abfd: *mut bfd, mut sec: *mut asection) -> bool {
+unsafe extern "C" fn is_dwo_section(mut _abfd: *mut bfd, mut sec: *mut asection) -> bool {
     let mut name: *const libc::c_char = 0 as *const libc::c_char;
     let mut len: libc::c_int = 0;
     if sec.is_null()
@@ -9439,7 +9439,7 @@ unsafe extern "C" fn is_dwo_section(mut abfd: *mut bfd, mut sec: *mut asection) 
     );
 }
 unsafe extern "C" fn is_update_section(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
 ) -> bool {
     if !update_sections.is_null() {
@@ -13004,7 +13004,7 @@ unsafe extern "C" fn handle_remove_relocations_option(
     );
 }
 unsafe extern "C" fn discard_relocations(
-    mut ibfd: *mut bfd,
+    mut _ibfd: *mut bfd,
     mut isection: *mut asection,
 ) -> bool {
     return !(find_section_list(

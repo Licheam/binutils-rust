@@ -4083,7 +4083,7 @@ unsafe extern "C" fn bfd_get_symbol_leading_char(mut abfd: *const bfd) -> libc::
 }
 #[no_mangle]
 pub unsafe extern "C" fn start_stab(
-    mut dhandle: *mut libc::c_void,
+    mut _dhandle: *mut libc::c_void,
     mut abfd: *mut bfd,
     mut sections: bool,
     mut syms: *mut *mut asymbol,
@@ -4318,11 +4318,11 @@ pub unsafe extern "C" fn parse_stab(
                 desc as libc::c_ulong,
                 value
                     .wrapping_add(
-                        (if (*info).within_function as libc::c_int != 0 {
+                        if (*info).within_function as libc::c_int != 0 {
                             (*info).function_start_offset
                         } else {
                             0 as libc::c_int as libc::c_ulong
-                        }),
+                        },
                     ),
             ) {
                 return 0 as libc::c_int != 0;
@@ -4478,7 +4478,7 @@ unsafe extern "C" fn parse_stab_string(
     mut dhandle: *mut libc::c_void,
     mut info: *mut stab_handle,
     mut stabtype: libc::c_int,
-    mut desc: libc::c_int,
+    mut _desc: libc::c_int,
     mut value: bfd_vma,
     mut string: *const libc::c_char,
     mut string_end: *const libc::c_char,
@@ -5069,7 +5069,7 @@ unsafe extern "C" fn parse_stab_type(
             *slotp = stab_find_slot(info, typenums.as_mut_ptr());
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         while **pp as libc::c_int == '@' as i32 {
             let mut p: *const libc::c_char = (*pp).offset(1 as libc::c_int as isize);
             let mut attr: *const libc::c_char = 0 as *const libc::c_char;
@@ -5111,7 +5111,7 @@ unsafe extern "C" fn parse_stab_type(
     }
     descriptor = **pp as libc::c_int;
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     match descriptor {
         120 => {
             let mut code: debug_type_kind = DEBUG_KIND_ILLEGAL;
@@ -5146,7 +5146,7 @@ unsafe extern "C" fn parse_stab_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             q1 = strchr(*pp, '<' as i32);
             p_0 = strchr(*pp, ':' as i32);
             if p_0.is_null() {
@@ -5203,7 +5203,7 @@ unsafe extern "C" fn parse_stab_type(
             let mut hold: *const libc::c_char = 0 as *const libc::c_char;
             let mut xtypenums: [libc::c_int; 2] = [0; 2];
             *pp = (*pp).offset(-1);
-            *pp;
+            let _ = *pp;
             hold = *pp;
             if !parse_stab_type_number(pp, xtypenums.as_mut_ptr(), p_end) {
                 return 0 as *mut libc::c_void as debug_type;
@@ -5320,7 +5320,7 @@ unsafe extern "C" fn parse_stab_type(
                 return 0 as *mut libc::c_void as debug_type;
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             memtype = parse_stab_type(
                 dhandle,
                 info,
@@ -5338,7 +5338,7 @@ unsafe extern "C" fn parse_stab_type(
             if **pp as libc::c_int == '#' as i32 {
                 let mut return_type: debug_type = 0 as *mut debug_type_s;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 return_type = parse_stab_type(
                     dhandle,
                     info,
@@ -5355,7 +5355,7 @@ unsafe extern "C" fn parse_stab_type(
                     return 0 as *mut libc::c_void as debug_type;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 dtype = debug_make_method_type(
                     dhandle,
                     return_type,
@@ -5386,7 +5386,7 @@ unsafe extern "C" fn parse_stab_type(
                     return 0 as *mut libc::c_void as debug_type;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 return_type_0 = parse_stab_type(
                     dhandle,
                     info,
@@ -5412,7 +5412,7 @@ unsafe extern "C" fn parse_stab_type(
                         return 0 as *mut libc::c_void as debug_type;
                     }
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                     if n.wrapping_add(1 as libc::c_int as libc::c_uint) >= alloc {
                         alloc = alloc.wrapping_add(10 as libc::c_int as libc::c_uint);
                         args = xrealloc(
@@ -5439,7 +5439,7 @@ unsafe extern "C" fn parse_stab_type(
                     n;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 if n == 0 as libc::c_int as libc::c_uint
                     || debug_get_type_kind(
                         dhandle,
@@ -5502,7 +5502,7 @@ unsafe extern "C" fn parse_stab_type(
                 return 0 as *mut libc::c_void as debug_type;
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             dtype = parse_stab_array_type(dhandle, info, pp, stringp, p_end);
         }
         83 => {
@@ -5556,7 +5556,7 @@ unsafe extern "C" fn parse_stab_type_number(
         return 1 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     *typenums
         .offset(
             0 as libc::c_int as isize,
@@ -5566,7 +5566,7 @@ unsafe extern "C" fn parse_stab_type_number(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     *typenums
         .offset(
             1 as libc::c_int as isize,
@@ -5576,7 +5576,7 @@ unsafe extern "C" fn parse_stab_type_number(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn parse_stab_range_type(
@@ -5625,7 +5625,7 @@ unsafe extern "C" fn parse_stab_range_type(
     }
     if **pp as libc::c_int == ';' as i32 {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     s2 = *pp;
     n2 = parse_number(pp, &mut ov2, p_end) as bfd_signed_vma;
@@ -5634,7 +5634,7 @@ unsafe extern "C" fn parse_stab_range_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     s3 = *pp;
     n3 = parse_number(pp, &mut ov3, p_end) as bfd_signed_vma;
     if **pp as libc::c_int != ';' as i32 {
@@ -5642,7 +5642,7 @@ unsafe extern "C" fn parse_stab_range_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if ov2 as libc::c_int != 0 || ov3 as libc::c_int != 0 {
         if index_type.is_null() {
             if startswith(
@@ -5861,12 +5861,12 @@ unsafe extern "C" fn parse_stab_sun_builtin_type(
         }
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if **pp as libc::c_int == 'c' as i32 || **pp as libc::c_int == 'b' as i32
         || **pp as libc::c_int == 'v' as i32
     {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int != ';' as i32 {
@@ -5874,18 +5874,18 @@ unsafe extern "C" fn parse_stab_sun_builtin_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int != ';' as i32 {
         bad_stab(orig);
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     bits = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int == ';' as i32 {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     if bits == 0 as libc::c_int as libc::c_ulong {
         return debug_make_void_type(dhandle);
@@ -5945,14 +5945,14 @@ unsafe extern "C" fn parse_stab_enum_type(
             && **pp as libc::c_int != 0 as libc::c_int
         {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
         }
         if **pp as libc::c_int == 0 as libc::c_int {
             bad_stab(orig);
             return 0 as *mut libc::c_void as debug_type;
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     alloc = 10 as libc::c_int as libc::c_uint;
     names = xmalloc(
@@ -5993,7 +5993,7 @@ unsafe extern "C" fn parse_stab_enum_type(
             return 0 as *mut libc::c_void as debug_type;
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         if n.wrapping_add(1 as libc::c_int as libc::c_uint) >= alloc {
             alloc = alloc.wrapping_add(10 as libc::c_int as libc::c_uint);
             names = xrealloc(
@@ -6022,7 +6022,7 @@ unsafe extern "C" fn parse_stab_enum_type(
     *values.offset(n as isize) = 0 as libc::c_int as bfd_signed_vma;
     if **pp as libc::c_int == ';' as i32 {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     return debug_make_enum_type(dhandle, names, values);
 }
@@ -6095,14 +6095,14 @@ unsafe extern "C" fn parse_stab_baseclasses(
         return 1 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     c = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end) as libc::c_uint;
     if **pp as libc::c_int != ',' as i32 {
         bad_stab(orig);
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     classes = xmalloc(
         (c.wrapping_add(1 as libc::c_int as libc::c_uint) as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<debug_baseclass>() as libc::c_ulong),
@@ -6138,7 +6138,7 @@ unsafe extern "C" fn parse_stab_baseclasses(
             }
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         match **pp as libc::c_int {
             48 => {
                 visibility = DEBUG_VISIBILITY_PRIVATE;
@@ -6167,14 +6167,14 @@ unsafe extern "C" fn parse_stab_baseclasses(
             }
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         bitpos = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
         if **pp as libc::c_int != ',' as i32 {
             bad_stab(orig);
             return 0 as libc::c_int != 0;
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         type_0 = parse_stab_type(
             dhandle,
             info,
@@ -6195,7 +6195,7 @@ unsafe extern "C" fn parse_stab_baseclasses(
             return 0 as libc::c_int != 0;
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         i = i.wrapping_add(1);
         i;
     }
@@ -6243,7 +6243,7 @@ unsafe extern "C" fn parse_stab_struct_fields(
             && *p.offset(1 as libc::c_int as isize) as libc::c_int != '_' as i32
         {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !parse_stab_cpp_abbrev(
                 dhandle,
                 info,
@@ -6310,14 +6310,14 @@ unsafe extern "C" fn parse_stab_cpp_abbrev(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     cpp_abbrev = **pp as libc::c_int;
     if cpp_abbrev == 0 as libc::c_int {
         bad_stab(orig);
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     context = parse_stab_type(
         dhandle,
         info,
@@ -6370,7 +6370,7 @@ unsafe extern "C" fn parse_stab_cpp_abbrev(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     type_0 = parse_stab_type(
         dhandle,
         info,
@@ -6384,14 +6384,14 @@ unsafe extern "C" fn parse_stab_cpp_abbrev(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     bitpos = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int != ';' as i32 {
         bad_stab(orig);
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     *retp = debug_make_field(
         dhandle,
         name,
@@ -6430,7 +6430,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
         visibility = DEBUG_VISIBILITY_PUBLIC;
     } else {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         match **pp as libc::c_int {
             48 => {
                 visibility = DEBUG_VISIBILITY_PRIVATE;
@@ -6459,7 +6459,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
             }
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     type_0 = parse_stab_type(
         dhandle,
@@ -6476,7 +6476,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
     if **pp as libc::c_int == ':' as i32 {
         let mut varname: *mut libc::c_char = 0 as *mut libc::c_char;
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         p = strchr(*pp, ';' as i32);
         if p.is_null() {
             bad_stab(orig);
@@ -6495,7 +6495,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     bitpos = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int != ',' as i32 {
         bad_stab(orig);
@@ -6503,7 +6503,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     bitsize = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end);
     if **pp as libc::c_int != ';' as i32 {
         bad_stab(orig);
@@ -6511,7 +6511,7 @@ unsafe extern "C" fn parse_stab_one_struct_field(
         return 0 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if bitpos == 0 as libc::c_int as libc::c_ulong
         && bitsize == 0 as libc::c_int as libc::c_ulong
     {
@@ -6629,7 +6629,7 @@ unsafe extern "C" fn parse_stab_members(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             p = strchr(*pp, ';' as i32);
             if p.is_null() {
                 bad_stab(orig);
@@ -6666,29 +6666,29 @@ unsafe extern "C" fn parse_stab_members(
                     }
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 constp = 0 as libc::c_int != 0;
                 volatilep = 0 as libc::c_int != 0;
                 match **pp as libc::c_int {
                     65 => {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                     66 => {
                         constp = 1 as libc::c_int != 0;
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                     67 => {
                         volatilep = 1 as libc::c_int != 0;
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                     68 => {
                         constp = 1 as libc::c_int != 0;
                         volatilep = 1 as libc::c_int != 0;
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                     42 | 63 | 46 => {}
                     _ => {
@@ -6707,7 +6707,7 @@ unsafe extern "C" fn parse_stab_members(
                 match **pp as libc::c_int {
                     42 => {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                         voffset = parse_number(
                             pp,
                             0 as *mut libc::c_void as *mut bool,
@@ -6719,7 +6719,7 @@ unsafe extern "C" fn parse_stab_members(
                             break 's_37;
                         } else {
                             *pp = (*pp).offset(1);
-                            *pp;
+                            let _ = *pp;
                             voffset &= 0x7fffffff as libc::c_int as libc::c_ulong;
                             if **pp as libc::c_int == ';' as i32
                                 || **pp as libc::c_int == '\0' as i32
@@ -6745,7 +6745,7 @@ unsafe extern "C" fn parse_stab_members(
                                         break 's_37;
                                     } else {
                                         *pp = (*pp).offset(1);
-                                        *pp;
+                                        let _ = *pp;
                                     }
                                 }
                             }
@@ -6753,7 +6753,7 @@ unsafe extern "C" fn parse_stab_members(
                     }
                     63 => {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                         staticp = 1 as libc::c_int != 0;
                         voffset = 0 as libc::c_int as bfd_vma;
                         context = 0 as *mut libc::c_void as debug_type;
@@ -6763,7 +6763,7 @@ unsafe extern "C" fn parse_stab_members(
                     }
                     46 => {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                         voffset = 0 as libc::c_int as bfd_vma;
                         context = 0 as *mut libc::c_void as debug_type;
                     }
@@ -6862,7 +6862,7 @@ unsafe extern "C" fn parse_stab_members(
         *fresh13 = 0 as *mut libc::c_void as debug_method_variant;
         if **pp as libc::c_int != '\0' as i32 {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
         }
         if c.wrapping_add(1 as libc::c_int as libc::c_uint) >= alloc {
             alloc = alloc.wrapping_add(10 as libc::c_int as libc::c_uint);
@@ -7054,24 +7054,24 @@ unsafe extern "C" fn parse_stab_tilde_field(
     }
     if **pp as libc::c_int == ';' as i32 {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     if **pp as libc::c_int != '~' as i32 {
         return 1 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if **pp as libc::c_int == '=' as i32 || **pp as libc::c_int == '+' as i32
         || **pp as libc::c_int == '-' as i32
     {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     if **pp as libc::c_int != '%' as i32 {
         return 1 as libc::c_int != 0;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     hold = *pp;
     if !parse_stab_type_number(pp, vtypenums.as_mut_ptr(), p_end) {
         return 0 as libc::c_int != 0;
@@ -7165,14 +7165,14 @@ unsafe extern "C" fn parse_stab_array_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     adjustable = 0 as libc::c_int != 0;
     if _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize] as libc::c_int
         & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int == 0
         && **pp as libc::c_int != '-' as i32 && **pp as libc::c_int != 0 as libc::c_int
     {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         adjustable = 1 as libc::c_int != 0;
     }
     lower = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end)
@@ -7182,13 +7182,13 @@ unsafe extern "C" fn parse_stab_array_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize] as libc::c_int
         & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int == 0
         && **pp as libc::c_int != '-' as i32 && **pp as libc::c_int != 0 as libc::c_int
     {
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
         adjustable = 1 as libc::c_int != 0;
     }
     upper = parse_number(pp, 0 as *mut libc::c_void as *mut bool, p_end)
@@ -7198,7 +7198,7 @@ unsafe extern "C" fn parse_stab_array_type(
         return 0 as *mut libc::c_void as debug_type;
     }
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     element_type = parse_stab_type(
         dhandle,
         info,
@@ -7447,7 +7447,7 @@ unsafe extern "C" fn stab_find_type(
     return *slot;
 }
 unsafe extern "C" fn stab_record_type(
-    mut dhandle: *mut libc::c_void,
+    mut _dhandle: *mut libc::c_void,
     mut info: *mut stab_handle,
     mut typenums: *const libc::c_int,
     mut type_0: debug_type,
@@ -8453,7 +8453,7 @@ unsafe extern "C" fn stab_demangle_count(
         count = count.wrapping_mul(10 as libc::c_int as libc::c_uint);
         count = count.wrapping_add((**pp as libc::c_int - '0' as i32) as libc::c_uint);
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     return count;
 }
@@ -8468,7 +8468,7 @@ unsafe extern "C" fn stab_demangle_get_count(
     }
     *pi = (**pp as libc::c_int - '0' as i32) as libc::c_uint;
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     if _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize] as libc::c_int
         & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
     {
@@ -8640,14 +8640,14 @@ unsafe extern "C" fn stab_demangle_signature(
                     hold = *pp;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             67 => {
                 if hold.is_null() {
                     hold = *pp;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 => {
                 if hold.is_null() {
@@ -8673,7 +8673,7 @@ unsafe extern "C" fn stab_demangle_signature(
                 hold = 0 as *const libc::c_char;
                 func_done = 1 as libc::c_int != 0;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 if !stab_demangle_args(
                     minfo,
                     pp,
@@ -8778,7 +8778,7 @@ unsafe extern "C" fn stab_demangle_qualified(
                 - '0' as i32) as libc::c_uint;
             if *(*pp).offset(2 as libc::c_int as isize) as libc::c_int == '_' as i32 {
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             *pp = (*pp).offset(2 as libc::c_int as isize);
         }
@@ -8796,7 +8796,7 @@ unsafe extern "C" fn stab_demangle_qualified(
         }
         if **pp as libc::c_int == '_' as i32 {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
         }
         if **pp as libc::c_int == 't' as i32 {
             let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -8899,7 +8899,7 @@ unsafe extern "C" fn stab_demangle_template(
     let mut i: libc::c_uint = 0;
     orig = *pp;
     *pp = (*pp).offset(1);
-    *pp;
+    let _ = *pp;
     r = stab_demangle_count(pp);
     if r == 0 as libc::c_int as libc::c_uint || strlen(*pp) < r as libc::c_ulong {
         stab_bad_demangle(orig);
@@ -8914,7 +8914,7 @@ unsafe extern "C" fn stab_demangle_template(
     while i < r {
         if **pp as libc::c_int == 'Z' as i32 {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(
                 minfo,
                 pp,
@@ -8989,20 +8989,20 @@ unsafe extern "C" fn stab_demangle_template(
             if integralp {
                 if **pp as libc::c_int == 'm' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
                 while _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize]
                     as libc::c_int
                     & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
                 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
             } else if charp {
                 let mut val: libc::c_uint = 0;
                 if **pp as libc::c_int == 'm' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
                 val = stab_demangle_count(pp);
                 if val == 0 as libc::c_int as libc::c_uint {
@@ -9021,37 +9021,37 @@ unsafe extern "C" fn stab_demangle_template(
             } else if realp {
                 if **pp as libc::c_int == 'm' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
                 while _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize]
                     as libc::c_int
                     & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
                 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
                 if **pp as libc::c_int == '.' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                     while _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int)
                         as usize] as libc::c_int
                         & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int
                         != 0
                     {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                 }
                 if **pp as libc::c_int == 'e' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                     while _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int)
                         as usize] as libc::c_int
                         & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int
                         != 0
                     {
                         *pp = (*pp).offset(1);
-                        *pp;
+                        let _ = *pp;
                     }
                 }
             } else if pointerp {
@@ -9113,7 +9113,7 @@ unsafe extern "C" fn stab_demangle_template(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn stab_demangle_class(
-    mut minfo: *mut stab_demangle_info,
+    mut _minfo: *mut stab_demangle_info,
     mut pp: *mut *const libc::c_char,
     mut pstart: *mut *const libc::c_char,
 ) -> bool {
@@ -9159,7 +9159,7 @@ unsafe extern "C" fn stab_demangle_args(
             let mut t: libc::c_uint = 0;
             temptype = **pp;
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if temptype as libc::c_int == 'T' as i32 {
                 r = 1 as libc::c_int as libc::c_uint;
             } else if !stab_demangle_get_count(pp, &mut r) {
@@ -9199,7 +9199,7 @@ unsafe extern "C" fn stab_demangle_args(
             *pvarargs = 1 as libc::c_int != 0;
         }
         *pp = (*pp).offset(1);
-        *pp;
+        let _ = *pp;
     }
     return 1 as libc::c_int != 0;
 }
@@ -9216,11 +9216,11 @@ unsafe extern "C" fn stab_demangle_arg(
     if !stab_demangle_type(
         minfo,
         pp,
-        (if pargs.is_null() {
+        if pargs.is_null() {
             0 as *mut libc::c_void as *mut debug_type
         } else {
             &mut type_0
-        }),
+        },
     )
         || !stab_demangle_remember_type(
             minfo,
@@ -9245,7 +9245,7 @@ unsafe extern "C" fn stab_demangle_arg(
         let ref mut fresh26 = *(*pargs).offset(*pcount as isize);
         *fresh26 = type_0;
         *pcount = (*pcount).wrapping_add(1);
-        *pcount;
+        let _ = *pcount;
     }
     return 1 as libc::c_int != 0;
 }
@@ -9259,7 +9259,7 @@ unsafe extern "C" fn stab_demangle_type(
     match **pp as libc::c_int {
         80 | 112 => {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9269,7 +9269,7 @@ unsafe extern "C" fn stab_demangle_type(
         }
         82 => {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9280,7 +9280,7 @@ unsafe extern "C" fn stab_demangle_type(
         65 => {
             let mut high: libc::c_ulong = 0;
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             high = 0 as libc::c_int as libc::c_ulong;
             while **pp as libc::c_int != '\0' as i32 && **pp as libc::c_int != '_' as i32
             {
@@ -9295,14 +9295,14 @@ unsafe extern "C" fn stab_demangle_type(
                 high = high
                     .wrapping_add((**pp as libc::c_int - '0' as i32) as libc::c_ulong);
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             if **pp as libc::c_int != '_' as i32 {
                 stab_bad_demangle(orig);
                 return 0 as libc::c_int != 0;
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9333,7 +9333,7 @@ unsafe extern "C" fn stab_demangle_type(
             let mut i: libc::c_uint = 0;
             let mut p: *const libc::c_char = 0 as *const libc::c_char;
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_get_count(pp, &mut i) {
                 stab_bad_demangle(orig);
                 return 0 as libc::c_int != 0;
@@ -9351,7 +9351,7 @@ unsafe extern "C" fn stab_demangle_type(
             let mut args: *mut debug_type = 0 as *mut debug_type;
             let mut varargs: bool = false;
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_args(
                 minfo,
                 pp,
@@ -9373,7 +9373,7 @@ unsafe extern "C" fn stab_demangle_type(
                 return 0 as libc::c_int != 0;
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9397,7 +9397,7 @@ unsafe extern "C" fn stab_demangle_type(
             args_0 = 0 as *mut debug_type;
             varargs_0 = 0 as libc::c_int != 0;
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize]
                 as libc::c_int
                 & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
@@ -9440,17 +9440,17 @@ unsafe extern "C" fn stab_demangle_type(
             if memberp {
                 if **pp as libc::c_int == 'C' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 } else if **pp as libc::c_int == 'V' as i32 {
                     *pp = (*pp).offset(1);
-                    *pp;
+                    let _ = *pp;
                 }
                 if **pp as libc::c_int != 'F' as i32 {
                     stab_bad_demangle(orig);
                     return 0 as libc::c_int != 0;
                 }
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
                 if !stab_demangle_args(
                     minfo,
                     pp,
@@ -9473,7 +9473,7 @@ unsafe extern "C" fn stab_demangle_type(
                 return 0 as libc::c_int != 0;
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9497,14 +9497,14 @@ unsafe extern "C" fn stab_demangle_type(
         }
         71 => {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
         }
         67 => {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if !stab_demangle_type(minfo, pp, ptype) {
                 return 0 as libc::c_int != 0;
             }
@@ -9547,22 +9547,22 @@ unsafe extern "C" fn stab_demangle_fund_type(
             67 => {
                 constp = 1 as libc::c_int != 0;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             85 => {
                 unsignedp = 1 as libc::c_int != 0;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             83 => {
                 signedp = 1 as libc::c_int != 0;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             86 => {
                 volatilep = 1 as libc::c_int != 0;
                 *pp = (*pp).offset(1);
-                *pp;
+                let _ = *pp;
             }
             _ => {
                 done = 1 as libc::c_int != 0;
@@ -9586,7 +9586,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         120 => {
@@ -9608,7 +9608,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         108 => {
@@ -9630,7 +9630,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         105 => {
@@ -9652,7 +9652,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         115 => {
@@ -9674,7 +9674,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         98 => {
@@ -9691,7 +9691,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         99 => {
@@ -9715,7 +9715,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         119 => {
@@ -9733,7 +9733,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         114 => {
@@ -9750,7 +9750,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         100 => {
@@ -9767,7 +9767,7 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         102 => {
@@ -9784,12 +9784,12 @@ unsafe extern "C" fn stab_demangle_fund_type(
                 }
             }
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             current_block_113 = 11865390570819897086;
         }
         71 => {
             *pp = (*pp).offset(1);
-            *pp;
+            let _ = *pp;
             if _sch_istable[(**pp as libc::c_int & 0xff as libc::c_int) as usize]
                 as libc::c_int
                 & _sch_isdigit as libc::c_int as libc::c_ushort as libc::c_int == 0

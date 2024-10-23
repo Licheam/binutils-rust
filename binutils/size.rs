@@ -4108,9 +4108,9 @@ static mut bsssize: bfd_size_type = 0;
 static mut datasize: bfd_size_type = 0;
 static mut textsize: bfd_size_type = 0;
 unsafe extern "C" fn berkeley_or_gnu_sum(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: sec_ptr,
-    mut ignore: *mut libc::c_void,
+    mut _ignore: *mut libc::c_void,
 ) {
     let mut flags: flagword = 0;
     let mut size: bfd_size_type = 0;
@@ -4239,9 +4239,9 @@ pub static mut svi_vmalen: libc::c_int = 0 as libc::c_int;
 #[no_mangle]
 pub static mut svi_sizelen: libc::c_int = 0 as libc::c_int;
 unsafe extern "C" fn sysv_internal_sizer(
-    mut file: *mut bfd,
+    mut _file: *mut bfd,
     mut sec: sec_ptr,
-    mut ignore: *mut libc::c_void,
+    mut _ignore: *mut libc::c_void,
 ) {
     let mut flags: flagword = bfd_section_flags(sec as *const asection);
     if flags == 0 as libc::c_int as libc::c_uint {
@@ -4276,9 +4276,9 @@ unsafe extern "C" fn sysv_one_line(
     printf(b"\n\0" as *const u8 as *const libc::c_char);
 }
 unsafe extern "C" fn sysv_internal_printer(
-    mut file: *mut bfd,
+    mut _file: *mut bfd,
     mut sec: sec_ptr,
-    mut ignore: *mut libc::c_void,
+    mut _ignore: *mut libc::c_void,
 ) {
     let mut flags: flagword = bfd_section_flags(sec as *const asection);
     if flags == 0 as libc::c_int as libc::c_uint {
