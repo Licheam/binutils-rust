@@ -6840,7 +6840,7 @@ unsafe extern "C" fn elf_i386_reloc_type_lookup(
     };
 }
 unsafe extern "C" fn elf_i386_reloc_name_lookup(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut r_name: *const libc::c_char,
 ) -> *const reloc_howto_type {
     let mut i: libc::c_uint = 0;
@@ -8875,7 +8875,7 @@ unsafe extern "C" fn elf_i386_check_relocs(
     };
 }
 unsafe extern "C" fn elf_i386_fake_sections(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut hdr: *mut Elf_Internal_Shdr,
     mut sec: *mut asection,
 ) -> bool {
@@ -12122,7 +12122,7 @@ unsafe extern "C" fn elf_i386_pie_finish_undefweak_symbol(
 }
 unsafe extern "C" fn elf_i386_reloc_type_class(
     mut info: *const bfd_link_info,
-    mut rel_sec: *const asection,
+    mut _rel_sec: *const asection,
     mut rela: *const Elf_Internal_Rela,
 ) -> elf_reloc_type_class {
     let mut abfd: *mut bfd = (*info).output_bfd;
@@ -12370,10 +12370,10 @@ unsafe extern "C" fn elf_i386_finish_dynamic_sections(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf_i386_output_arch_local_syms(
-    mut output_bfd: *mut bfd,
+    mut _output_bfd: *mut bfd,
     mut info: *mut bfd_link_info,
-    mut flaginfo: *mut libc::c_void,
-    mut func: Option::<
+    mut _flaginfo: *mut libc::c_void,
+    mut _func: Option::<
         unsafe extern "C" fn(
             *mut libc::c_void,
             *const libc::c_char,
@@ -12410,8 +12410,8 @@ unsafe extern "C" fn elf_i386_output_arch_local_syms(
 }
 unsafe extern "C" fn elf_i386_get_synthetic_symtab(
     mut abfd: *mut bfd,
-    mut symcount: libc::c_long,
-    mut syms: *mut *mut asymbol,
+    mut _symcount: libc::c_long,
+    mut _syms: *mut *mut asymbol,
     mut dynsymcount: libc::c_long,
     mut dynsyms: *mut *mut asymbol,
     mut ret: *mut *mut asymbol,
@@ -13966,10 +13966,10 @@ unsafe extern "C" fn elf_i386_fbsd_init_file_header(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf32_i386_copy_solaris_special_section_fields(
-    mut ibfd: *const bfd,
-    mut obfd: *mut bfd,
-    mut isection: *const Elf_Internal_Shdr,
-    mut osection: *mut Elf_Internal_Shdr,
+    mut _ibfd: *const bfd,
+    mut _obfd: *mut bfd,
+    mut _isection: *const Elf_Internal_Shdr,
+    mut _osection: *mut Elf_Internal_Shdr,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }

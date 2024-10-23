@@ -5407,7 +5407,7 @@ unsafe extern "C" fn coff_i386_reloc(
     mut data: *mut libc::c_void,
     mut input_section: *mut asection,
     mut output_bfd: *mut bfd,
-    mut error_message: *mut *mut libc::c_char,
+    mut _error_message: *mut *mut libc::c_char,
 ) -> bfd_reloc_status_type {
     let mut diff: symvalue = 0;
     if bfd_is_com_section((*symbol).section) {
@@ -5501,7 +5501,7 @@ unsafe extern "C" fn coff_i386_reloc(
     return bfd_reloc_continue;
 }
 unsafe extern "C" fn coff_i386_reloc_type_lookup(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut code: bfd_reloc_code_real_type,
 ) -> *const reloc_howto_type {
     match code as libc::c_uint {
@@ -5523,7 +5523,7 @@ unsafe extern "C" fn coff_i386_reloc_type_lookup(
     };
 }
 unsafe extern "C" fn in_reloc_p(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut howto: *const reloc_howto_type,
 ) -> bool {
     return (*howto).pc_relative() == 0
@@ -5555,7 +5555,7 @@ unsafe extern "C" fn coff_pe_i386_relocate_section(
     );
 }
 unsafe extern "C" fn coff_i386_reloc_name_lookup(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut r_name: *const libc::c_char,
 ) -> *const reloc_howto_type {
     let mut i: libc::c_uint = 0;
@@ -6465,7 +6465,7 @@ unsafe extern "C" fn pe_mkobject(mut abfd: *mut bfd) -> bool {
 unsafe extern "C" fn pe_mkobject_hook(
     mut abfd: *mut bfd,
     mut filehdr: *mut libc::c_void,
-    mut aouthdr: *mut libc::c_void,
+    mut _aouthdr: *mut libc::c_void,
 ) -> *mut libc::c_void {
     let mut internal_f: *mut internal_filehdr = filehdr as *mut internal_filehdr;
     let mut pe: *mut pe_data_type = 0 as *mut pe_data_type;
@@ -6768,7 +6768,7 @@ unsafe extern "C" fn handle_COMDAT(
     mut section: *mut asection,
 ) -> flagword {
     let mut current_block: u64;
-    let mut internal_s: *mut internal_scnhdr = hdr as *mut internal_scnhdr;
+    let mut _internal_s: *mut internal_scnhdr = hdr as *mut internal_scnhdr;
     let mut esymstart: *mut bfd_byte = 0 as *mut bfd_byte;
     let mut esym: *mut bfd_byte = 0 as *mut bfd_byte;
     let mut esymend: *mut bfd_byte = 0 as *mut bfd_byte;
@@ -7489,7 +7489,7 @@ unsafe extern "C" fn handle_COMDAT(
     return sec_flags;
 }
 unsafe extern "C" fn coff_bad_format_hook(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut filehdr: *mut libc::c_void,
 ) -> bool {
     let mut internal_f: *mut internal_filehdr = filehdr as *mut internal_filehdr;
@@ -7511,7 +7511,7 @@ unsafe extern "C" fn coff_bad_format_hook(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn coff_set_custom_section_alignment(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: *mut asection,
     mut alignment_table: *const coff_section_alignment_entry,
     table_size: libc::c_uint,
@@ -7770,7 +7770,7 @@ unsafe extern "C" fn coff_write_relocs(
 unsafe extern "C" fn coff_set_flags(
     mut abfd: *mut bfd,
     mut magicp: *mut libc::c_uint,
-    mut flagsp: *mut libc::c_ushort,
+    mut _flagsp: *mut libc::c_ushort,
 ) -> bool {
     match bfd_get_arch(abfd) as libc::c_uint {
         8 => {
@@ -9709,18 +9709,18 @@ unsafe extern "C" fn coff_set_alignment_hook(
     }
 }
 unsafe extern "C" fn symname_in_debug_hook(
-    mut abfd: *mut bfd,
-    mut sym: *mut internal_syment,
+    mut _abfd: *mut bfd,
+    mut _sym: *mut internal_syment,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }
 unsafe extern "C" fn coff_print_aux(
-    mut abfd: *mut bfd,
-    mut file: *mut FILE,
-    mut table_base: *mut combined_entry_type,
+    mut _abfd: *mut bfd,
+    mut _file: *mut FILE,
+    mut _table_base: *mut combined_entry_type,
     mut symbol: *mut combined_entry_type,
     mut aux: *mut combined_entry_type,
-    mut indaux: libc::c_uint,
+    mut _indaux: libc::c_uint,
 ) -> bool {
     if !(*symbol).is_sym {
         bfd_assert(
@@ -9737,11 +9737,11 @@ unsafe extern "C" fn coff_print_aux(
     return 0 as libc::c_int != 0;
 }
 unsafe extern "C" fn dummy_reloc16_estimate(
-    mut abfd: *mut bfd,
-    mut input_section: *mut asection,
-    mut reloc: *mut arelent,
-    mut shrink: libc::c_uint,
-    mut link_info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _input_section: *mut asection,
+    mut _reloc: *mut arelent,
+    mut _shrink: libc::c_uint,
+    mut _link_info: *mut bfd_link_info,
 ) -> libc::c_int {
     _bfd_abort(
         b"./coffcode.h\0" as *const u8 as *const libc::c_char,
@@ -9756,13 +9756,13 @@ unsafe extern "C" fn dummy_reloc16_estimate(
     );
 }
 unsafe extern "C" fn dummy_reloc16_extra_cases(
-    mut abfd: *mut bfd,
-    mut link_info: *mut bfd_link_info,
-    mut link_order: *mut bfd_link_order,
-    mut reloc: *mut arelent,
-    mut data: *mut bfd_byte,
-    mut src_ptr: *mut libc::c_uint,
-    mut dst_ptr: *mut libc::c_uint,
+    mut _abfd: *mut bfd,
+    mut _link_info: *mut bfd_link_info,
+    mut _link_order: *mut bfd_link_order,
+    mut _reloc: *mut arelent,
+    mut _data: *mut bfd_byte,
+    mut _src_ptr: *mut libc::c_uint,
+    mut _dst_ptr: *mut libc::c_uint,
 ) {
     _bfd_abort(
         b"./coffcode.h\0" as *const u8 as *const libc::c_char,
@@ -9778,7 +9778,7 @@ unsafe extern "C" fn dummy_reloc16_extra_cases(
 }
 unsafe extern "C" fn coff_link_output_has_begun(
     mut abfd: *mut bfd,
-    mut info: *mut coff_final_link_info,
+    mut _info: *mut coff_final_link_info,
 ) -> bool {
     return (*abfd).output_has_begun() != 0;
 }
@@ -10466,8 +10466,8 @@ unsafe extern "C" fn coff_bigobj_swap_aux_out(
     mut inp: *mut libc::c_void,
     mut type_0: libc::c_int,
     mut in_class: libc::c_int,
-    mut indx: libc::c_int,
-    mut numaux: libc::c_int,
+    mut _indx: libc::c_int,
+    mut _numaux: libc::c_int,
     mut extp: *mut libc::c_void,
 ) -> libc::c_uint {
     let mut in_0: *mut internal_auxent = inp as *mut internal_auxent;

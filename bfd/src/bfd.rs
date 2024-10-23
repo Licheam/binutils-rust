@@ -6497,7 +6497,7 @@ unsafe extern "C" fn _bfd_doprnt(
                             && bfd_get_flavour(abfd) as libc::c_uint
                                 == bfd_target_coff_flavour as libc::c_int as libc::c_uint
                             && {
-                                ci = (if bfd_get_flavour((*sec).owner) as libc::c_uint
+                                ci = if bfd_get_flavour((*sec).owner) as libc::c_uint
                                     == bfd_target_coff_flavour as libc::c_int as libc::c_uint
                                     && !((*sec).used_by_bfd as *mut coff_section_tdata)
                                         .is_null()
@@ -6505,7 +6505,7 @@ unsafe extern "C" fn _bfd_doprnt(
                                     (*((*sec).used_by_bfd as *mut coff_section_tdata)).comdat
                                 } else {
                                     0 as *mut coff_comdat_info
-                                });
+                                };
                                 !ci.is_null()
                             }
                         {

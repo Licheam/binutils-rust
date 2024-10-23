@@ -7521,7 +7521,7 @@ pub unsafe extern "C" fn bfd_elf32_core_file_p(mut abfd: *mut bfd) -> bfd_cleanu
                                                         p_flags: [0; 4],
                                                         p_align: [0; 4],
                                                     };
-                                                    let mut i_phdr: Elf_Internal_Phdr = Elf_Internal_Phdr {
+                                                    let mut _i_phdr: Elf_Internal_Phdr = Elf_Internal_Phdr {
                                                         p_type: 0,
                                                         p_flags: 0,
                                                         p_offset: 0,
@@ -7920,7 +7920,7 @@ pub unsafe extern "C" fn bfd_elf32_core_file_p(mut abfd: *mut bfd) -> bfd_cleanu
                                                         p_flags: [0; 4],
                                                         p_align: [0; 4],
                                                     };
-                                                    let mut i_phdr: Elf_Internal_Phdr = Elf_Internal_Phdr {
+                                                    let mut _i_phdr: Elf_Internal_Phdr = Elf_Internal_Phdr {
                                                         p_type: 0,
                                                         p_flags: 0,
                                                         p_offset: 0,

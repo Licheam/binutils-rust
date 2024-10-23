@@ -3970,78 +3970,78 @@ pub struct saved_offsets {
     pub sections: *mut saved_output_info,
 }
 unsafe extern "C" fn simple_dummy_add_to_set(
-    mut info: *mut bfd_link_info,
-    mut entry: *mut bfd_link_hash_entry,
-    mut reloc: bfd_reloc_code_real_type,
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
-    mut value: bfd_vma,
+    mut _info: *mut bfd_link_info,
+    mut _entry: *mut bfd_link_hash_entry,
+    mut _reloc: bfd_reloc_code_real_type,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
+    mut _value: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_constructor(
-    mut info: *mut bfd_link_info,
-    mut constructor: bool,
-    mut name: *const libc::c_char,
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
-    mut value: bfd_vma,
+    mut _info: *mut bfd_link_info,
+    mut _constructor: bool,
+    mut _name: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
+    mut _value: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_multiple_common(
-    mut info: *mut bfd_link_info,
-    mut entry: *mut bfd_link_hash_entry,
-    mut abfd: *mut bfd,
-    mut type_0: bfd_link_hash_type,
-    mut size: bfd_vma,
+    mut _info: *mut bfd_link_info,
+    mut _entry: *mut bfd_link_hash_entry,
+    mut _abfd: *mut bfd,
+    mut _type_0: bfd_link_hash_type,
+    mut _size: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_warning(
-    mut link_info: *mut bfd_link_info,
-    mut warning: *const libc::c_char,
-    mut symbol: *const libc::c_char,
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut address: bfd_vma,
+    mut _link_info: *mut bfd_link_info,
+    mut _warning: *const libc::c_char,
+    mut _symbol: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
+    mut _address: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_undefined_symbol(
-    mut link_info: *mut bfd_link_info,
-    mut name: *const libc::c_char,
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut address: bfd_vma,
-    mut fatal: bool,
+    mut _link_info: *mut bfd_link_info,
+    mut _name: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
+    mut _address: bfd_vma,
+    mut _fatal: bool,
 ) {}
 unsafe extern "C" fn simple_dummy_reloc_overflow(
-    mut link_info: *mut bfd_link_info,
-    mut entry: *mut bfd_link_hash_entry,
-    mut name: *const libc::c_char,
-    mut reloc_name: *const libc::c_char,
-    mut addend: bfd_vma,
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut address: bfd_vma,
+    mut _link_info: *mut bfd_link_info,
+    mut _entry: *mut bfd_link_hash_entry,
+    mut _name: *const libc::c_char,
+    mut _reloc_name: *const libc::c_char,
+    mut _addend: bfd_vma,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
+    mut _address: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_reloc_dangerous(
-    mut link_info: *mut bfd_link_info,
-    mut message: *const libc::c_char,
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut address: bfd_vma,
+    mut _link_info: *mut bfd_link_info,
+    mut _message: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
+    mut _address: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_unattached_reloc(
-    mut link_info: *mut bfd_link_info,
-    mut name: *const libc::c_char,
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut address: bfd_vma,
+    mut _link_info: *mut bfd_link_info,
+    mut _name: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
+    mut _address: bfd_vma,
 ) {}
 unsafe extern "C" fn simple_dummy_multiple_definition(
-    mut link_info: *mut bfd_link_info,
-    mut h: *mut bfd_link_hash_entry,
-    mut nbfd: *mut bfd,
-    mut nsec: *mut asection,
-    mut nval: bfd_vma,
+    mut _link_info: *mut bfd_link_info,
+    mut _h: *mut bfd_link_hash_entry,
+    mut _nbfd: *mut bfd,
+    mut _nsec: *mut asection,
+    mut _nval: bfd_vma,
 ) {}
-unsafe extern "C" fn simple_dummy_einfo(mut fmt: *const libc::c_char, mut args: ...) {}
+unsafe extern "C" fn simple_dummy_einfo(mut _fmt: *const libc::c_char, mut _args: ...) {}
 unsafe extern "C" fn simple_save_output_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: *mut asection,
     mut ptr: *mut libc::c_void,
 ) {
@@ -4059,7 +4059,7 @@ unsafe extern "C" fn simple_save_output_info(
     }
 }
 unsafe extern "C" fn simple_restore_output_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: *mut asection,
     mut ptr: *mut libc::c_void,
 ) {

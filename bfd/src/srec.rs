@@ -5322,8 +5322,8 @@ unsafe extern "C" fn symbolsrec_write_object_contents(mut abfd: *mut bfd) -> boo
     return internal_srec_write_object_contents(abfd, 1 as libc::c_int);
 }
 unsafe extern "C" fn srec_sizeof_headers(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     return 0 as libc::c_int;
 }
@@ -5383,7 +5383,7 @@ unsafe extern "C" fn srec_canonicalize_symtab(
     return symcount as libc::c_long;
 }
 unsafe extern "C" fn srec_get_symbol_info(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
     mut symbol: *mut asymbol,
     mut ret: *mut symbol_info,
 ) {

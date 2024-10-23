@@ -5517,17 +5517,17 @@ static mut dummy: reloc_howto_type = reloc_howto_type {
     name: 0 as *const libc::c_char,
 };
 unsafe extern "C" fn elf_generic_info_to_howto(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut bfd_reloc: *mut arelent,
-    mut elf_reloc: *mut Elf_Internal_Rela,
+    mut _elf_reloc: *mut Elf_Internal_Rela,
 ) -> bool {
     (*bfd_reloc).howto = &dummy;
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf_generic_info_to_howto_rel(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut bfd_reloc: *mut arelent,
-    mut elf_reloc: *mut Elf_Internal_Rela,
+    mut _elf_reloc: *mut Elf_Internal_Rela,
 ) -> bool {
     (*bfd_reloc).howto = &dummy;
     return 1 as libc::c_int != 0;

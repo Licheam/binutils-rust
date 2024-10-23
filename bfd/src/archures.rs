@@ -3976,8 +3976,8 @@ pub unsafe extern "C" fn bfd_arch_mach_octets_per_byte(
 #[no_mangle]
 pub unsafe extern "C" fn bfd_arch_default_fill(
     mut count: bfd_size_type,
-    mut is_bigendian: bool,
-    mut code: bool,
+    mut _is_bigendian: bool,
+    mut _code: bool,
 ) -> *mut libc::c_void {
     let mut fill: *mut libc::c_void = bfd_malloc(count);
     if !fill.is_null() {
@@ -3988,8 +3988,8 @@ pub unsafe extern "C" fn bfd_arch_default_fill(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nowrite_set_arch_mach(
     mut abfd: *mut bfd,
-    mut arch: bfd_architecture,
-    mut mach: libc::c_ulong,
+    mut _arch: bfd_architecture,
+    mut _mach: libc::c_ulong,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }

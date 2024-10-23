@@ -6895,7 +6895,7 @@ pub unsafe extern "C" fn bfd_elf_link_record_dynamic_symbol(
         (*h).dynindx = (*elf_hash_table(info)).dynsymcount as libc::c_long;
         let ref mut fresh4 = (*elf_hash_table(info)).dynsymcount;
         *fresh4 = (*fresh4).wrapping_add(1);
-        *fresh4;
+        let _ = *fresh4;
         dynstr = (*elf_hash_table(info)).dynstr;
         if dynstr.is_null() {
             dynstr = _bfd_elf_strtab_init();
@@ -7220,7 +7220,7 @@ unsafe extern "C" fn elf_link_renumber_local_hash_table_dynsyms(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_omit_section_dynsym_default(
-    mut output_bfd: *mut bfd,
+    mut _output_bfd: *mut bfd,
     mut info: *mut bfd_link_info,
     mut p: *mut asection,
 ) -> bool {
@@ -7244,9 +7244,9 @@ pub unsafe extern "C" fn _bfd_elf_omit_section_dynsym_default(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_omit_section_dynsym_all(
-    mut output_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
-    mut p: *mut asection,
+    mut _output_bfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
+    mut _p: *mut asection,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
@@ -8953,7 +8953,7 @@ pub unsafe extern "C" fn _bfd_elf_link_output_relocs(
     mut input_section: *mut asection,
     mut input_rel_hdr: *mut Elf_Internal_Shdr,
     mut internal_relocs: *mut Elf_Internal_Rela,
-    mut rel_hash: *mut *mut elf_link_hash_entry,
+    mut _rel_hash: *mut *mut elf_link_hash_entry,
 ) -> bool {
     let mut irela: *mut Elf_Internal_Rela = 0 as *mut Elf_Internal_Rela;
     let mut irelaend: *mut Elf_Internal_Rela = 0 as *mut Elf_Internal_Rela;
@@ -12057,11 +12057,11 @@ unsafe extern "C" fn elf_link_add_object_symbols(
                                                                         isym;
                                                                         sym_hash = sym_hash.offset(1);
                                                                         sym_hash;
-                                                                        ever = (if !ever.is_null() {
+                                                                        ever = if !ever.is_null() {
                                                                             ever.offset(1 as libc::c_int as isize)
                                                                         } else {
                                                                             0 as *mut Elf_External_Versym
-                                                                        });
+                                                                        };
                                                                     }
                                                                     match current_block {
                                                                         12388102377924243912 => {}
@@ -13145,7 +13145,7 @@ unsafe extern "C" fn elf_gnu_hash_process_symidx(
     );
     let ref mut fresh19 = *((*s).counts).offset(bucket as isize);
     *fresh19 = (*fresh19).wrapping_sub(1);
-    *fresh19;
+    let _ = *fresh19;
     if ((*(*s).bed).record_xhash_symbol).is_some() {
         let ref mut fresh20 = *((*s).indx).offset(bucket as isize);
         let fresh21 = *fresh20;
@@ -13263,7 +13263,7 @@ unsafe extern "C" fn compute_bucket_count(
                             (*hashcodes.offset(j as isize)).wrapping_rem(i) as isize,
                         );
                     *fresh24 = (*fresh24).wrapping_add(1);
-                    *fresh24;
+                    let _ = *fresh24;
                     j = j.wrapping_add(1);
                     j;
                 }
@@ -15391,7 +15391,7 @@ pub unsafe extern "C" fn bfd_elf_size_dynsym_hash_dynstr(
                                 .wrapping_rem(bucketcount_0) as isize,
                         );
                     *fresh30 = (*fresh30).wrapping_add(1);
-                    *fresh30;
+                    let _ = *fresh30;
                     i = i.wrapping_add(1);
                     i;
                 }
@@ -15636,7 +15636,7 @@ pub unsafe extern "C" fn bfd_elf_size_dynsym_hash_dynstr(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn merge_sections_remove_hook(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
 ) {
     if !((*sec).sec_info_type() as libc::c_int == 2 as libc::c_int) {
@@ -16001,7 +16001,7 @@ pub unsafe extern "C" fn bfd_elf_set_dyn_lib_class(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_get_needed_list(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) -> *mut bfd_link_needed_list {
     if !is_elf_hash_table((*info).hash) {
@@ -16011,7 +16011,7 @@ pub unsafe extern "C" fn bfd_elf_get_needed_list(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_get_runpath_list(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) -> *mut bfd_link_needed_list {
     if !is_elf_hash_table((*info).hash) {
@@ -17055,7 +17055,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17106,7 +17106,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17162,7 +17162,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17206,7 +17206,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17250,7 +17250,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17294,7 +17294,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17338,7 +17338,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17382,7 +17382,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17478,7 +17478,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17519,7 +17519,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17571,7 +17571,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17623,7 +17623,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17664,7 +17664,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17705,7 +17705,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17746,7 +17746,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17787,7 +17787,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17828,7 +17828,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -17870,7 +17870,7 @@ unsafe extern "C" fn eval_symbol(
                     return 0 as libc::c_int != 0;
                 }
                 *symp = (*symp).offset(1);
-                *symp;
+                let _ = *symp;
                 if !eval_symbol(
                     &mut b,
                     symp,
@@ -24149,8 +24149,8 @@ unsafe extern "C" fn fini_reloc_cookie_for_section(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_gc_mark_hook(
     mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
-    mut rel: *mut Elf_Internal_Rela,
+    mut _info: *mut bfd_link_info,
+    mut _rel: *mut Elf_Internal_Rela,
     mut h: *mut elf_link_hash_entry,
     mut sym: *mut Elf_Internal_Sym,
 ) -> *mut asection {
@@ -24167,8 +24167,8 @@ pub unsafe extern "C" fn _bfd_elf_gc_mark_hook(
 }
 unsafe extern "C" fn elf_gc_mark_debug_section(
     mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
-    mut rel: *mut Elf_Internal_Rela,
+    mut _info: *mut bfd_link_info,
+    mut _rel: *mut Elf_Internal_Rela,
     mut h: *mut elf_link_hash_entry,
     mut sym: *mut Elf_Internal_Sym,
 ) -> *mut asection {
@@ -24870,7 +24870,7 @@ pub unsafe extern "C" fn _bfd_elf_gc_keep(mut info: *mut bfd_link_info) {
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_parse_eh_frame_entries(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) -> bool {
     let mut ibfd: *mut bfd = (*info).input_bfds;
@@ -26060,13 +26060,13 @@ pub unsafe extern "C" fn _bfd_elf_common_definition(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_common_section_index(
-    mut sec: *mut asection,
+    mut _sec: *mut asection,
 ) -> libc::c_uint {
     return (0xe as libc::c_uint).wrapping_neg();
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_common_section(
-    mut sec: *mut asection,
+    mut _sec: *mut asection,
 ) -> *mut asection {
     return &mut *_bfd_std_section.as_mut_ptr().offset(0 as libc::c_int as isize)
         as *mut asection;
@@ -26074,10 +26074,10 @@ pub unsafe extern "C" fn _bfd_elf_common_section(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_default_got_elt_size(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
-    mut h: *mut elf_link_hash_entry,
-    mut ibfd: *mut bfd,
-    mut symndx: libc::c_ulong,
+    mut _info: *mut bfd_link_info,
+    mut _h: *mut elf_link_hash_entry,
+    mut _ibfd: *mut bfd,
+    mut _symndx: libc::c_ulong,
 ) -> bfd_vma {
     let mut bed: *const elf_backend_data = (*(*abfd).xvec).backend_data
         as *const elf_backend_data;

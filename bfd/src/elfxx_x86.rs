@@ -7952,7 +7952,7 @@ pub unsafe extern "C" fn _bfd_x86_elf_merge_symbol_attribute(
     mut h: *mut elf_link_hash_entry,
     mut st_other: libc::c_uint,
     mut definition: bool,
-    mut dynamic: bool,
+    mut _dynamic: bool,
 ) {
     if definition {
         let mut eh: *mut elf_x86_link_hash_entry = h as *mut elf_x86_link_hash_entry;
@@ -8439,9 +8439,9 @@ pub unsafe extern "C" fn _bfd_x86_elf_gc_mark_hook(
     return _bfd_elf_gc_mark_hook(sec, info, rel, h, sym);
 }
 unsafe extern "C" fn elf_i386_get_plt_got_vma(
-    mut plt_p: *mut elf_x86_plt,
+    mut _plt_p: *mut elf_x86_plt,
     mut off: bfd_vma,
-    mut offset: bfd_vma,
+    mut _offset: bfd_vma,
     mut got_addr: bfd_vma,
 ) -> bfd_vma {
     return got_addr.wrapping_add(off);
@@ -8450,7 +8450,7 @@ unsafe extern "C" fn elf_x86_64_get_plt_got_vma(
     mut plt_p: *mut elf_x86_plt,
     mut off: bfd_vma,
     mut offset: bfd_vma,
-    mut got_addr: bfd_vma,
+    mut _got_addr: bfd_vma,
 ) -> bfd_vma {
     return ((*(*plt_p).sec).vma)
         .wrapping_add(offset)
@@ -8839,8 +8839,8 @@ pub unsafe extern "C" fn _bfd_x86_elf_parse_gnu_properties(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_x86_elf_merge_gnu_properties(
     mut info: *mut bfd_link_info,
-    mut abfd: *mut bfd,
-    mut bbfd: *mut bfd,
+    mut _abfd: *mut bfd,
+    mut _bbfd: *mut bfd,
     mut aprop: *mut elf_property,
     mut bprop: *mut elf_property,
 ) -> bool {
@@ -9323,19 +9323,19 @@ pub unsafe extern "C" fn _bfd_x86_elf_link_setup_gnu_properties(
                                 missing_ibt = (missing_ibt as libc::c_int
                                     & ((*p).property.u.number
                                         & ((1 as libc::c_uint) << 0 as libc::c_int) as libc::c_ulong
-                                        == 0) as libc::c_int) as bool;
+                                        == 0) as libc::c_int) != 0;
                                 missing_shstk = (missing_shstk as libc::c_int
                                     & ((*p).property.u.number
                                         & ((1 as libc::c_uint) << 1 as libc::c_int) as libc::c_ulong
-                                        == 0) as libc::c_int) as bool;
+                                        == 0) as libc::c_int) != 0;
                                 missing_lam_u48 = (missing_lam_u48 as libc::c_int
                                     & ((*p).property.u.number
                                         & ((1 as libc::c_uint) << 2 as libc::c_int) as libc::c_ulong
-                                        == 0) as libc::c_int) as bool;
+                                        == 0) as libc::c_int) != 0;
                                 missing_lam_u57 = (missing_lam_u57 as libc::c_int
                                     & ((*p).property.u.number
                                         & ((1 as libc::c_uint) << 3 as libc::c_int) as libc::c_ulong
-                                        == 0) as libc::c_int) as bool;
+                                        == 0) as libc::c_int) != 0;
                             }
                             if missing_ibt as libc::c_int != 0
                                 || missing_shstk as libc::c_int != 0

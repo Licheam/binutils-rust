@@ -4010,7 +4010,7 @@ unsafe extern "C" fn verilog_write_record(
 }
 unsafe extern "C" fn verilog_write_section(
     mut abfd: *mut bfd,
-    mut tdata: *mut tdata_type,
+    mut _tdata: *mut tdata_type,
     mut list: *mut verilog_data_list_type,
 ) -> bool {
     let mut octets_written: libc::c_uint = 0 as libc::c_int as libc::c_uint;

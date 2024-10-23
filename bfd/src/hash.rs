@@ -3910,7 +3910,7 @@ pub unsafe extern "C" fn bfd_hash_allocate(
     mut size: libc::c_uint,
 ) -> *mut libc::c_void {
     let mut ret: *mut libc::c_void = 0 as *mut libc::c_void;
-    ret = ({
+    ret = {
         let mut __o: *mut objalloc = (*table).memory as *mut objalloc;
         let mut __len: libc::c_ulong = size as libc::c_ulong;
         if __len == 0 as libc::c_int as libc::c_ulong {
@@ -3931,7 +3931,7 @@ pub unsafe extern "C" fn bfd_hash_allocate(
         } else {
             _objalloc_alloc(__o, __len)
         }
-    });
+    };
     if ret.is_null() && size != 0 as libc::c_int as libc::c_uint {
         bfd_set_error(bfd_error_no_memory);
     }
@@ -3941,7 +3941,7 @@ pub unsafe extern "C" fn bfd_hash_allocate(
 pub unsafe extern "C" fn bfd_hash_newfunc(
     mut entry: *mut bfd_hash_entry,
     mut table: *mut bfd_hash_table,
-    mut string: *const libc::c_char,
+    mut _string: *const libc::c_char,
 ) -> *mut bfd_hash_entry {
     if entry.is_null() {
         entry = bfd_hash_allocate(

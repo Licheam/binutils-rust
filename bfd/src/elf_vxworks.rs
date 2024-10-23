@@ -5350,8 +5350,8 @@ pub unsafe extern "C" fn elf_vxworks_add_symbol_hook(
     mut sym: *mut Elf_Internal_Sym,
     mut namep: *mut *const libc::c_char,
     mut flagsp: *mut flagword,
-    mut secp: *mut *mut asection,
-    mut valp: *mut bfd_vma,
+    mut _secp: *mut *mut asection,
+    mut _valp: *mut bfd_vma,
 ) -> bool {
     if ((*info).type_0() as libc::c_int == type_dll as libc::c_int
         || (*info).type_0() as libc::c_int == type_pie as libc::c_int
@@ -5417,10 +5417,10 @@ pub unsafe extern "C" fn elf_vxworks_create_dynamic_sections(
 }
 #[no_mangle]
 pub unsafe extern "C" fn elf_vxworks_link_output_symbol_hook(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut name: *const libc::c_char,
     mut sym: *mut Elf_Internal_Sym,
-    mut input_sec: *mut asection,
+    mut _input_sec: *mut asection,
     mut h: *mut elf_link_hash_entry,
 ) -> libc::c_int {
     if !h.is_null()

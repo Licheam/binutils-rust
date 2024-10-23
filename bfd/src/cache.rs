@@ -4238,8 +4238,7 @@ pub unsafe extern "C" fn bfd_cache_close(mut abfd: *mut bfd) -> bool {
 pub unsafe extern "C" fn bfd_cache_close_all() -> bool {
     let mut ret: bool = 1 as libc::c_int != 0;
     while !bfd_last_cache.is_null() {
-        ret = (ret as libc::c_int & bfd_cache_close(bfd_last_cache) as libc::c_int)
-            as bool;
+        ret = (ret as libc::c_int & bfd_cache_close(bfd_last_cache) as libc::c_int) != 0;
     }
     return ret;
 }

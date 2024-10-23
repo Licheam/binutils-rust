@@ -4578,7 +4578,7 @@ pub unsafe extern "C" fn _bfd_elf_strtab_addref(
     }
     let ref mut fresh3 = (**((*tab).array).offset(idx as isize)).refcount;
     *fresh3 = (*fresh3).wrapping_add(1);
-    *fresh3;
+    let _ = *fresh3;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_strtab_delref(
@@ -4610,7 +4610,7 @@ pub unsafe extern "C" fn _bfd_elf_strtab_delref(
     }
     let ref mut fresh4 = (**((*tab).array).offset(idx as isize)).refcount;
     *fresh4 = (*fresh4).wrapping_sub(1);
-    *fresh4;
+    let _ = *fresh4;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_strtab_refcount(

@@ -13474,7 +13474,7 @@ unsafe extern "C" fn elf_x86_64_pie_finish_undefweak_symbol(
 }
 unsafe extern "C" fn elf_x86_64_reloc_type_class(
     mut info: *const bfd_link_info,
-    mut rel_sec: *const asection,
+    mut _rel_sec: *const asection,
     mut rela: *const Elf_Internal_Rela,
 ) -> elf_reloc_type_class {
     let mut abfd: *mut bfd = (*info).output_bfd;
@@ -13676,10 +13676,10 @@ unsafe extern "C" fn elf_x86_64_finish_dynamic_sections(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf_x86_64_output_arch_local_syms(
-    mut output_bfd: *mut bfd,
+    mut _output_bfd: *mut bfd,
     mut info: *mut bfd_link_info,
-    mut flaginfo: *mut libc::c_void,
-    mut func: Option::<
+    mut _flaginfo: *mut libc::c_void,
+    mut _func: Option::<
         unsafe extern "C" fn(
             *mut libc::c_void,
             *const libc::c_char,
@@ -13716,8 +13716,8 @@ unsafe extern "C" fn elf_x86_64_output_arch_local_syms(
 }
 unsafe extern "C" fn elf_x86_64_get_synthetic_symtab(
     mut abfd: *mut bfd,
-    mut symcount: libc::c_long,
-    mut syms: *mut *mut asymbol,
+    mut _symcount: libc::c_long,
+    mut _syms: *mut *mut asymbol,
     mut dynsymcount: libc::c_long,
     mut dynsyms: *mut *mut asymbol,
     mut ret: *mut *mut asymbol,
@@ -13995,10 +13995,10 @@ unsafe extern "C" fn elf_x86_64_section_from_shdr(
 }
 unsafe extern "C" fn elf_x86_64_add_symbol_hook(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut sym: *mut Elf_Internal_Sym,
-    mut namep: *mut *const libc::c_char,
-    mut flagsp: *mut flagword,
+    mut _namep: *mut *const libc::c_char,
+    mut _flagsp: *mut flagword,
     mut secp: *mut *mut asection,
     mut valp: *mut bfd_vma,
 ) -> bool {
@@ -14034,7 +14034,7 @@ unsafe extern "C" fn elf_x86_64_add_symbol_hook(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf_x86_64_elf_section_from_bfd_section(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut index_return: *mut libc::c_int,
 ) -> bool {
@@ -14047,7 +14047,7 @@ unsafe extern "C" fn elf_x86_64_elf_section_from_bfd_section(
     return 0 as libc::c_int != 0;
 }
 unsafe extern "C" fn elf_x86_64_symbol_processing(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut asym: *mut asymbol,
 ) {
     let mut elfsym: *mut elf_symbol_type = asym as *mut elf_symbol_type;
@@ -14133,7 +14133,7 @@ unsafe extern "C" fn elf_x86_64_merge_symbol(
 }
 unsafe extern "C" fn elf_x86_64_additional_program_headers(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     let mut s: *mut asection = 0 as *mut asection;
     let mut count: libc::c_int = 0 as libc::c_int;
@@ -16197,10 +16197,10 @@ pub static mut l1om_elf64_vec: bfd_target = bfd_target {
     backend_data: 0 as *const libc::c_void,
 };
 unsafe extern "C" fn elf64_x86_64_copy_solaris_special_section_fields(
-    mut ibfd: *const bfd,
-    mut obfd: *mut bfd,
-    mut isection: *const Elf_Internal_Shdr,
-    mut osection: *mut Elf_Internal_Shdr,
+    mut _ibfd: *const bfd,
+    mut _obfd: *mut bfd,
+    mut _isection: *const Elf_Internal_Shdr,
+    mut _osection: *mut Elf_Internal_Shdr,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }

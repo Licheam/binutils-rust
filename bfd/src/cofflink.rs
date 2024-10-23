@@ -6893,7 +6893,7 @@ unsafe extern "C" fn get_name(
 }
 unsafe extern "C" fn process_embedded_commands(
     mut output_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut abfd: *mut bfd,
 ) -> libc::c_int {
     let mut sec: *mut asection = bfd_get_section_by_name(

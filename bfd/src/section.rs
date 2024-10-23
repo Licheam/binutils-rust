@@ -4665,32 +4665,32 @@ pub unsafe extern "C" fn bfd_malloc_and_get_section(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_is_group_section(
-    mut abfd: *mut bfd,
-    mut sec: *const asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *const asection,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_group_name(
-    mut abfd: *mut bfd,
-    mut sec: *const asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *const asection,
 ) -> *const libc::c_char {
     return 0 as *const libc::c_char;
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_discard_group(
-    mut abfd: *mut bfd,
-    mut group: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _group: *mut asection,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nowrite_set_section_contents(
     mut abfd: *mut bfd,
-    mut section: sec_ptr,
-    mut location: *const libc::c_void,
-    mut offset: file_ptr,
-    mut count: bfd_size_type,
+    mut _section: sec_ptr,
+    mut _location: *const libc::c_void,
+    mut _offset: file_ptr,
+    mut _count: bfd_size_type,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }

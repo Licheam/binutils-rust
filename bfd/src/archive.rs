@@ -4856,7 +4856,7 @@ pub unsafe extern "C" fn _bfd_generic_get_elt_at_index(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_get_elt_at_index(
     mut abfd: *mut bfd,
-    mut sym_index: symindex,
+    mut _sym_index: symindex,
 ) -> *mut bfd {
     return _bfd_ptr_bfd_null_error(abfd) as *mut bfd;
 }
@@ -4906,7 +4906,7 @@ pub unsafe extern "C" fn bfd_generic_openr_next_archived_file(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_openr_next_archived_file(
     mut archive: *mut bfd,
-    mut last_file: *mut bfd,
+    mut _last_file: *mut bfd,
 ) -> *mut bfd {
     return _bfd_ptr_bfd_null_error(archive) as *mut bfd;
 }
@@ -5663,10 +5663,10 @@ pub unsafe extern "C" fn _bfd_archive_coff_construct_extended_name_table(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_construct_extended_name_table(
-    mut abfd: *mut bfd,
-    mut tabloc: *mut *mut libc::c_char,
-    mut len: *mut bfd_size_type,
-    mut name: *mut *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _tabloc: *mut *mut libc::c_char,
+    mut _len: *mut bfd_size_type,
+    mut _name: *mut *const libc::c_char,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
@@ -6043,7 +6043,7 @@ pub unsafe extern "C" fn _bfd_bsd44_write_ar_hdr(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_write_ar_hdr(
     mut archive: *mut bfd,
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
 ) -> bool {
     return _bfd_bool_bfd_false_error(archive);
 }
@@ -6315,9 +6315,9 @@ pub unsafe extern "C" fn bfd_gnu_truncate_arname(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_truncate_arname(
-    mut abfd: *mut bfd,
-    mut pathname: *const libc::c_char,
-    mut arhdr: *mut libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _pathname: *const libc::c_char,
+    mut _arhdr: *mut libc::c_char,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_write_archive_contents(mut arch: *mut bfd) -> bool {
@@ -7337,17 +7337,17 @@ pub unsafe extern "C" fn _bfd_coff_write_armap(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_noarchive_write_armap(
-    mut arch: *mut bfd,
-    mut elength: libc::c_uint,
-    mut map: *mut orl,
-    mut orl_count: libc::c_uint,
-    mut stridx: libc::c_int,
+    mut _arch: *mut bfd,
+    mut _elength: libc::c_uint,
+    mut _map: *mut orl,
+    mut _orl_count: libc::c_uint,
+    mut _stridx: libc::c_int,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn archive_close_worker(
     mut slot: *mut *mut libc::c_void,
-    mut inf: *mut libc::c_void,
+    mut _inf: *mut libc::c_void,
 ) -> libc::c_int {
     let mut ent: *mut ar_cache = *slot as *mut ar_cache;
     bfd_close_all_done((*ent).arbfd);

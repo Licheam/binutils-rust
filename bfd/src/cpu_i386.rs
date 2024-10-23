@@ -281,14 +281,14 @@ unsafe extern "C" fn bfd_arch_i386_fill(
 #[no_mangle]
 pub unsafe extern "C" fn bfd_arch_i386_short_nop_fill(
     mut count: bfd_size_type,
-    mut is_bigendian: bool,
+    mut _is_bigendian: bool,
     mut code: bool,
 ) -> *mut libc::c_void {
     return bfd_arch_i386_fill(count, code, 0 as libc::c_int != 0);
 }
 unsafe extern "C" fn bfd_arch_i386_long_nop_fill(
     mut count: bfd_size_type,
-    mut is_bigendian: bool,
+    mut _is_bigendian: bool,
     mut code: bool,
 ) -> *mut libc::c_void {
     return bfd_arch_i386_fill(count, code, 1 as libc::c_int != 0);

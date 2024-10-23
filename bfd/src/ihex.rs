@@ -5020,8 +5020,8 @@ unsafe extern "C" fn ihex_set_arch_mach(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn ihex_sizeof_headers(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     return 0 as libc::c_int;
 }

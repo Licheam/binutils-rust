@@ -4028,7 +4028,7 @@ unsafe extern "C" fn memory_bclose(mut abfd: *mut bfd) -> libc::c_int {
     (*abfd).iostream = 0 as *mut libc::c_void;
     return 0 as libc::c_int;
 }
-unsafe extern "C" fn memory_bflush(mut abfd: *mut bfd) -> libc::c_int {
+unsafe extern "C" fn memory_bflush(mut _abfd: *mut bfd) -> libc::c_int {
     return 0 as libc::c_int;
 }
 unsafe extern "C" fn memory_bstat(
@@ -4045,14 +4045,14 @@ unsafe extern "C" fn memory_bstat(
     return 0 as libc::c_int;
 }
 unsafe extern "C" fn memory_bmmap(
-    mut abfd: *mut bfd,
-    mut addr: *mut libc::c_void,
-    mut len: bfd_size_type,
-    mut prot: libc::c_int,
-    mut flags: libc::c_int,
-    mut offset: file_ptr,
-    mut map_addr: *mut *mut libc::c_void,
-    mut map_len: *mut bfd_size_type,
+    mut _abfd: *mut bfd,
+    mut _addr: *mut libc::c_void,
+    mut _len: bfd_size_type,
+    mut _prot: libc::c_int,
+    mut _flags: libc::c_int,
+    mut _offset: file_ptr,
+    mut _map_addr: *mut *mut libc::c_void,
+    mut _map_len: *mut bfd_size_type,
 ) -> *mut libc::c_void {
     return -(1 as libc::c_int) as *mut libc::c_void;
 }

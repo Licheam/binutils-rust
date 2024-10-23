@@ -4734,8 +4734,8 @@ unsafe extern "C" fn tekhex_write_object_contents(mut abfd: *mut bfd) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn tekhex_sizeof_headers(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     return 0 as libc::c_int;
 }
@@ -4752,7 +4752,7 @@ unsafe extern "C" fn tekhex_make_empty_symbol(mut abfd: *mut bfd) -> *mut asymbo
     return &mut (*new_symbol).symbol;
 }
 unsafe extern "C" fn tekhex_get_symbol_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut symbol: *mut asymbol,
     mut ret: *mut symbol_info,
 ) {

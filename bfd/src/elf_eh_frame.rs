@@ -5940,7 +5940,7 @@ unsafe extern "C" fn skip_non_nops(
         } else {
             if *buf as libc::c_int == DW_CFA_set_loc as libc::c_int {
                 *set_loc_count = (*set_loc_count).wrapping_add(1);
-                *set_loc_count;
+                let _ = *set_loc_count;
             }
             if !skip_cfa_op(&mut buf, end, encoded_ptr_width) {
                 return 0 as *mut bfd_byte;
@@ -7478,7 +7478,7 @@ unsafe extern "C" fn offset_adjust(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_adjust_eh_frame_global_symbol(
     mut h: *mut elf_link_hash_entry,
-    mut arg: *mut libc::c_void,
+    mut _arg: *mut libc::c_void,
 ) -> bool {
     let mut sym_sec: *mut asection = 0 as *mut asection;
     let mut delta: bfd_signed_vma = 0;
@@ -7857,8 +7857,8 @@ pub unsafe extern "C" fn _bfd_elf_maybe_strip_eh_frame_hdr(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_eh_frame_section_offset(
-    mut output_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _output_bfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
     mut sec: *mut asection,
     mut offset: bfd_vma,
 ) -> bfd_vma {
@@ -9148,7 +9148,7 @@ pub unsafe extern "C" fn _bfd_elf_write_section_eh_frame_hdr(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_eh_frame_address_size(
     mut abfd: *mut bfd,
-    mut sec: *const asection,
+    mut _sec: *const asection,
 ) -> libc::c_uint {
     return (if (*((*(*abfd).tdata.elf_obj_data).elf_header).as_mut_ptr())
         .e_ident[4 as libc::c_int as usize] as libc::c_int == 2 as libc::c_int
@@ -9160,16 +9160,16 @@ pub unsafe extern "C" fn _bfd_elf_eh_frame_address_size(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_can_make_relative(
-    mut input_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
-    mut eh_frame_section: *mut asection,
+    mut _input_bfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
+    mut _eh_frame_section: *mut asection,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_encode_eh_address(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
     mut osec: *mut asection,
     mut offset: bfd_vma,
     mut loc_sec: *mut asection,

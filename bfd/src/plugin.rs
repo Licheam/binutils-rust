@@ -4116,7 +4116,7 @@ unsafe extern "C" fn bfd_is_thin_archive(mut abfd: *const bfd) -> bool {
     return (*abfd).is_thin_archive() != 0;
 }
 unsafe extern "C" fn message(
-    mut level: libc::c_int,
+    mut _level: libc::c_int,
     mut format: *const libc::c_char,
     mut args: ...
 ) -> ld_plugin_status {
@@ -4629,8 +4629,8 @@ unsafe extern "C" fn bfd_plugin_object_p(mut abfd: *mut bfd) -> bfd_cleanup {
     };
 }
 unsafe extern "C" fn bfd_plugin_bfd_copy_private_bfd_data(
-    mut ibfd: *mut bfd,
-    mut obfd: *mut bfd,
+    mut _ibfd: *mut bfd,
+    mut _obfd: *mut bfd,
 ) -> bool {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4641,10 +4641,10 @@ unsafe extern "C" fn bfd_plugin_bfd_copy_private_bfd_data(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn bfd_plugin_bfd_copy_private_section_data(
-    mut ibfd: *mut bfd,
-    mut isection: *mut asection,
-    mut obfd: *mut bfd,
-    mut osection: *mut asection,
+    mut _ibfd: *mut bfd,
+    mut _isection: *mut asection,
+    mut _obfd: *mut bfd,
+    mut _osection: *mut asection,
 ) -> bool {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4655,10 +4655,10 @@ unsafe extern "C" fn bfd_plugin_bfd_copy_private_section_data(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn bfd_plugin_bfd_copy_private_symbol_data(
-    mut ibfd: *mut bfd,
-    mut isymbol: *mut asymbol,
-    mut obfd: *mut bfd,
-    mut osymbol: *mut asymbol,
+    mut _ibfd: *mut bfd,
+    mut _isymbol: *mut asymbol,
+    mut _obfd: *mut bfd,
+    mut _osymbol: *mut asymbol,
 ) -> bool {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4669,8 +4669,8 @@ unsafe extern "C" fn bfd_plugin_bfd_copy_private_symbol_data(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn bfd_plugin_bfd_print_private_bfd_data(
-    mut abfd: *mut bfd,
-    mut ptr: *mut libc::c_void,
+    mut _abfd: *mut bfd,
+    mut _ptr: *mut libc::c_void,
 ) -> bool {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4681,7 +4681,7 @@ unsafe extern "C" fn bfd_plugin_bfd_print_private_bfd_data(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn bfd_plugin_core_file_failing_command(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
 ) -> *mut libc::c_char {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4692,7 +4692,7 @@ unsafe extern "C" fn bfd_plugin_core_file_failing_command(
     return 0 as *mut libc::c_char;
 }
 unsafe extern "C" fn bfd_plugin_core_file_failing_signal(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
 ) -> libc::c_int {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -4702,7 +4702,7 @@ unsafe extern "C" fn bfd_plugin_core_file_failing_signal(
     }
     return 0 as libc::c_int;
 }
-unsafe extern "C" fn bfd_plugin_core_file_pid(mut abfd: *mut bfd) -> libc::c_int {
+unsafe extern "C" fn bfd_plugin_core_file_pid(mut _abfd: *mut bfd) -> libc::c_int {
     if 0 as libc::c_int == 0 {
         bfd_assert(
             b"plugin.c\0" as *const u8 as *const libc::c_char,
@@ -5018,10 +5018,10 @@ unsafe extern "C" fn bfd_plugin_canonicalize_symtab(
     return nsyms;
 }
 unsafe extern "C" fn bfd_plugin_print_symbol(
-    mut abfd: *mut bfd,
-    mut afile: *mut libc::c_void,
-    mut symbol: *mut asymbol,
-    mut how: bfd_print_symbol_type,
+    mut _abfd: *mut bfd,
+    mut _afile: *mut libc::c_void,
+    mut _symbol: *mut asymbol,
+    mut _how: bfd_print_symbol_type,
 ) {
     if 0 as libc::c_int == 0 {
         bfd_assert(
@@ -5031,7 +5031,7 @@ unsafe extern "C" fn bfd_plugin_print_symbol(
     }
 }
 unsafe extern "C" fn bfd_plugin_get_symbol_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut symbol: *mut asymbol,
     mut ret: *mut symbol_info,
 ) {
@@ -5049,8 +5049,8 @@ unsafe extern "C" fn bfd_plugin_make_empty_symbol(mut abfd: *mut bfd) -> *mut as
     return new_symbol;
 }
 unsafe extern "C" fn bfd_plugin_sizeof_headers(
-    mut a: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _a: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     if 0 as libc::c_int == 0 {
         bfd_assert(

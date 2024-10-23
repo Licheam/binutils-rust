@@ -7096,11 +7096,11 @@ pub unsafe extern "C" fn bfd_elf_get_elf_syms(
                                     esym = esym.offset(extsym_size as isize);
                                     isym = isym.offset(1);
                                     isym;
-                                    shndx = (if !shndx.is_null() {
+                                    shndx = if !shndx.is_null() {
                                         shndx.offset(1 as libc::c_int as isize)
                                     } else {
                                         0 as *mut Elf_External_Sym_Shndx
-                                    });
+                                    };
                                 }
                             }
                         }
@@ -7653,7 +7653,7 @@ pub unsafe extern "C" fn _bfd_elf_setup_sections(mut abfd: *mut bfd) -> bool {
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_is_group_section(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *const asection,
 ) -> bool {
     return !((*((*sec).used_by_bfd as *mut bfd_elf_section_data)).next_in_group)
@@ -7661,7 +7661,7 @@ pub unsafe extern "C" fn bfd_elf_is_group_section(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_group_name(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *const asection,
 ) -> *const libc::c_char {
     if !((*((*sec).used_by_bfd as *mut bfd_elf_section_data)).sec_group).is_null() {
@@ -7983,7 +7983,7 @@ pub unsafe extern "C" fn _bfd_elf_make_section_from_shdr(
                             && ((*hdr).sh_offset as libc::c_ulong)
                                 .wrapping_sub((*phdr).p_offset)
                                 .wrapping_add(
-                                    (if (*hdr).sh_flags
+                                    if (*hdr).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -7992,7 +7992,7 @@ pub unsafe extern "C" fn _bfd_elf_make_section_from_shdr(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*hdr).sh_size
-                                    }),
+                                    },
                                 ) <= (*phdr).p_filesz)
                     && (1 as libc::c_int == 0
                         || (*hdr).sh_flags
@@ -8006,7 +8006,7 @@ pub unsafe extern "C" fn _bfd_elf_make_section_from_shdr(
                             && ((*hdr).sh_addr)
                                 .wrapping_sub((*phdr).p_vaddr)
                                 .wrapping_add(
-                                    (if (*hdr).sh_flags
+                                    if (*hdr).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -8015,7 +8015,7 @@ pub unsafe extern "C" fn _bfd_elf_make_section_from_shdr(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*hdr).sh_size
-                                    }),
+                                    },
                                 ) <= (*phdr).p_memsz)
                     && ((*phdr).p_type != 2 as libc::c_int as libc::c_ulong
                         && (*phdr).p_type != 4 as libc::c_int as libc::c_ulong
@@ -8180,13 +8180,13 @@ pub static mut bfd_elf_section_type_names: [*const libc::c_char; 12] = [
 ];
 #[no_mangle]
 pub unsafe extern "C" fn bfd_elf_generic_reloc(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut reloc_entry: *mut arelent,
     mut symbol: *mut asymbol,
-    mut data: *mut libc::c_void,
+    mut _data: *mut libc::c_void,
     mut input_section: *mut asection,
     mut output_bfd: *mut bfd,
-    mut error_message: *mut *mut libc::c_char,
+    mut _error_message: *mut *mut libc::c_char,
 ) -> bfd_reloc_status_type {
     if !output_bfd.is_null()
         && (*symbol).flags & ((1 as libc::c_int) << 8 as libc::c_int) as libc::c_uint
@@ -29928,7 +29928,7 @@ unsafe extern "C" fn assign_file_positions_for_load_sections(
                             && ((*this_hdr_0).sh_offset as libc::c_ulong)
                                 .wrapping_sub((*p).p_offset)
                                 .wrapping_add(
-                                    (if (*this_hdr_0).sh_flags
+                                    if (*this_hdr_0).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*this_hdr_0).sh_type == 8 as libc::c_int as libc::c_uint
@@ -29937,7 +29937,7 @@ unsafe extern "C" fn assign_file_positions_for_load_sections(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*this_hdr_0).sh_size
-                                    }),
+                                    },
                                 ) <= (*p).p_filesz)
                     && (!check_vma
                         || (*this_hdr_0).sh_flags
@@ -29951,7 +29951,7 @@ unsafe extern "C" fn assign_file_positions_for_load_sections(
                             && ((*this_hdr_0).sh_addr)
                                 .wrapping_sub((*p).p_vaddr)
                                 .wrapping_add(
-                                    (if (*this_hdr_0).sh_flags
+                                    if (*this_hdr_0).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*this_hdr_0).sh_type == 8 as libc::c_int as libc::c_uint
@@ -29960,7 +29960,7 @@ unsafe extern "C" fn assign_file_positions_for_load_sections(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*this_hdr_0).sh_size
-                                    }),
+                                    },
                                 ) <= (*p).p_memsz)
                     && ((*p).p_type != 2 as libc::c_int as libc::c_ulong
                         && (*p).p_type != 4 as libc::c_int as libc::c_ulong
@@ -30270,7 +30270,7 @@ unsafe extern "C" fn assign_file_positions_for_non_load_sections(
                             ))
                             .vma)
                             .wrapping_add(
-                                (if !((**((*lm).sections)
+                                if !((**((*lm).sections)
                                     .as_mut_ptr()
                                     .offset(
                                         ((*lm).count).wrapping_sub(1 as libc::c_int as libc::c_uint)
@@ -30290,7 +30290,7 @@ unsafe extern "C" fn assign_file_positions_for_non_load_sections(
                                         .wrapping_div(opb as libc::c_ulong)
                                 } else {
                                     0 as libc::c_int as libc::c_ulong
-                                }),
+                                },
                             ) > start
                         && (**((*lm).sections)
                             .as_mut_ptr()
@@ -30557,7 +30557,7 @@ unsafe extern "C" fn assign_file_positions_except_relocs(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_init_file_header(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     let mut i_ehdrp: *mut Elf_Internal_Ehdr = 0 as *mut Elf_Internal_Ehdr;
     let mut shstrtab: *mut elf_strtab_hash = 0 as *mut elf_strtab_hash;
@@ -31081,57 +31081,57 @@ unsafe extern "C" fn rewrite_elf_program_header(
                     || !(!((*segment).p_vaddr
                         >= ((*segment2).p_vaddr)
                             .wrapping_add(
-                                (if (*segment2).p_memsz > (*segment2).p_filesz {
+                                if (*segment2).p_memsz > (*segment2).p_filesz {
                                     (*segment2).p_memsz
                                 } else {
                                     (*segment2).p_filesz
-                                }),
+                                },
                             )
                         || (*segment2).p_vaddr
                             >= ((*segment).p_vaddr)
                                 .wrapping_add(
-                                    (if (*segment).p_memsz > (*segment).p_filesz {
+                                    if (*segment).p_memsz > (*segment).p_filesz {
                                         (*segment).p_memsz
                                     } else {
                                         (*segment).p_filesz
-                                    }),
+                                    },
                                 ))
                         && !((*segment).p_paddr
                             >= ((*segment2).p_paddr)
                                 .wrapping_add(
-                                    (if (*segment2).p_memsz > (*segment2).p_filesz {
+                                    if (*segment2).p_memsz > (*segment2).p_filesz {
                                         (*segment2).p_memsz
                                     } else {
                                         (*segment2).p_filesz
-                                    }),
+                                    },
                                 )
                             || (*segment2).p_paddr
                                 >= ((*segment).p_paddr)
                                     .wrapping_add(
-                                        (if (*segment).p_memsz > (*segment).p_filesz {
+                                        if (*segment).p_memsz > (*segment).p_filesz {
                                             (*segment).p_memsz
                                         } else {
                                             (*segment).p_filesz
-                                        }),
+                                        },
                                     ))))
                 {
                     if (*segment2).p_vaddr < (*segment).p_vaddr {
                         extra_length = ((*segment).p_vaddr)
                             .wrapping_add(
-                                (if (*segment).p_memsz > (*segment).p_filesz {
+                                if (*segment).p_memsz > (*segment).p_filesz {
                                     (*segment).p_memsz
                                 } else {
                                     (*segment).p_filesz
-                                }),
+                                },
                             )
                             .wrapping_sub(
                                 ((*segment2).p_vaddr)
                                     .wrapping_add(
-                                        (if (*segment2).p_memsz > (*segment2).p_filesz {
+                                        if (*segment2).p_memsz > (*segment2).p_filesz {
                                             (*segment2).p_memsz
                                         } else {
                                             (*segment2).p_filesz
-                                        }),
+                                        },
                                     ),
                             ) as bfd_signed_vma;
                         if extra_length > 0 as libc::c_int as libc::c_long {
@@ -31151,20 +31151,20 @@ unsafe extern "C" fn rewrite_elf_program_header(
                     } else {
                         extra_length = ((*segment2).p_vaddr)
                             .wrapping_add(
-                                (if (*segment2).p_memsz > (*segment2).p_filesz {
+                                if (*segment2).p_memsz > (*segment2).p_filesz {
                                     (*segment2).p_memsz
                                 } else {
                                     (*segment2).p_filesz
-                                }),
+                                },
                             )
                             .wrapping_sub(
                                 ((*segment).p_vaddr)
                                     .wrapping_add(
-                                        (if (*segment).p_memsz > (*segment).p_filesz {
+                                        if (*segment).p_memsz > (*segment).p_filesz {
                                             (*segment).p_memsz
                                         } else {
                                             (*segment).p_filesz
-                                        }),
+                                        },
                                     ),
                             ) as bfd_signed_vma;
                         if extra_length > 0 as libc::c_int as libc::c_long {
@@ -31227,7 +31227,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                         && ((*section).lma)
                             .wrapping_mul(opb as libc::c_ulong)
                             .wrapping_add(
-                                (if (*section).flags
+                                if (*section).flags
                                     & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                         as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                     || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31235,15 +31235,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                     (*section).size
                                 } else {
                                     0 as libc::c_int as libc::c_ulong
-                                }),
+                                },
                             )
                             <= ((*segment).p_paddr)
                                 .wrapping_add(
-                                    (if (*segment).p_memsz > (*segment).p_filesz {
+                                    if (*segment).p_memsz > (*segment).p_filesz {
                                         (*segment).p_memsz
                                     } else {
                                         (*segment).p_filesz
-                                    }),
+                                    },
                                 )) as libc::c_int
                 } else {
                     (((*section).vma).wrapping_mul(opb as libc::c_ulong)
@@ -31251,7 +31251,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                         && ((*section).vma)
                             .wrapping_mul(opb as libc::c_ulong)
                             .wrapping_add(
-                                (if (*section).flags
+                                if (*section).flags
                                     & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                         as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                     || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31259,15 +31259,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                     (*section).size
                                 } else {
                                     0 as libc::c_int as libc::c_ulong
-                                }),
+                                },
                             )
                             <= ((*segment).p_vaddr)
                                 .wrapping_add(
-                                    (if (*segment).p_memsz > (*segment).p_filesz {
+                                    if (*segment).p_memsz > (*segment).p_filesz {
                                         (*segment).p_memsz
                                     } else {
                                         (*segment).p_filesz
-                                    }),
+                                    },
                                 )) as libc::c_int
                 }) != 0
                     && (*section).flags & 0x1 as libc::c_int as libc::c_uint
@@ -31437,7 +31437,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                             && ((*section).lma)
                                 .wrapping_mul(opb as libc::c_ulong)
                                 .wrapping_add(
-                                    (if (*section).flags
+                                    if (*section).flags
                                         & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                             as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                         || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31445,15 +31445,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                         (*section).size
                                     } else {
                                         0 as libc::c_int as libc::c_ulong
-                                    }),
+                                    },
                                 )
                                 <= ((*segment).p_paddr)
                                     .wrapping_add(
-                                        (if (*segment).p_memsz > (*segment).p_filesz {
+                                        if (*segment).p_memsz > (*segment).p_filesz {
                                             (*segment).p_memsz
                                         } else {
                                             (*segment).p_filesz
-                                        }),
+                                        },
                                     )) as libc::c_int
                     } else {
                         (((*section).vma).wrapping_mul(opb as libc::c_ulong)
@@ -31461,7 +31461,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                             && ((*section).vma)
                                 .wrapping_mul(opb as libc::c_ulong)
                                 .wrapping_add(
-                                    (if (*section).flags
+                                    if (*section).flags
                                         & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                             as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                         || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31469,15 +31469,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                         (*section).size
                                     } else {
                                         0 as libc::c_int as libc::c_ulong
-                                    }),
+                                    },
                                 )
                                 <= ((*segment).p_vaddr)
                                     .wrapping_add(
-                                        (if (*segment).p_memsz > (*segment).p_filesz {
+                                        if (*segment).p_memsz > (*segment).p_filesz {
                                             (*segment).p_memsz
                                         } else {
                                             (*segment).p_filesz
-                                        }),
+                                        },
                                     )) as libc::c_int
                     }) != 0
                         && (*section).flags & 0x1 as libc::c_int as libc::c_uint
@@ -31583,7 +31583,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                             && ((*output_section).lma)
                                 .wrapping_mul(opb as libc::c_ulong)
                                 .wrapping_add(
-                                    (if (*output_section).flags
+                                    if (*output_section).flags
                                         & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                             as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                         || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31591,15 +31591,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                         (*output_section).size
                                     } else {
                                         0 as libc::c_int as libc::c_ulong
-                                    }),
+                                    },
                                 )
                                 <= ((*map).p_paddr)
                                     .wrapping_add(
-                                        (if (*segment).p_memsz > (*segment).p_filesz {
+                                        if (*segment).p_memsz > (*segment).p_filesz {
                                             (*segment).p_memsz
                                         } else {
                                             (*segment).p_filesz
-                                        }),
+                                        },
                                     )
                             || (*segment).p_type == 4 as libc::c_int as libc::c_ulong
                                 && (*((*section).used_by_bfd as *mut bfd_elf_section_data))
@@ -31619,7 +31619,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                     && ((*output_section).vma)
                                         .wrapping_mul(opb as libc::c_ulong)
                                         .wrapping_add(
-                                            (if (*output_section).flags
+                                            if (*output_section).flags
                                                 & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                                     as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                                 || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31627,15 +31627,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                                 (*output_section).size
                                             } else {
                                                 0 as libc::c_int as libc::c_ulong
-                                            }),
+                                            },
                                         )
                                         <= ((*segment).p_vaddr)
                                             .wrapping_add(
-                                                (if (*segment).p_memsz > (*segment).p_filesz {
+                                                if (*segment).p_memsz > (*segment).p_filesz {
                                                     (*segment).p_memsz
                                                 } else {
                                                     (*segment).p_filesz
-                                                }),
+                                                },
                                             ))
                         {
                             if matching_lma.is_null()
@@ -31759,7 +31759,7 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                     && ((*output_section).lma)
                                         .wrapping_mul(opb as libc::c_ulong)
                                         .wrapping_add(
-                                            (if (*output_section).flags
+                                            if (*output_section).flags
                                                 & (0x100 as libc::c_int | 0x400 as libc::c_int)
                                                     as libc::c_uint != 0x400 as libc::c_int as libc::c_uint
                                                 || (*segment).p_type == 7 as libc::c_int as libc::c_ulong
@@ -31767,15 +31767,15 @@ unsafe extern "C" fn rewrite_elf_program_header(
                                                 (*output_section).size
                                             } else {
                                                 0 as libc::c_int as libc::c_ulong
-                                            }),
+                                            },
                                         )
                                         <= ((*map).p_paddr)
                                             .wrapping_add(
-                                                (if (*segment).p_memsz > (*segment).p_filesz {
+                                                if (*segment).p_memsz > (*segment).p_filesz {
                                                     (*segment).p_memsz
                                                 } else {
                                                     (*segment).p_filesz
-                                                }),
+                                                },
                                             )
                                     || (*segment).p_type == 4 as libc::c_int as libc::c_ulong
                                         && (*((*section).used_by_bfd as *mut bfd_elf_section_data))
@@ -32077,7 +32077,7 @@ unsafe extern "C" fn copy_elf_program_header(
                         && ((*this_hdr).sh_offset as libc::c_ulong)
                             .wrapping_sub((*segment).p_offset)
                             .wrapping_add(
-                                (if (*this_hdr).sh_flags
+                                if (*this_hdr).sh_flags
                                     & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                     != 0 as libc::c_int as libc::c_ulong
                                     && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32086,7 +32086,7 @@ unsafe extern "C" fn copy_elf_program_header(
                                     0 as libc::c_int as libc::c_ulong
                                 } else {
                                     (*this_hdr).sh_size
-                                }),
+                                },
                             ) <= (*segment).p_filesz)
                 && (1 as libc::c_int == 0
                     || (*this_hdr).sh_flags
@@ -32100,7 +32100,7 @@ unsafe extern "C" fn copy_elf_program_header(
                         && ((*this_hdr).sh_addr)
                             .wrapping_sub((*segment).p_vaddr)
                             .wrapping_add(
-                                (if (*this_hdr).sh_flags
+                                if (*this_hdr).sh_flags
                                     & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                     != 0 as libc::c_int as libc::c_ulong
                                     && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32109,7 +32109,7 @@ unsafe extern "C" fn copy_elf_program_header(
                                     0 as libc::c_int as libc::c_ulong
                                 } else {
                                     (*this_hdr).sh_size
-                                }),
+                                },
                             ) <= (*segment).p_memsz)
                 && ((*segment).p_type != 2 as libc::c_int as libc::c_ulong
                     && (*segment).p_type != 4 as libc::c_int as libc::c_ulong
@@ -32239,7 +32239,7 @@ unsafe extern "C" fn copy_elf_program_header(
                             && ((*this_hdr).sh_offset as libc::c_ulong)
                                 .wrapping_sub((*segment).p_offset)
                                 .wrapping_add(
-                                    (if (*this_hdr).sh_flags
+                                    if (*this_hdr).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32248,7 +32248,7 @@ unsafe extern "C" fn copy_elf_program_header(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*this_hdr).sh_size
-                                    }),
+                                    },
                                 ) <= (*segment).p_filesz)
                     && (1 as libc::c_int == 0
                         || (*this_hdr).sh_flags
@@ -32262,7 +32262,7 @@ unsafe extern "C" fn copy_elf_program_header(
                             && ((*this_hdr).sh_addr)
                                 .wrapping_sub((*segment).p_vaddr)
                                 .wrapping_add(
-                                    (if (*this_hdr).sh_flags
+                                    if (*this_hdr).sh_flags
                                         & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                         != 0 as libc::c_int as libc::c_ulong
                                         && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32271,7 +32271,7 @@ unsafe extern "C" fn copy_elf_program_header(
                                         0 as libc::c_int as libc::c_ulong
                                     } else {
                                         (*this_hdr).sh_size
-                                    }),
+                                    },
                                 ) <= (*segment).p_memsz)
                     && ((*segment).p_type != 2 as libc::c_int as libc::c_ulong
                         && (*segment).p_type != 4 as libc::c_int as libc::c_ulong
@@ -32347,11 +32347,11 @@ unsafe extern "C" fn copy_elf_program_header(
                 .wrapping_add(hdr_size)
                 .wrapping_div(opb as libc::c_ulong)
                 .wrapping_sub(
-                    (if !lowest_section.is_null() {
+                    if !lowest_section.is_null() {
                         (*lowest_section).lma
                     } else {
                         0 as libc::c_int as libc::c_ulong
-                    }),
+                    },
                 );
         }
         (*map).count = section_count;
@@ -32465,7 +32465,7 @@ unsafe extern "C" fn copy_private_bfd_data(
                                 && ((*this_hdr).sh_offset as libc::c_ulong)
                                     .wrapping_sub((*segment).p_offset)
                                     .wrapping_add(
-                                        (if (*this_hdr).sh_flags
+                                        if (*this_hdr).sh_flags
                                             & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                             != 0 as libc::c_int as libc::c_ulong
                                             && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32474,7 +32474,7 @@ unsafe extern "C" fn copy_private_bfd_data(
                                             0 as libc::c_int as libc::c_ulong
                                         } else {
                                             (*this_hdr).sh_size
-                                        }),
+                                        },
                                     ) <= (*segment).p_filesz)
                         && (1 as libc::c_int == 0
                             || (*this_hdr).sh_flags
@@ -32488,7 +32488,7 @@ unsafe extern "C" fn copy_private_bfd_data(
                                 && ((*this_hdr).sh_addr)
                                     .wrapping_sub((*segment).p_vaddr)
                                     .wrapping_add(
-                                        (if (*this_hdr).sh_flags
+                                        if (*this_hdr).sh_flags
                                             & ((1 as libc::c_int) << 10 as libc::c_int) as libc::c_ulong
                                             != 0 as libc::c_int as libc::c_ulong
                                             && (*this_hdr).sh_type == 8 as libc::c_int as libc::c_uint
@@ -32497,7 +32497,7 @@ unsafe extern "C" fn copy_private_bfd_data(
                                             0 as libc::c_int as libc::c_ulong
                                         } else {
                                             (*this_hdr).sh_size
-                                        }),
+                                        },
                                     ) <= (*segment).p_memsz)
                         && ((*segment).p_type != 2 as libc::c_int as libc::c_ulong
                             && (*segment).p_type != 4 as libc::c_int as libc::c_ulong
@@ -34522,7 +34522,7 @@ pub unsafe extern "C" fn _bfd_elf_make_empty_symbol(mut abfd: *mut bfd) -> *mut 
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_get_symbol_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut symbol: *mut asymbol,
     mut ret: *mut symbol_info,
 ) {
@@ -34530,7 +34530,7 @@ pub unsafe extern "C" fn _bfd_elf_get_symbol_info(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_is_local_label_name(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut name: *const libc::c_char,
 ) -> bool {
     if *name.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
@@ -34591,8 +34591,8 @@ pub unsafe extern "C" fn _bfd_elf_is_local_label_name(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_get_lineno(
-    mut abfd: *mut bfd,
-    mut symbol: *mut asymbol,
+    mut _abfd: *mut bfd,
+    mut _symbol: *mut asymbol,
 ) -> *mut alent {
     _bfd_abort(
         b"elf.c\0" as *const u8 as *const libc::c_char,
@@ -34860,9 +34860,9 @@ pub unsafe extern "C" fn _bfd_elf_set_section_contents(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_no_info_to_howto(
-    mut abfd: *mut bfd,
-    mut cache_ptr: *mut arelent,
-    mut dst: *mut Elf_Internal_Rela,
+    mut _abfd: *mut bfd,
+    mut _cache_ptr: *mut arelent,
+    mut _dst: *mut Elf_Internal_Rela,
 ) -> bool {
     _bfd_abort(
         b"elf.c\0" as *const u8 as *const libc::c_char,
@@ -35330,13 +35330,13 @@ pub unsafe extern "C" fn _bfd_elf_close_and_cleanup(mut abfd: *mut bfd) -> bool 
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_rel_vtable_reloc_fn(
-    mut abfd: *mut bfd,
-    mut re: *mut arelent,
-    mut symbol: *mut bfd_symbol,
-    mut data: *mut libc::c_void,
-    mut is: *mut asection,
-    mut obfd: *mut bfd,
-    mut errmsg: *mut *mut libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _re: *mut arelent,
+    mut _symbol: *mut bfd_symbol,
+    mut _data: *mut libc::c_void,
+    mut _is: *mut asection,
+    mut _obfd: *mut bfd,
+    mut _errmsg: *mut *mut libc::c_char,
 ) -> bfd_reloc_status_type {
     return bfd_reloc_ok;
 }
@@ -39429,9 +39429,9 @@ pub unsafe extern "C" fn bfd_get_elf_phdrs(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_reloc_type_class(
-    mut info: *const bfd_link_info,
-    mut rel_sec: *const asection,
-    mut rela: *const Elf_Internal_Rela,
+    mut _info: *const bfd_link_info,
+    mut _rel_sec: *const asection,
+    mut _rela: *const Elf_Internal_Rela,
 ) -> elf_reloc_type_class {
     return reloc_class_normal;
 }
@@ -39550,8 +39550,8 @@ pub unsafe extern "C" fn bfd_elf_bfd_from_remote_memory(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_elf_get_synthetic_symtab(
     mut abfd: *mut bfd,
-    mut symcount: libc::c_long,
-    mut syms: *mut *mut asymbol,
+    mut _symcount: libc::c_long,
+    mut _syms: *mut *mut asymbol,
     mut dynsymcount: libc::c_long,
     mut dynsyms: *mut *mut asymbol,
     mut ret: *mut *mut asymbol,

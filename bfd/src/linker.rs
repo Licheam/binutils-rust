@@ -4691,7 +4691,7 @@ pub unsafe extern "C" fn bfd_generic_link_read_symbols(mut abfd: *mut bfd) -> bo
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_link_just_syms(
     mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
 ) {
     (*sec).set_sec_info_type(4 as libc::c_int as libc::c_uint);
     (*sec)
@@ -4702,9 +4702,9 @@ pub unsafe extern "C" fn _bfd_generic_link_just_syms(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_copy_link_hash_symbol_type(
-    mut abfd: *mut bfd,
-    mut hdest: *mut bfd_link_hash_entry,
-    mut hsrc: *mut bfd_link_hash_entry,
+    mut _abfd: *mut bfd,
+    mut _hdest: *mut bfd_link_hash_entry,
+    mut _hsrc: *mut bfd_link_hash_entry,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_link_add_symbols(
@@ -4916,7 +4916,7 @@ unsafe extern "C" fn generic_link_check_archive_element(
     mut abfd: *mut bfd,
     mut info: *mut bfd_link_info,
     mut h: *mut bfd_link_hash_entry,
-    mut name: *const libc::c_char,
+    mut _name: *const libc::c_char,
     mut pneeded: *mut bool,
 ) -> bool {
     let mut pp: *mut *mut asymbol = 0 as *mut *mut asymbol;
@@ -6902,8 +6902,8 @@ pub unsafe extern "C" fn _bfd_count_link_order_relocs(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_link_split_section(
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }
@@ -6974,9 +6974,9 @@ pub unsafe extern "C" fn bfd_section_already_linked_table_insert(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn already_linked_newfunc(
-    mut entry: *mut bfd_hash_entry,
+    mut _entry: *mut bfd_hash_entry,
     mut table: *mut bfd_hash_table,
-    mut string: *const libc::c_char,
+    mut _string: *const libc::c_char,
 ) -> *mut bfd_hash_entry {
     let mut ret: *mut bfd_section_already_linked_hash_entry = bfd_hash_allocate(
         table,
@@ -7167,7 +7167,7 @@ pub unsafe extern "C" fn _bfd_handle_already_linked(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_section_already_linked(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut info: *mut bfd_link_info,
 ) -> bool {
@@ -7336,7 +7336,7 @@ pub unsafe extern "C" fn _bfd_fix_excluded_sec_syms(
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_define_common_symbol(
     mut output_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut h: *mut bfd_link_hash_entry,
 ) -> bool {
     let mut power_of_two: libc::c_uint = 0;
@@ -7388,9 +7388,9 @@ pub unsafe extern "C" fn bfd_generic_define_common_symbol(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_link_hide_symbol(
-    mut output_bfd: *mut bfd,
-    mut info: *mut bfd_link_info,
-    mut h: *mut bfd_link_hash_entry,
+    mut _output_bfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
+    mut _h: *mut bfd_link_hash_entry,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_define_start_stop(
@@ -7532,8 +7532,8 @@ pub unsafe extern "C" fn bfd_link_check_relocs(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_link_check_relocs(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
@@ -7578,35 +7578,35 @@ pub unsafe extern "C" fn _bfd_generic_verify_endian_match(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_sizeof_headers(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     return 0 as libc::c_int;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_relax_section(
     mut abfd: *mut bfd,
-    mut section: *mut asection,
-    mut link_info: *mut bfd_link_info,
-    mut again: *mut bool,
+    mut _section: *mut asection,
+    mut _link_info: *mut bfd_link_info,
+    mut _again: *mut bool,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_get_relocated_section_contents(
     mut abfd: *mut bfd,
-    mut link_info: *mut bfd_link_info,
-    mut link_order: *mut bfd_link_order,
-    mut data: *mut bfd_byte,
-    mut relocatable: bool,
-    mut symbols: *mut *mut asymbol,
+    mut _link_info: *mut bfd_link_info,
+    mut _link_order: *mut bfd_link_order,
+    mut _data: *mut bfd_byte,
+    mut _relocatable: bool,
+    mut _symbols: *mut *mut asymbol,
 ) -> *mut bfd_byte {
     return _bfd_ptr_bfd_null_error(abfd) as *mut bfd_byte;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_lookup_section_flags(
-    mut info: *mut bfd_link_info,
-    mut flaginfo: *mut flag_info,
+    mut _info: *mut bfd_link_info,
+    mut _flaginfo: *mut flag_info,
     mut section: *mut asection,
 ) -> bool {
     return _bfd_bool_bfd_false_error((*section).owner);
@@ -7614,21 +7614,21 @@ pub unsafe extern "C" fn _bfd_nolink_bfd_lookup_section_flags(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_is_group_section(
     mut abfd: *mut bfd,
-    mut sec: *const asection,
+    mut _sec: *const asection,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_group_name(
     mut abfd: *mut bfd,
-    mut sec: *const asection,
+    mut _sec: *const asection,
 ) -> *const libc::c_char {
     return _bfd_ptr_bfd_null_error(abfd) as *const libc::c_char;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_discard_group(
     mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _sec: *mut asection,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
@@ -7640,42 +7640,42 @@ pub unsafe extern "C" fn _bfd_nolink_bfd_link_hash_table_create(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_link_just_syms(
-    mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
+    mut _sec: *mut asection,
+    mut _info: *mut bfd_link_info,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_copy_link_hash_symbol_type(
-    mut abfd: *mut bfd,
-    mut from: *mut bfd_link_hash_entry,
-    mut to: *mut bfd_link_hash_entry,
+    mut _abfd: *mut bfd,
+    mut _from: *mut bfd_link_hash_entry,
+    mut _to: *mut bfd_link_hash_entry,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_link_split_section(
     mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _sec: *mut asection,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_section_already_linked(
     mut abfd: *mut bfd,
-    mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
+    mut _sec: *mut asection,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_define_common_symbol(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
-    mut h: *mut bfd_link_hash_entry,
+    mut _info: *mut bfd_link_info,
+    mut _h: *mut bfd_link_hash_entry,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nolink_bfd_define_start_stop(
-    mut info: *mut bfd_link_info,
-    mut name: *const libc::c_char,
+    mut _info: *mut bfd_link_info,
+    mut _name: *const libc::c_char,
     mut sec: *mut asection,
 ) -> *mut bfd_link_hash_entry {
     return _bfd_ptr_bfd_null_error((*sec).owner) as *mut bfd_link_hash_entry;

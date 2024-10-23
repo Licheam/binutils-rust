@@ -5397,7 +5397,7 @@ pub unsafe extern "C" fn _bfd_pex64i_swap_sym_in(
     }
 }
 unsafe extern "C" fn abs_finder(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sec: *mut asection,
     mut data: *mut libc::c_void,
 ) -> bool {
@@ -5515,8 +5515,8 @@ pub unsafe extern "C" fn _bfd_pex64i_swap_aux_in(
     mut ext1: *mut libc::c_void,
     mut type_0: libc::c_int,
     mut in_class: libc::c_int,
-    mut indx: libc::c_int,
-    mut numaux: libc::c_int,
+    mut _indx: libc::c_int,
+    mut _numaux: libc::c_int,
     mut in1: *mut libc::c_void,
 ) {
     let mut ext: *mut external_auxent = ext1 as *mut external_auxent;
@@ -5754,8 +5754,8 @@ pub unsafe extern "C" fn _bfd_pex64i_swap_aux_out(
     mut inp: *mut libc::c_void,
     mut type_0: libc::c_int,
     mut in_class: libc::c_int,
-    mut indx: libc::c_int,
-    mut numaux: libc::c_int,
+    mut _indx: libc::c_int,
+    mut _numaux: libc::c_int,
     mut extp: *mut libc::c_void,
 ) -> libc::c_uint {
     let mut in_0: *mut internal_auxent = inp as *mut internal_auxent;
@@ -10421,7 +10421,7 @@ pub unsafe extern "C" fn _bfd_pex64_print_private_bfd_data_common(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn is_vma_in_section(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut sect: *mut asection,
     mut obj: *mut libc::c_void,
 ) -> bool {

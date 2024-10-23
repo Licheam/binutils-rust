@@ -3562,171 +3562,171 @@ unsafe extern "C" fn bfd_get_symbol_leading_char(mut abfd: *const bfd) -> libc::
     return (*(*abfd).xvec).symbol_leading_char;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_bool_bfd_false(mut abfd: *mut bfd) -> bool {
+pub unsafe extern "C" fn _bfd_bool_bfd_false(mut _abfd: *mut bfd) -> bool {
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_asymbol_false(
-    mut abfd: *mut bfd,
-    mut sym: *mut asymbol,
+    mut _abfd: *mut bfd,
+    mut _sym: *mut asymbol,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_bool_bfd_false_error(mut ignore: *mut bfd) -> bool {
+pub unsafe extern "C" fn _bfd_bool_bfd_false_error(mut _ignore: *mut bfd) -> bool {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_link_false_error(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_bool_bfd_true(mut ignore: *mut bfd) -> bool {
+pub unsafe extern "C" fn _bfd_bool_bfd_true(mut _ignore: *mut bfd) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_link_true(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_bfd_true(
-    mut ibfd: *mut bfd,
-    mut obfd: *mut bfd,
+    mut _ibfd: *mut bfd,
+    mut _obfd: *mut bfd,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_uint_true(
-    mut abfd: *mut bfd,
-    mut flags: libc::c_uint,
+    mut _abfd: *mut bfd,
+    mut _flags: libc::c_uint,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_asection_bfd_asection_true(
-    mut ibfd: *mut bfd,
-    mut isec: *mut asection,
-    mut obfd: *mut bfd,
-    mut osec: *mut asection,
+    mut _ibfd: *mut bfd,
+    mut _isec: *mut asection,
+    mut _obfd: *mut bfd,
+    mut _osec: *mut asection,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_asymbol_bfd_asymbol_true(
-    mut ibfd: *mut bfd,
-    mut isym: *mut asymbol,
-    mut obfd: *mut bfd,
-    mut osym: *mut asymbol,
+    mut _ibfd: *mut bfd,
+    mut _isym: *mut asymbol,
+    mut _obfd: *mut bfd,
+    mut _osym: *mut asymbol,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_bool_bfd_ptr_true(
-    mut abfd: *mut bfd,
-    mut ptr: *mut libc::c_void,
+    mut _abfd: *mut bfd,
+    mut _ptr: *mut libc::c_void,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_ptr_bfd_null_error(
-    mut ignore: *mut bfd,
+    mut _ignore: *mut bfd,
 ) -> *mut libc::c_void {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as *mut libc::c_void;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_int_bfd_0(mut ignore: *mut bfd) -> libc::c_int {
+pub unsafe extern "C" fn _bfd_int_bfd_0(mut _ignore: *mut bfd) -> libc::c_int {
     return 0 as libc::c_int;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_uint_bfd_0(mut ignore: *mut bfd) -> libc::c_uint {
+pub unsafe extern "C" fn _bfd_uint_bfd_0(mut _ignore: *mut bfd) -> libc::c_uint {
     return 0 as libc::c_int as libc::c_uint;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_long_bfd_0(mut ignore: *mut bfd) -> libc::c_long {
+pub unsafe extern "C" fn _bfd_long_bfd_0(mut _ignore: *mut bfd) -> libc::c_long {
     return 0 as libc::c_int as libc::c_long;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_long_bfd_n1_error(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
 ) -> libc::c_long {
     bfd_set_error(bfd_error_invalid_operation);
     return -(1 as libc::c_int) as libc::c_long;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_void_bfd(mut ignore: *mut bfd) {}
+pub unsafe extern "C" fn _bfd_void_bfd(mut _ignore: *mut bfd) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_void_bfd_link(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_void_bfd_asection(
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_norelocs_get_reloc_upper_bound(
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
 ) -> libc::c_long {
     return ::core::mem::size_of::<*mut arelent>() as libc::c_ulong as libc::c_long;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_norelocs_canonicalize_reloc(
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
     mut relptr: *mut *mut arelent,
-    mut symbols: *mut *mut asymbol,
+    mut _symbols: *mut *mut asymbol,
 ) -> libc::c_long {
     *relptr = 0 as *mut arelent;
     return 0 as libc::c_int as libc::c_long;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_norelocs_set_reloc(
-    mut abfd: *mut bfd,
-    mut sec: *mut asection,
-    mut relptr: *mut *mut arelent,
-    mut count: libc::c_uint,
+    mut _abfd: *mut bfd,
+    mut _sec: *mut asection,
+    mut _relptr: *mut *mut arelent,
+    mut _count: libc::c_uint,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nocore_core_file_matches_executable_p(
-    mut ignore_core_bfd: *mut bfd,
-    mut ignore_exec_bfd: *mut bfd,
+    mut _ignore_core_bfd: *mut bfd,
+    mut _ignore_exec_bfd: *mut bfd,
 ) -> bool {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nocore_core_file_failing_command(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
 ) -> *mut libc::c_char {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as *mut libc::c_char;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nocore_core_file_failing_signal(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
 ) -> libc::c_int {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as libc::c_int;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nocore_core_file_pid(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
 ) -> libc::c_int {
     bfd_set_error(bfd_error_invalid_operation);
     return 0 as libc::c_int;
 }
 #[no_mangle]
-pub unsafe extern "C" fn _bfd_dummy_target(mut ignore_abfd: *mut bfd) -> bfd_cleanup {
+pub unsafe extern "C" fn _bfd_dummy_target(mut _ignore_abfd: *mut bfd) -> bfd_cleanup {
     bfd_set_error(bfd_error_wrong_format);
     return None;
 }
@@ -4313,11 +4313,11 @@ pub unsafe extern "C" fn _bfd_generic_get_section_contents(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_get_section_contents_in_window(
-    mut abfd: *mut bfd,
-    mut section: sec_ptr,
-    mut w: *mut bfd_window,
-    mut offset: file_ptr,
-    mut count: bfd_size_type,
+    mut _abfd: *mut bfd,
+    mut _section: sec_ptr,
+    mut _w: *mut bfd_window,
+    mut _offset: file_ptr,
+    mut _count: bfd_size_type,
 ) -> bool {
     _bfd_abort(
         b"libbfd.c\0" as *const u8 as *const libc::c_char,
@@ -4423,7 +4423,7 @@ pub unsafe extern "C" fn _bfd_warn_deprecated(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_read_unsigned_leb128(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut buf: *mut bfd_byte,
     mut bytes_read_ptr: *mut libc::c_uint,
 ) -> bfd_vma {
@@ -4457,7 +4457,7 @@ pub unsafe extern "C" fn _bfd_read_unsigned_leb128(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_safe_read_leb128(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut ptr: *mut *mut bfd_byte,
     mut sign: bool,
     end: *const bfd_byte,
@@ -4495,7 +4495,7 @@ pub unsafe extern "C" fn _bfd_safe_read_leb128(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_read_signed_leb128(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut buf: *mut bfd_byte,
     mut bytes_read_ptr: *mut libc::c_uint,
 ) -> bfd_signed_vma {
@@ -4561,11 +4561,11 @@ pub unsafe extern "C" fn _bfd_write_unsigned_leb128(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_init_private_section_data(
-    mut ibfd: *mut bfd,
-    mut isec: *mut asection,
-    mut obfd: *mut bfd,
-    mut osec: *mut asection,
-    mut link_info: *mut bfd_link_info,
+    mut _ibfd: *mut bfd,
+    mut _isec: *mut asection,
+    mut _obfd: *mut bfd,
+    mut _osec: *mut asection,
+    mut _link_info: *mut bfd_link_info,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }

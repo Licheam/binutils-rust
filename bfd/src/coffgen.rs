@@ -6739,8 +6739,8 @@ unsafe extern "C" fn coff_write_native_symbol(
     );
 }
 unsafe extern "C" fn null_error_handler(
-    mut fmt: *const libc::c_char,
-    mut ap: ::core::ffi::VaList,
+    mut _fmt: *const libc::c_char,
+    mut _ap: ::core::ffi::VaList,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn coff_write_symbols(mut abfd: *mut bfd) -> bool {
@@ -7128,7 +7128,7 @@ pub unsafe extern "C" fn coff_write_linenumbers(mut abfd: *mut bfd) -> bool {
 }
 #[no_mangle]
 pub unsafe extern "C" fn coff_get_lineno(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
     mut symbol: *mut asymbol,
 ) -> *mut alent {
     return (*(&mut (*symbol).the_bfd as *mut *mut bfd as *mut coff_symbol_type)).lineno;
@@ -7769,8 +7769,8 @@ pub unsafe extern "C" fn coff_make_empty_symbol(mut abfd: *mut bfd) -> *mut asym
 #[no_mangle]
 pub unsafe extern "C" fn coff_bfd_make_debug_symbol(
     mut abfd: *mut bfd,
-    mut ptr: *mut libc::c_void,
-    mut sz: libc::c_ulong,
+    mut _ptr: *mut libc::c_void,
+    mut _sz: libc::c_ulong,
 ) -> *mut asymbol {
     let mut amt: size_t = ::core::mem::size_of::<coff_symbol_type>() as libc::c_ulong;
     let mut new_symbol: *mut coff_symbol_type = bfd_alloc(abfd, amt)
@@ -8124,7 +8124,7 @@ pub unsafe extern "C" fn coff_print_symbol(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_coff_is_local_label_name(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut name: *const libc::c_char,
 ) -> bool {
     return *name.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
@@ -8656,7 +8656,7 @@ pub unsafe extern "C" fn _bfd_coff_section_already_linked(
 }
 unsafe extern "C" fn init_reloc_cookie(
     mut cookie: *mut coff_reloc_cookie,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut abfd: *mut bfd,
 ) -> bool {
     ((*((*(*abfd).xvec).backend_data as *mut bfd_coff_backend_data))
@@ -8668,12 +8668,12 @@ unsafe extern "C" fn init_reloc_cookie(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn fini_reloc_cookie(
-    mut cookie: *mut coff_reloc_cookie,
-    mut abfd: *mut bfd,
+    mut _cookie: *mut coff_reloc_cookie,
+    mut _abfd: *mut bfd,
 ) {}
 unsafe extern "C" fn init_reloc_cookie_rels(
     mut cookie: *mut coff_reloc_cookie,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut abfd: *mut bfd,
     mut sec: *mut asection,
 ) -> bool {
@@ -8733,8 +8733,8 @@ unsafe extern "C" fn fini_reloc_cookie_for_section(
 }
 unsafe extern "C" fn _bfd_coff_gc_mark_hook(
     mut sec: *mut asection,
-    mut info: *mut bfd_link_info,
-    mut rel: *mut internal_reloc,
+    mut _info: *mut bfd_link_info,
+    mut _rel: *mut internal_reloc,
     mut h: *mut coff_link_hash_entry,
     mut sym: *mut internal_syment,
 ) -> *mut asection {
@@ -8861,7 +8861,7 @@ unsafe extern "C" fn _bfd_coff_gc_mark(
 }
 unsafe extern "C" fn _bfd_coff_gc_mark_extra_sections(
     mut info: *mut bfd_link_info,
-    mut mark_hook: coff_gc_mark_hook_fn,
+    mut _mark_hook: coff_gc_mark_hook_fn,
 ) -> bool {
     let mut ibfd: *mut bfd = 0 as *mut bfd;
     ibfd = (*info).input_bfds;
@@ -8905,7 +8905,7 @@ unsafe extern "C" fn _bfd_coff_gc_mark_extra_sections(
 }
 unsafe extern "C" fn coff_gc_sweep_symbol(
     mut h: *mut coff_link_hash_entry,
-    mut data: *mut libc::c_void,
+    mut _data: *mut libc::c_void,
 ) -> bool {
     if ((*h).root).type_0() as libc::c_int == bfd_link_hash_warning as libc::c_int {
         h = (*h).root.u.i.link as *mut coff_link_hash_entry;
@@ -8928,7 +8928,7 @@ unsafe extern "C" fn coff_gc_sweep_symbol(
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn coff_gc_sweep(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut info: *mut bfd_link_info,
 ) -> bool {
     let mut sub: *mut bfd = 0 as *mut bfd;

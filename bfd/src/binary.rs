@@ -3758,7 +3758,7 @@ pub const _sch_isblank: C2RustUnnamed_5 = 1;
 unsafe extern "C" fn bfd_get_filename(mut abfd: *const bfd) -> *const libc::c_char {
     return (*abfd).filename;
 }
-unsafe extern "C" fn binary_mkobject(mut abfd: *mut bfd) -> bool {
+unsafe extern "C" fn binary_mkobject(mut _abfd: *mut bfd) -> bool {
     return 1 as libc::c_int != 0;
 }
 unsafe extern "C" fn binary_object_p(mut abfd: *mut bfd) -> bfd_cleanup {
@@ -3820,7 +3820,7 @@ unsafe extern "C" fn binary_get_section_contents(
     }
     return 1 as libc::c_int != 0;
 }
-unsafe extern "C" fn binary_get_symtab_upper_bound(mut abfd: *mut bfd) -> libc::c_long {
+unsafe extern "C" fn binary_get_symtab_upper_bound(mut _abfd: *mut bfd) -> libc::c_long {
     return ((3 as libc::c_int + 1 as libc::c_int) as libc::c_ulong)
         .wrapping_mul(::core::mem::size_of::<*mut asymbol>() as libc::c_ulong)
         as libc::c_long;
@@ -3928,7 +3928,7 @@ unsafe extern "C" fn binary_canonicalize_symtab(
     return 3 as libc::c_int as libc::c_long;
 }
 unsafe extern "C" fn binary_get_symbol_info(
-    mut ignore_abfd: *mut bfd,
+    mut _ignore_abfd: *mut bfd,
     mut symbol: *mut asymbol,
     mut ret: *mut symbol_info,
 ) {
@@ -4006,8 +4006,8 @@ unsafe extern "C" fn binary_set_section_contents(
     return _bfd_generic_set_section_contents(abfd, sec, data, offset, size);
 }
 unsafe extern "C" fn binary_sizeof_headers(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> libc::c_int {
     return 0 as libc::c_int;
 }

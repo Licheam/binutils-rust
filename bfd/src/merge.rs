@@ -5379,7 +5379,7 @@ unsafe extern "C" fn merge_strings(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_merge_sections(
     mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut xsinfo: *mut libc::c_void,
     mut remove_hook: Option::<unsafe extern "C" fn(*mut bfd, *mut asection) -> ()>,
 ) -> bool {
@@ -5532,7 +5532,7 @@ pub unsafe extern "C" fn _bfd_write_merged_section(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_merged_section_offset(
-    mut output_bfd: *mut bfd,
+    mut _output_bfd: *mut bfd,
     mut psec: *mut *mut asection,
     mut psecinfo: *mut libc::c_void,
     mut offset: bfd_vma,

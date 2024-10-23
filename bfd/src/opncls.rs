@@ -4920,9 +4920,9 @@ unsafe extern "C" fn opncls_bread(
     return nread;
 }
 unsafe extern "C" fn opncls_bwrite(
-    mut abfd: *mut bfd,
-    mut where_0: *const libc::c_void,
-    mut nbytes: file_ptr,
+    mut _abfd: *mut bfd,
+    mut _where_0: *const libc::c_void,
+    mut _nbytes: file_ptr,
 ) -> file_ptr {
     return -(1 as libc::c_int) as file_ptr;
 }
@@ -4935,7 +4935,7 @@ unsafe extern "C" fn opncls_bclose(mut abfd: *mut bfd) -> libc::c_int {
     (*abfd).iostream = 0 as *mut libc::c_void;
     return status;
 }
-unsafe extern "C" fn opncls_bflush(mut abfd: *mut bfd) -> libc::c_int {
+unsafe extern "C" fn opncls_bflush(mut _abfd: *mut bfd) -> libc::c_int {
     return 0 as libc::c_int;
 }
 unsafe extern "C" fn opncls_bstat(mut abfd: *mut bfd, mut sb: *mut stat) -> libc::c_int {
@@ -4951,14 +4951,14 @@ unsafe extern "C" fn opncls_bstat(mut abfd: *mut bfd, mut sb: *mut stat) -> libc
     return ((*vec).stat).expect("non-null function pointer")(abfd, (*vec).stream, sb);
 }
 unsafe extern "C" fn opncls_bmmap(
-    mut abfd: *mut bfd,
-    mut addr: *mut libc::c_void,
-    mut len: bfd_size_type,
-    mut prot: libc::c_int,
-    mut flags: libc::c_int,
-    mut offset: file_ptr,
-    mut map_addr: *mut *mut libc::c_void,
-    mut map_len: *mut bfd_size_type,
+    mut _abfd: *mut bfd,
+    mut _addr: *mut libc::c_void,
+    mut _len: bfd_size_type,
+    mut _prot: libc::c_int,
+    mut _flags: libc::c_int,
+    mut _offset: file_ptr,
+    mut _map_addr: *mut *mut libc::c_void,
+    mut _map_len: *mut bfd_size_type,
 ) -> *mut libc::c_void {
     return -(1 as libc::c_int) as *mut libc::c_void;
 }
@@ -5257,7 +5257,7 @@ pub unsafe extern "C" fn bfd_alloc(
         bfd_set_error(bfd_error_no_memory);
         return 0 as *mut libc::c_void;
     }
-    ret = ({
+    ret = {
         let mut __o: *mut objalloc = (*abfd).memory as *mut objalloc;
         let mut __len: libc::c_ulong = ul_size;
         if __len == 0 as libc::c_int as libc::c_ulong {
@@ -5278,7 +5278,7 @@ pub unsafe extern "C" fn bfd_alloc(
         } else {
             _objalloc_alloc(__o, __len)
         }
-    });
+    };
     if ret.is_null() {
         bfd_set_error(bfd_error_no_memory);
     }
@@ -5744,7 +5744,7 @@ unsafe extern "C" fn separate_debug_file_exists(
 }
 unsafe extern "C" fn separate_alt_debug_file_exists(
     mut name: *const libc::c_char,
-    mut unused: *mut libc::c_void,
+    mut _unused: *mut libc::c_void,
 ) -> bool {
     let mut f: *mut FILE = 0 as *mut FILE;
     if name.is_null() {
@@ -5847,7 +5847,7 @@ unsafe extern "C" fn find_separate_debug_file(
     debugfile = bfd_malloc(
         (strlen(debug_file_directory))
             .wrapping_add(1 as libc::c_int as libc::c_ulong)
-            .wrapping_add((if canon_dirlen > dirlen { canon_dirlen } else { dirlen }))
+            .wrapping_add(if canon_dirlen > dirlen { canon_dirlen } else { dirlen })
             .wrapping_add(strlen(b".debug/\0" as *const u8 as *const libc::c_char))
             .wrapping_add(
                 strlen(b"/usr/lib/debug\0" as *const u8 as *const libc::c_char),
@@ -5960,7 +5960,7 @@ pub unsafe extern "C" fn bfd_follow_gnu_debuglink(
 }
 unsafe extern "C" fn get_alt_debug_link_info_shim(
     mut abfd: *mut bfd,
-    mut unused: *mut libc::c_void,
+    mut _unused: *mut libc::c_void,
 ) -> *mut libc::c_char {
     let mut len: bfd_size_type = 0;
     let mut buildid: *mut bfd_byte = 0 as *mut bfd_byte;
@@ -6204,7 +6204,7 @@ unsafe extern "C" fn get_build_id(mut abfd: *mut bfd) -> *mut bfd_build_id {
         || size
             < (12 as libc::c_int as libc::c_ulong)
                 .wrapping_add(
-                    (if (inote.namesz)
+                    if (inote.namesz)
                         .wrapping_add(4 as libc::c_int as libc::c_ulong)
                         .wrapping_sub(1 as libc::c_int as libc::c_ulong) >= inote.namesz
                     {
@@ -6214,7 +6214,7 @@ unsafe extern "C" fn get_build_id(mut abfd: *mut bfd) -> *mut bfd_build_id {
                             ) & !((4 as libc::c_int - 1 as libc::c_int) as bfd_vma)
                     } else {
                         !(0 as libc::c_int as bfd_vma)
-                    }),
+                    },
                 )
                 .wrapping_add(inote.descsz)
     {

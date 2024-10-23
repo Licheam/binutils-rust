@@ -4543,10 +4543,10 @@ pub unsafe extern "C" fn _bfd_generic_read_minisymbols(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_minisymbol_to_symbol(
-    mut abfd: *mut bfd,
-    mut dynamic: bool,
+    mut _abfd: *mut bfd,
+    mut _dynamic: bool,
     mut minisym: *const libc::c_void,
-    mut sym: *mut asymbol,
+    mut _sym: *mut asymbol,
 ) -> *mut asymbol {
     return *(minisym as *mut *mut asymbol);
 }
@@ -5267,113 +5267,113 @@ pub unsafe extern "C" fn _bfd_stab_section_find_nearest_line(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_canonicalize_symtab(
-    mut abfd: *mut bfd,
-    mut location: *mut *mut asymbol,
+    mut _abfd: *mut bfd,
+    mut _location: *mut *mut asymbol,
 ) -> libc::c_long {
     return 0 as libc::c_int as libc::c_long;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_print_symbol(
-    mut abfd: *mut bfd,
-    mut afile: *mut libc::c_void,
-    mut symbol: *mut asymbol,
-    mut how: bfd_print_symbol_type,
+    mut _abfd: *mut bfd,
+    mut _afile: *mut libc::c_void,
+    mut _symbol: *mut asymbol,
+    mut _how: bfd_print_symbol_type,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_get_symbol_info(
-    mut abfd: *mut bfd,
-    mut sym: *mut asymbol,
-    mut ret: *mut symbol_info,
+    mut _abfd: *mut bfd,
+    mut _sym: *mut asymbol,
+    mut _ret: *mut symbol_info,
 ) {}
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_get_symbol_version_string(
     mut abfd: *mut bfd,
-    mut symbol: *mut asymbol,
-    mut base_p: bool,
-    mut hidden: *mut bool,
+    mut _symbol: *mut asymbol,
+    mut _base_p: bool,
+    mut _hidden: *mut bool,
 ) -> *const libc::c_char {
     return _bfd_ptr_bfd_null_error(abfd) as *const libc::c_char;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_bfd_is_local_label_name(
-    mut abfd: *mut bfd,
-    mut name: *const libc::c_char,
+    mut _abfd: *mut bfd,
+    mut _name: *const libc::c_char,
 ) -> bool {
     return 0 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_get_lineno(
     mut abfd: *mut bfd,
-    mut sym: *mut asymbol,
+    mut _sym: *mut asymbol,
 ) -> *mut alent {
     return _bfd_ptr_bfd_null_error(abfd) as *mut alent;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_find_nearest_line(
     mut abfd: *mut bfd,
-    mut symbols: *mut *mut asymbol,
-    mut section: *mut asection,
-    mut offset: bfd_vma,
-    mut filename_ptr: *mut *const libc::c_char,
-    mut functionname_ptr: *mut *const libc::c_char,
-    mut line_ptr: *mut libc::c_uint,
-    mut discriminator_ptr: *mut libc::c_uint,
+    mut _symbols: *mut *mut asymbol,
+    mut _section: *mut asection,
+    mut _offset: bfd_vma,
+    mut _filename_ptr: *mut *const libc::c_char,
+    mut _functionname_ptr: *mut *const libc::c_char,
+    mut _line_ptr: *mut libc::c_uint,
+    mut _discriminator_ptr: *mut libc::c_uint,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_find_line(
     mut abfd: *mut bfd,
-    mut symbols: *mut *mut asymbol,
-    mut symbol: *mut asymbol,
-    mut filename_ptr: *mut *const libc::c_char,
-    mut line_ptr: *mut libc::c_uint,
+    mut _symbols: *mut *mut asymbol,
+    mut _symbol: *mut asymbol,
+    mut _filename_ptr: *mut *const libc::c_char,
+    mut _line_ptr: *mut libc::c_uint,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_find_inliner_info(
     mut abfd: *mut bfd,
-    mut filename_ptr: *mut *const libc::c_char,
-    mut functionname_ptr: *mut *const libc::c_char,
-    mut line_ptr: *mut libc::c_uint,
+    mut _filename_ptr: *mut *const libc::c_char,
+    mut _functionname_ptr: *mut *const libc::c_char,
+    mut _line_ptr: *mut libc::c_uint,
 ) -> bool {
     return _bfd_bool_bfd_false_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_bfd_make_debug_symbol(
     mut abfd: *mut bfd,
-    mut ptr: *mut libc::c_void,
-    mut sz: libc::c_ulong,
+    mut _ptr: *mut libc::c_void,
+    mut _sz: libc::c_ulong,
 ) -> *mut asymbol {
     return _bfd_ptr_bfd_null_error(abfd) as *mut asymbol;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_read_minisymbols(
     mut abfd: *mut bfd,
-    mut dynamic: bool,
-    mut minisymsp: *mut *mut libc::c_void,
-    mut sizep: *mut libc::c_uint,
+    mut _dynamic: bool,
+    mut _minisymsp: *mut *mut libc::c_void,
+    mut _sizep: *mut libc::c_uint,
 ) -> libc::c_long {
     return _bfd_long_bfd_n1_error(abfd);
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nosymbols_minisymbol_to_symbol(
     mut abfd: *mut bfd,
-    mut dynamic: bool,
-    mut minisym: *const libc::c_void,
-    mut sym: *mut asymbol,
+    mut _dynamic: bool,
+    mut _minisym: *const libc::c_void,
+    mut _sym: *mut asymbol,
 ) -> *mut asymbol {
     return _bfd_ptr_bfd_null_error(abfd) as *mut asymbol;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nodynamic_get_synthetic_symtab(
     mut abfd: *mut bfd,
-    mut symcount: libc::c_long,
-    mut syms: *mut *mut asymbol,
-    mut dynsymcount: libc::c_long,
-    mut dynsyms: *mut *mut asymbol,
-    mut ret: *mut *mut asymbol,
+    mut _symcount: libc::c_long,
+    mut _syms: *mut *mut asymbol,
+    mut _dynsymcount: libc::c_long,
+    mut _dynsyms: *mut *mut asymbol,
+    mut _ret: *mut *mut asymbol,
 ) -> libc::c_long {
     return _bfd_long_bfd_n1_error(abfd);
 }

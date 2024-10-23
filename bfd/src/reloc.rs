@@ -7156,8 +7156,8 @@ pub unsafe extern "C" fn bfd_get_reloc_code_name(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_relax_section(
-    mut abfd: *mut bfd,
-    mut section: *mut asection,
+    mut _abfd: *mut bfd,
+    mut _section: *mut asection,
     mut link_info: *mut bfd_link_info,
     mut again: *mut bool,
 ) -> bool {
@@ -7179,16 +7179,16 @@ pub unsafe extern "C" fn bfd_generic_relax_section(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_gc_sections(
-    mut abfd: *mut bfd,
-    mut info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _info: *mut bfd_link_info,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_lookup_section_flags(
-    mut info: *mut bfd_link_info,
+    mut _info: *mut bfd_link_info,
     mut flaginfo: *mut flag_info,
-    mut section: *mut asection,
+    mut _section: *mut asection,
 ) -> bool {
     if !flaginfo.is_null() {
         _bfd_error_handler(
@@ -7205,8 +7205,8 @@ pub unsafe extern "C" fn bfd_generic_lookup_section_flags(
 }
 #[no_mangle]
 pub unsafe extern "C" fn bfd_generic_merge_sections(
-    mut abfd: *mut bfd,
-    mut link_info: *mut bfd_link_info,
+    mut _abfd: *mut bfd,
+    mut _link_info: *mut bfd_link_info,
 ) -> bool {
     return 1 as libc::c_int != 0;
 }
@@ -7471,7 +7471,7 @@ pub unsafe extern "C" fn bfd_generic_get_relocated_section_contents(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_generic_set_reloc(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut section: sec_ptr,
     mut relptr: *mut *mut arelent,
     mut count: libc::c_uint,
@@ -7511,22 +7511,22 @@ pub unsafe extern "C" fn _bfd_unrecognized_reloc(
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_norelocs_bfd_reloc_type_lookup(
     mut abfd: *mut bfd,
-    mut code: bfd_reloc_code_real_type,
+    mut _code: bfd_reloc_code_real_type,
 ) -> *const reloc_howto_type {
     return _bfd_ptr_bfd_null_error(abfd) as *const reloc_howto_type;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_norelocs_bfd_reloc_name_lookup(
     mut abfd: *mut bfd,
-    mut reloc_name: *const libc::c_char,
+    mut _reloc_name: *const libc::c_char,
 ) -> *const reloc_howto_type {
     return _bfd_ptr_bfd_null_error(abfd) as *const reloc_howto_type;
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_nodynamic_canonicalize_dynamic_reloc(
     mut abfd: *mut bfd,
-    mut relp: *mut *mut arelent,
-    mut symp: *mut *mut asymbol,
+    mut _relp: *mut *mut arelent,
+    mut _symp: *mut *mut asymbol,
 ) -> libc::c_long {
     return _bfd_long_bfd_n1_error(abfd);
 }

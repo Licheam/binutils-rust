@@ -6614,7 +6614,7 @@ unsafe extern "C" fn read_1_byte(
     return read_n_bytes(abfd, ptr, end, 1 as libc::c_int) as libc::c_uint;
 }
 unsafe extern "C" fn read_1_signed_byte(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut ptr: *mut *mut bfd_byte,
     mut end: *mut bfd_byte,
 ) -> libc::c_int {
@@ -7221,8 +7221,8 @@ unsafe extern "C" fn is_str_attr(mut form: dwarf_form) -> bool {
         || form as libc::c_uint == DW_FORM_GNU_strp_alt as libc::c_int as libc::c_uint;
 }
 unsafe extern "C" fn read_indexed_string(
-    mut idx: bfd_uint64_t,
-    mut unit: *mut comp_unit,
+    mut _idx: bfd_uint64_t,
+    mut _unit: *mut comp_unit,
 ) -> *const libc::c_char {
     return b"<indexed strings not yet supported>\0" as *const u8 as *const libc::c_char;
 }
@@ -7994,9 +7994,9 @@ unsafe extern "C" fn line_info_add_include_dir(
 unsafe extern "C" fn line_info_add_include_dir_stub(
     mut table: *mut line_info_table,
     mut cur_dir: *mut libc::c_char,
-    mut dir: libc::c_uint,
-    mut xtime: libc::c_uint,
-    mut size: libc::c_uint,
+    mut _dir: libc::c_uint,
+    mut _xtime: libc::c_uint,
+    mut _size: libc::c_uint,
 ) -> bool {
     return line_info_add_include_dir(table, cur_dir);
 }
@@ -8304,11 +8304,11 @@ unsafe extern "C" fn decode_line_info(mut unit: *mut comp_unit) -> *mut line_inf
             (if lh.version as libc::c_int >= 5 as libc::c_int {
                 8 as libc::c_int
             } else {
-                (if lh.version as libc::c_int >= 4 as libc::c_int {
+                if lh.version as libc::c_int >= 4 as libc::c_int {
                     6 as libc::c_int
                 } else {
                     5 as libc::c_int
-                })
+                }
             }) as isize,
         ) >= line_end
     {
@@ -12322,7 +12322,7 @@ pub unsafe extern "C" fn _bfd_dwarf2_find_nearest_line(
 }
 #[no_mangle]
 pub unsafe extern "C" fn _bfd_dwarf2_find_inliner_info(
-    mut abfd: *mut bfd,
+    mut _abfd: *mut bfd,
     mut filename_ptr: *mut *const libc::c_char,
     mut functionname_ptr: *mut *const libc::c_char,
     mut linenumber_ptr: *mut libc::c_uint,
