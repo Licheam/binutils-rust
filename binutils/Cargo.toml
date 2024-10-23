@@ -1,0 +1,61 @@
+[workspace]
+members = [
+]
+[package]
+name = "binutils"
+authors = ["C2Rust"]
+version = "0.0.0"
+publish = false
+edition = "2021"
+autobins = false
+
+
+[[bin]]
+path = "sysinfo.rs"
+name = "sysinfo"
+[[bin]]
+path = "objdump.rs"
+name = "objdump"
+[[bin]]
+path = "size.rs"
+name = "size"
+[[bin]]
+path = "strings.rs"
+name = "strings"
+[[bin]]
+path = "ar.rs"
+name = "ar"
+[[bin]]
+path = "elfedit.rs"
+name = "elfedit"
+[[bin]]
+path = "nm.rs"
+name = "nm"
+[[bin]]
+path = "readelf.rs"
+name = "readelf"
+[[bin]]
+path = "cxxfilt.rs"
+name = "cxxfilt"
+[[bin]]
+path = "bfdtest1.rs"
+name = "bfdtest1"
+[[bin]]
+path = "bfdtest2.rs"
+name = "bfdtest2"
+[[bin]]
+path = "addr2line.rs"
+name = "addr2line"
+[[bin]]
+path = "objcopy.rs"
+name = "objcopy"
+[[bin]]
+path = "gentestdlls.rs"
+name = "gentestdlls"
+[dependencies]
+bfd-sys = { version = "0.0.0", path = "../bfd" }
+c2rust-bitfields= "0.3"
+libc= "0.2"
+libctf-sys = { version = "0.0.0", path = "../libctf" }
+libiberty-sys = { version = "0.0.0", path = "../libiberty" }
+zlib-sys = { version = "0.0.0", path = "../zlib" }
