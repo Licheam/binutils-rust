@@ -10,6 +10,10 @@
 #![feature(label_break_value)]
 
 
+extern crate bfd_sys;
+extern crate libctf_sys;
+extern crate libiberty_sys;
+extern crate zlib_sys;
 extern crate libc;
 pub mod src {
 pub mod elfcomm;

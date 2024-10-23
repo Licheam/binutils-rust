@@ -11,6 +11,10 @@
 
 #[macro_use]
 extern crate c2rust_bitfields;
+extern crate bfd_sys;
+extern crate libctf_sys;
+extern crate libiberty_sys;
+extern crate zlib_sys;
 extern crate libc;
 pub mod src {
 pub mod dwarf;
