@@ -1,6 +1,3 @@
-[workspace]
-members = [
-]
 [package]
 name = "binutils"
 authors = ["C2Rust"]
@@ -11,20 +8,11 @@ autobins = false
 
 
 [[bin]]
-path = "sysinfo.rs"
-name = "sysinfo"
-[[bin]]
-path = "objdump.rs"
-name = "objdump"
-[[bin]]
 path = "size.rs"
 name = "size"
 [[bin]]
 path = "strings.rs"
 name = "strings"
-[[bin]]
-path = "ar.rs"
-name = "ar"
 [[bin]]
 path = "elfedit.rs"
 name = "elfedit"
@@ -46,9 +34,6 @@ name = "bfdtest2"
 [[bin]]
 path = "addr2line.rs"
 name = "addr2line"
-[[bin]]
-path = "objcopy.rs"
-name = "objcopy"
 [[bin]]
 path = "gentestdlls.rs"
 name = "gentestdlls"

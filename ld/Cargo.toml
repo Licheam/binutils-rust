@@ -1,6 +1,3 @@
-[workspace]
-members = [
-]
 [package]
 name = "ld"
 authors = ["C2Rust"]

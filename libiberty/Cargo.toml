@@ -1,6 +1,3 @@
-[workspace]
-members = []
-
 [package]
 name = "libiberty-sys"
 authors = ["C2Rust"]

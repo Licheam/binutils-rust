@@ -9,6 +9,28 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ace50bade8e6234aa140d9a2f552bbee1db4d353f69b8217bc503490fc1a9f26"
 
 [[package]]
+name = "bfd-sys"
+version = "0.0.0"
+dependencies = [
+ "c2rust-bitfields",
+ "f128",
+ "libc",
+ "zlib-sys",
+]
+
+[[package]]
+name = "binutils"
+version = "0.0.0"
+dependencies = [
+ "bfd-sys",
+ "c2rust-bitfields",
+ "libc",
+ "libctf-sys",
+ "libiberty-sys",
+ "zlib-sys",
+]
+
+[[package]]
 name = "c2rust-bitfields"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -70,6 +92,42 @@ dependencies = [
 ]
 
 [[package]]
+name = "gas"
+version = "0.0.0"
+dependencies = [
+ "bfd-sys",
+ "c2rust-bitfields",
+ "libc",
+ "libctf-sys",
+ "libiberty-sys",
+ "zlib-sys",
+]
+
+[[package]]
+name = "gprof"
+version = "0.0.0"
+dependencies = [
+ "bfd-sys",
+ "c2rust-bitfields",
+ "libc",
+ "libctf-sys",
+ "libiberty-sys",
+ "zlib-sys",
+]
+
+[[package]]
+name = "ld"
+version = "0.0.0"
+dependencies = [
+ "bfd-sys",
+ "c2rust-bitfields",
+ "libc",
+ "libctf-sys",
+ "libiberty-sys",
+ "zlib-sys",
+]
+
+[[package]]
 name = "libc"
 version = "0.2.161"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -82,6 +140,15 @@ dependencies = [
  "c2rust-bitfields",
  "libc",
  "zlib-sys",
+]
+
+[[package]]
+name = "libiberty-sys"
+version = "0.0.0"
+dependencies = [
+ "c2rust-bitfields",
+ "f128",
+ "libc",
 ]
 
 [[package]]

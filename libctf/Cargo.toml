@@ -1,6 +1,3 @@
-[workspace]
-members = []
-
 [package]
 name = "libctf-sys"
 authors = ["C2Rust"]
