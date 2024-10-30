@@ -30,3 +30,7 @@ COPY --chown=user .cargo/config.toml /home/user/.cargo/config.toml
 
 # 编译
 COPY --chown=user . /home/user/binutils-rust
+WORKDIR /home/user/binutils-rust
+RUN cargo build --bins -Z sparse-registry
+
+RUN test 13 -eq $(find ./target/debug -type f -executable -maxdepth 1 | wc -l)
