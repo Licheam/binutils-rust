@@ -47,6 +47,7 @@ WORKDIR /home/user/FunctionTest/binutils
 RUN ./configure && make -j && make check -j
 WORKDIR /home/user/FunctionTest/rust-binutils
 RUN ./configure && make -j
+RUN cp -r /home/user/FunctionTest/rust-binutils/ld/ldscripts /home/user/binutils-rust/target/debug/
 RUN sed -i '/if !\[info exists ld\] then {/i set ld /home/user/binutils-rust/target/debug/ldmain\n' ld/testsuite/config/default.exp
 RUN sed -i 's|if !\[info exists LD\] then {|set LD /home/user/binutils-rust/target/debug/ldmain\n&|' ld/testsuite/config/default.exp
 RUN sed -i '/# Set LD_CLASS to "64bit" for a 64-bit \*host\* linker./i set REAL_LD /home/user/binutils-rust/target/debug/ldmain\n' ld/testsuite/config/default.exp
