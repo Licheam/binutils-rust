@@ -34,7 +34,7 @@ sudo dnf install -y openssl-devel gmp-devel llvm-libs-12.0.1-2.oe2203 llvm-devel
 cargo build --bins --keep-going -Z sparse-registry
 ```
 
-5. 检查二进制文件数量（应当为80）
+5. 检查二进制文件数量
 ```bash
 find ./target/debug -maxdepth 1 -type f -executable | wc -l
 ```
