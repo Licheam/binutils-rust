@@ -59,3 +59,4 @@ RUN sed -i 's|if !\[info exists NM\] then {|set NM /home/user/binutils-rust/targ
 RUN sed -i 's|if !\[info exists READELF\] then {|set READELF /home/user/binutils-rust/target/debug/readelf\n&|' binutils/testsuite/config/default.exp
 RUN sed -i 's|if !\[info exists STRINGS\] then {|set STRINGS /home/user/binutils-rust/target/debug/strings\n&|' binutils/testsuite/config/default.exp
 RUN make check -j
+COPY --chown=user diff.py /home/user/FunctionTest/diff.py
