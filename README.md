@@ -14,6 +14,26 @@ docker buildx build -t binutils-rust --platform linux/amd64 -f Dockerfile ./
 
 3. binutils二进制文件目录在`/home/user/binutils-rust/target/debug`
 
+4. binutils测试结果在`/home/user/FunctionTest/result.txt`
+
+```
+        === libctf Summary ===
+# of expected passes		3
+# of unsupported tests		2
+		=== binutils Summary ===
+# of expected passes		293
+# of unsupported tests		2
+		=== ld Summary ===
+# of expected passes		2741
+# of unexpected failures	3
+# of expected failures		59
+# of untested testcases		6
+# of unsupported tests		29
+		=== gas Summary ===
+# of expected passes		1559
+# of unsupported tests		1
+```
+
 ## 直接编译
 
 1. 拉取仓库
