@@ -57,3 +57,21 @@ cargo build --bins --keep-going -Z sparse-registry
 ```bash
 find ./target/debug -maxdepth 1 -type f -executable | wc -l
 ```
+
+## 依赖图
+
+### binutils
+
+[binutils依赖关系](./dependencies_binutils.pdf)
+
+### ld
+
+[ld依赖关系](./dependencies_ld.pdf)
+
+### gas
+
+[gas依赖关系](./dependencies_gas.pdf)
+
+### gprof
+
+[gprof依赖关系](./dependencies_gprof.pdf)
