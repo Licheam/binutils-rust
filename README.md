@@ -60,18 +60,20 @@ find ./target/debug -maxdepth 1 -type f -executable | wc -l
 
 ## 依赖图
 
-### binutils
+根据其中不同目录分成了如下若干依赖关系图
+
+### binutils目录
 
 [binutils依赖关系](./dependencies_binutils.pdf)
 
-### ld
+### ld目录
 
 [ld依赖关系](./dependencies_ld.pdf)
 
-### gas
+### gas目录
 
 [gas依赖关系](./dependencies_gas.pdf)
 
-### gprof
+### gprof目录
 
 [gprof依赖关系](./dependencies_gprof.pdf)
